@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eTicketServices.IServices;
+using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace eTicketWebApp.Controllers
 {
@@ -31,3 +34,4 @@ namespace eTicketWebApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+}
