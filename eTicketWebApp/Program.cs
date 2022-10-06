@@ -4,8 +4,8 @@ using eTicketData;
 using eTicketServices;
 using eTicketData.Entities;
 using Microsoft.VisualBasic;
-
-
+using eTicketWebApp.Repositories;
+using eTicketData.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +15,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+
 builder.Services.AddMemoryCache();
 builder.Services.AddETicketServices();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -38,6 +41,13 @@ AddAuthorizationPolicies();
 //            .AddDefaultTokenProviders();
 
 builder.Services.AddRazorPages();
+
+AddScoped();
+
+void AddScoped()
+{
+    throw new NotImplementedException();
+}
 
 var app = builder.Build();
 
@@ -77,5 +87,11 @@ void AddAuthorizationPolicies()
     //    options.AddPolicy(Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
     //    options.AddPolicy(Constants.Policies.RequireManager, policy => policy.RequireRole(Constants.Roles.Manager));
     //});
+    void AddScoped()
+    {
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
 }
 

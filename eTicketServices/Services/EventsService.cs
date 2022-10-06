@@ -1,17 +1,18 @@
 using eTicketData;
 using eTicketData.Entities;
 using eTicketServices.IServices;
+using eTicketWebApp.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTicketServices.Services
 {
     public class EventsService : IEventService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly UserRepository _IUserRepository;
 
-        public EventsService(ApplicationDbContext context)
+        public EventsService(UserRepository IUserRepository)
         {
-            _context = context;
+            _IUserRepository = IUserRepository;
         }
 
 
@@ -25,21 +26,41 @@ namespace eTicketServices.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Event>> GetAll()
+        public Task<IEnumerable<Event>> GetAll()
         {
-            var result = await _context.Events.ToListAsync();
-            return result;
+            throw new NotImplementedException();
         }
 
         public Event GetById(int id)
         {
-            var result = _context.Events.FirstOrDefault(e => e.EventId == id);
-            return result;
+            throw new NotImplementedException();
         }
 
         public Event Update(int id, Event newevent)
         {
             throw new NotImplementedException();
         }
+
+        //public void Delete(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IEnumerable<Event>> GetAll()
+        //{
+        //    var result = await _IUserRepository
+        //    return result;
+        //}
+
+        //public Event GetById(int id)
+        //{
+        //    var result = _IUserRepository.Events.FirstOrDefault(e => e.EventId == id);
+        //    return result;
     }
+
+        //public Event Update(int id, Event newevent)
+        //{
+        //    throw new NotImplementedException();
+        //}
+    
 }
