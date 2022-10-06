@@ -1,4 +1,4 @@
-using eTicketData.Entities;
+using SharedComponents.Models;
 
 namespace eTicketServices.IServices
 {
@@ -8,9 +8,8 @@ namespace eTicketServices.IServices
         Task<IEnumerable<Event>> GetAll();
 
         Event GetById(int id);
-        void Add(Event theevent);
-        Event Update(int id, Event newevent);
-
+        void Add(Event eventModel);
+        Event Update(int id, Event eventModel);
         void Delete(int id);
 
 

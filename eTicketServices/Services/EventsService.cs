@@ -1,21 +1,11 @@
-using eTicketData;
-using eTicketData.Entities;
 using eTicketServices.IServices;
-using Microsoft.EntityFrameworkCore;
+using SharedComponents.Models;
 
 namespace eTicketServices.Services
 {
     public class EventsService : IEventService
     {
-        private readonly ApplicationDbContext _context;
-
-        public EventsService(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-
-        public void Add(Event newevent)
+        public void Add(Event eventModel)
         {
             throw new NotImplementedException();
         }
@@ -25,19 +15,17 @@ namespace eTicketServices.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Event>> GetAll()
+        public Task<IEnumerable<Event>> GetAll()
         {
-            var result = await _context.Events.ToListAsync();
-            return result;
+            throw new NotImplementedException();
         }
 
         public Event GetById(int id)
         {
-            var result = _context.Events.FirstOrDefault(e => e.EventId == id);
-            return result;
+            throw new NotImplementedException();
         }
 
-        public Event Update(int id, Event newevent)
+        public Event Update(int id, Event eventModel)
         {
             throw new NotImplementedException();
         }

@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using eTicketData;
 using eTicketServices;
-using eTicketData.Entities;
-using Microsoft.VisualBasic;
 
 
 
@@ -15,23 +13,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+
 builder.Services.AddMemoryCache();
 builder.Services.AddETicketServices();
+builder.Services.AddETicketData();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddUserManager<UserManager<AspNetUser>>();
-
 builder.Services.AddControllersWithViews();
 
-#region Authorization
-
 AddAuthorizationPolicies();
-
-#endregion
-
 
 //builder.Services.AddIdentity<User, IdentityRole>()
 //            .AddEntityFrameworkStores<ApplicationDbContext>()
