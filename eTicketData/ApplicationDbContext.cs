@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTicketData;
 
-public class ApplicationDbContext : IdentityDbContext<User>
+public class ApplicationDbContext : IdentityDbContext<AspNetUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
@@ -17,6 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
 
     public DbSet<User> Users { get; set; }
 
+    public DbSet<AspNetUser> AspNetUsers { get; set; }
     // public DbSet<EventCreator> EventCreators { get; set; } 
 
     public DbSet<Event> Events { get; set; }

@@ -17,13 +17,13 @@ public class User : IdentityUser
     [MinLength(2)]
     [MaxLength(50)]
     [Display(Name = "First Name")]
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; }
 
     [Required]
     [MinLength(2)]
     [MaxLength(50)]
     [Display(Name = "Last Name")]
-    public string? LastName { get; set; }
+    public string LastName { get; set; }
 
     // [Required]
     // [DataType(DataType.EmailAddress)]
