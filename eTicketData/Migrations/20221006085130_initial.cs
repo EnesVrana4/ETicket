@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eTicketData.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,12 @@ namespace eTicketData.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    FirstName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
@@ -68,7 +74,7 @@ namespace eTicketData.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "EventCreators",
+                name: "EventCreator",
                 columns: table => new
                 {
                     EventCreatorId = table.Column<int>(type: "int", nullable: false)
@@ -86,30 +92,7 @@ namespace eTicketData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventCreators", x => x.EventCreatorId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_EventCreator", x => x.EventCreatorId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -255,15 +238,22 @@ namespace eTicketData.Migrations
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     EventCreatorId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.EventId);
                     table.ForeignKey(
-                        name: "FK_Events_EventCreators_EventCreatorId",
+                        name: "FK_Events_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Events_EventCreator_EventCreatorId",
                         column: x => x.EventCreatorId,
-                        principalTable: "EventCreators",
+                        principalTable: "EventCreator",
                         principalColumn: "EventCreatorId",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -303,12 +293,19 @@ namespace eTicketData.Migrations
                     EventId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     MyCategoryCategoryId = table.Column<int>(type: "int", nullable: true),
+                    UserFavoritesId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Favorites", x => x.FavoriteId);
+                    table.ForeignKey(
+                        name: "FK_Favorites_AspNetUsers_UserFavoritesId",
+                        column: x => x.UserFavoritesId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Favorites_Categorys_MyCategoryCategoryId",
                         column: x => x.MyCategoryCategoryId,
@@ -319,12 +316,6 @@ namespace eTicketData.Migrations
                         column: x => x.EventId,
                         principalTable: "Events",
                         principalColumn: "EventId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Favorites_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -337,6 +328,8 @@ namespace eTicketData.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    BuyerId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Buyed = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -345,16 +338,15 @@ namespace eTicketData.Migrations
                 {
                     table.PrimaryKey("PK_Tickets", x => x.TicketId);
                     table.ForeignKey(
+                        name: "FK_Tickets_AspNetUsers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Tickets_Categorys_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categorys",
                         principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Tickets_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -407,6 +399,11 @@ namespace eTicketData.Migrations
                 column: "EventCreatorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_UserId",
+                table: "Events",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Favorites_EventId",
                 table: "Favorites",
                 column: "EventId");
@@ -417,19 +414,19 @@ namespace eTicketData.Migrations
                 column: "MyCategoryCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favorites_UserId",
+                name: "IX_Favorites_UserFavoritesId",
                 table: "Favorites",
-                column: "UserId");
+                column: "UserFavoritesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_BuyerId",
+                table: "Tickets",
+                column: "BuyerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_CategoryId",
                 table: "Tickets",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_UserId",
-                table: "Tickets",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -459,19 +456,16 @@ namespace eTicketData.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Categorys");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "EventCreators");
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "EventCreator");
         }
     }
 }

@@ -11,8 +11,8 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221005183834_init")]
-    partial class init
+    [Migration("20221006085130_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,9 +83,14 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("EventId");
 
                     b.HasIndex("EventCreatorId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Events");
                 });
@@ -122,7 +127,7 @@ namespace eTicketData.Migrations
 
                     b.HasKey("EventCreatorId");
 
-                    b.ToTable("EventCreators");
+                    b.ToTable("EventCreator");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.Favorite", b =>
@@ -143,6 +148,9 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("UserFavoritesId")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -152,7 +160,7 @@ namespace eTicketData.Migrations
 
                     b.HasIndex("MyCategoryCategoryId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserFavoritesId");
 
                     b.ToTable("Favorites");
                 });
@@ -165,6 +173,9 @@ namespace eTicketData.Migrations
 
                     b.Property<bool>("Buyed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("BuyerId")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -180,25 +191,34 @@ namespace eTicketData.Migrations
 
                     b.HasKey("TicketId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("BuyerId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.User", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -210,16 +230,52 @@ namespace eTicketData.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("UserId");
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
-                    b.ToTable("Users");
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -269,70 +325,6 @@ namespace eTicketData.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -437,6 +429,10 @@ namespace eTicketData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("eTicketData.Entities.User", null)
+                        .WithMany("CreatedEvents")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Creator");
                 });
 
@@ -454,9 +450,7 @@ namespace eTicketData.Migrations
 
                     b.HasOne("eTicketData.Entities.User", "UserFavorites")
                         .WithMany("MyFavorites")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserFavoritesId");
 
                     b.Navigation("MyCategory");
 
@@ -465,15 +459,13 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("eTicketData.Entities.Ticket", b =>
                 {
+                    b.HasOne("eTicketData.Entities.User", "Buyer")
+                        .WithMany("MyTickets")
+                        .HasForeignKey("BuyerId");
+
                     b.HasOne("eTicketData.Entities.Category", "MyCategory")
                         .WithMany("MyTicket")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("eTicketData.Entities.User", "Buyer")
-                        .WithMany("MyTicket")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -493,7 +485,7 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("eTicketData.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -502,7 +494,7 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("eTicketData.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -517,7 +509,7 @@ namespace eTicketData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("eTicketData.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -526,7 +518,7 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("eTicketData.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -552,9 +544,11 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("eTicketData.Entities.User", b =>
                 {
+                    b.Navigation("CreatedEvents");
+
                     b.Navigation("MyFavorites");
 
-                    b.Navigation("MyTicket");
+                    b.Navigation("MyTickets");
                 });
 #pragma warning restore 612, 618
         }

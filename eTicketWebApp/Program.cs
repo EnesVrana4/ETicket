@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
@@ -21,7 +20,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddUserManager<UserManager<AspNetUser>>();
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllersWithViews();
+
+//builder.Services.AddIdentity<User, IdentityRole>()
+//            .AddEntityFrameworkStores<ApplicationDbContext>()
+//            .AddDefaultTokenProviders();
 
 builder.Services.AddRazorPages();
 

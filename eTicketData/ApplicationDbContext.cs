@@ -7,19 +7,22 @@ using eTicketData.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace eTicketData
+namespace eTicketData;
+
+public class ApplicationDbContext : IdentityDbContext<User>
 {
-    public class ApplicationDbContext : IdentityDbContext
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options) { }
-        public DbSet<User> Users { get; set; }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options) { }
 
-        public DbSet<EventCreator> EventCreators { get; set; }
 
-        public DbSet<Event> Events { get; set; }
-        public DbSet<Category> Categorys { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Favorite> Favorites { get; set; }
-    }
+    public DbSet<User> Users { get; set; }
+
+    // public DbSet<EventCreator> EventCreators { get; set; } 
+
+    public DbSet<Event> Events { get; set; }
+    public DbSet<Category> Categorys { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<Favorite> Favorites { get; set; }
+
+
 }
