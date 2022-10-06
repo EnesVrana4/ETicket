@@ -11,8 +11,8 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221006104750_Mig1")]
-    partial class Mig1
+    [Migration("20221006133328_MigrationFirst")]
+    partial class MigrationFirst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -150,9 +150,6 @@ namespace eTicketData.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EventCreatorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -166,53 +163,11 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
                     b.HasKey("EventId");
 
                     b.HasIndex("AspNetUserId");
 
-                    b.HasIndex("EventCreatorId");
-
-                    b.HasIndex("UserId");
-
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("eTicketData.Entities.EventCreator", b =>
-                {
-                    b.Property<int>("EventCreatorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("EventCreatorId");
-
-                    b.ToTable("EventCreator");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.Favorite", b =>
@@ -236,12 +191,6 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UserFavoritesId")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("FavoriteId");
 
                     b.HasIndex("AspNetUserId");
@@ -249,8 +198,6 @@ namespace eTicketData.Migrations
                     b.HasIndex("EventId");
 
                     b.HasIndex("MyCategoryCategoryId");
-
-                    b.HasIndex("UserFavoritesId");
 
                     b.ToTable("Favorites");
                 });
@@ -267,9 +214,6 @@ namespace eTicketData.Migrations
                     b.Property<bool>("Buyed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("BuyerId")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -279,86 +223,13 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("TicketId");
 
                     b.HasIndex("AspNetUserId");
 
-                    b.HasIndex("BuyerId");
-
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("eTicketData.Entities.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -506,26 +377,16 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("eTicketData.Entities.Event", b =>
                 {
-                    b.HasOne("eTicketData.Entities.AspNetUser", null)
+                    b.HasOne("eTicketData.Entities.AspNetUser", "AspNetUser")
                         .WithMany("CreatedEvents")
                         .HasForeignKey("AspNetUserId");
 
-                    b.HasOne("eTicketData.Entities.EventCreator", "Creator")
-                        .WithMany("CreatedEvents")
-                        .HasForeignKey("EventCreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("eTicketData.Entities.User", null)
-                        .WithMany("CreatedEvents")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Creator");
+                    b.Navigation("AspNetUser");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.Favorite", b =>
                 {
-                    b.HasOne("eTicketData.Entities.AspNetUser", null)
+                    b.HasOne("eTicketData.Entities.AspNetUser", "AspNetUser")
                         .WithMany("MyFavorites")
                         .HasForeignKey("AspNetUserId");
 
@@ -539,24 +400,16 @@ namespace eTicketData.Migrations
                         .WithMany()
                         .HasForeignKey("MyCategoryCategoryId");
 
-                    b.HasOne("eTicketData.Entities.User", "UserFavorites")
-                        .WithMany("MyFavorites")
-                        .HasForeignKey("UserFavoritesId");
+                    b.Navigation("AspNetUser");
 
                     b.Navigation("MyCategory");
-
-                    b.Navigation("UserFavorites");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.Ticket", b =>
                 {
-                    b.HasOne("eTicketData.Entities.AspNetUser", null)
+                    b.HasOne("eTicketData.Entities.AspNetUser", "AspNetUser")
                         .WithMany("MyTickets")
                         .HasForeignKey("AspNetUserId");
-
-                    b.HasOne("eTicketData.Entities.User", "Buyer")
-                        .WithMany("MyTickets")
-                        .HasForeignKey("BuyerId");
 
                     b.HasOne("eTicketData.Entities.Category", "MyCategory")
                         .WithMany("MyTicket")
@@ -564,7 +417,7 @@ namespace eTicketData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Buyer");
+                    b.Navigation("AspNetUser");
 
                     b.Navigation("MyCategory");
                 });
@@ -639,20 +492,6 @@ namespace eTicketData.Migrations
                     b.Navigation("EventFavorites");
 
                     b.Navigation("MyCategory");
-                });
-
-            modelBuilder.Entity("eTicketData.Entities.EventCreator", b =>
-                {
-                    b.Navigation("CreatedEvents");
-                });
-
-            modelBuilder.Entity("eTicketData.Entities.User", b =>
-                {
-                    b.Navigation("CreatedEvents");
-
-                    b.Navigation("MyFavorites");
-
-                    b.Navigation("MyTickets");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eTicketData.Migrations
 {
-    public partial class Mig1 : Migration
+    public partial class MigrationFirst : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,70 +70,6 @@ namespace eTicketData.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "EventCreator",
-                columns: table => new
-                {
-                    EventCreatorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventCreator", x => x.EventCreatorId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FirstName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UserName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NormalizedUserName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NormalizedEmail = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SecurityStamp = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -277,13 +213,10 @@ namespace eTicketData.Migrations
                     Description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    EventCreatorId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     AspNetUserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,17 +225,6 @@ namespace eTicketData.Migrations
                         name: "FK_Events_AspNetUsers_AspNetUserId",
                         column: x => x.AspNetUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Events_EventCreator_EventCreatorId",
-                        column: x => x.EventCreatorId,
-                        principalTable: "EventCreator",
-                        principalColumn: "EventCreatorId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Events_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -339,14 +261,11 @@ namespace eTicketData.Migrations
                     FavoriteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EventId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     MyCategoryCategoryId = table.Column<int>(type: "int", nullable: true),
-                    UserFavoritesId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    AspNetUserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    AspNetUserId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -367,11 +286,6 @@ namespace eTicketData.Migrations
                         principalTable: "Events",
                         principalColumn: "EventId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Favorites_Users_UserFavoritesId",
-                        column: x => x.UserFavoritesId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -382,14 +296,11 @@ namespace eTicketData.Migrations
                     TicketId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    BuyerId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    AspNetUserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Buyed = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    AspNetUserId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -405,11 +316,6 @@ namespace eTicketData.Migrations
                         principalTable: "Categorys",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Tickets_Users_BuyerId",
-                        column: x => x.BuyerId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -461,16 +367,6 @@ namespace eTicketData.Migrations
                 column: "AspNetUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_EventCreatorId",
-                table: "Events",
-                column: "EventCreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Events_UserId",
-                table: "Events",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Favorites_AspNetUserId",
                 table: "Favorites",
                 column: "AspNetUserId");
@@ -486,19 +382,9 @@ namespace eTicketData.Migrations
                 column: "MyCategoryCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favorites_UserFavoritesId",
-                table: "Favorites",
-                column: "UserFavoritesId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_AspNetUserId",
                 table: "Tickets",
                 column: "AspNetUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_BuyerId",
-                table: "Tickets",
-                column: "BuyerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_CategoryId",
@@ -540,12 +426,6 @@ namespace eTicketData.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "EventCreator");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

@@ -16,8 +16,7 @@ public class AspNetUser : IdentityUser
         MyTickets = new List<Ticket>();
         MyFavorites = new List<Favorite>();
     }
-    // [Key]
-    // public int UserId { get; set; } 
+
     [Required]
     [MinLength(2)]
     [MaxLength(50)]
@@ -30,15 +29,7 @@ public class AspNetUser : IdentityUser
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
 
-    // [Required]
-    // [DataType(DataType.EmailAddress)]
 
-    // public string Email { get; set; }
-
-    // [DataType(DataType.Password)]
-    // [Required]
-    // [MinLength(8, ErrorMessage="Password must be 8 characters or longer!")]
-    // public string Password { get; set; } 
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
@@ -46,11 +37,6 @@ public class AspNetUser : IdentityUser
     public List<Ticket> MyTickets { get; set; }
     public List<Favorite> MyFavorites { get; set; }
     public List<Event>? CreatedEvents { get; set; }
-    // [NotMapped]
-    // [Compare("Password")]
-    // [DataType(DataType.Password)]
-    // [Display(Name = "Confirm PW")]
-    // public string Confirm { get; set; } 
 }
 
 

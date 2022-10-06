@@ -11,10 +11,8 @@ public class Ticket
     [Required]
     public int CategoryId { get; set; }
 
-    [Required]
-    public int UserId { get; set; }
     public Category? MyCategory { get; set; }
-    public User? Buyer { get; set; }
+    public AspNetUser? AspNetUser { get; set; }
 
     public bool Buyed { get; set; } = false;
 

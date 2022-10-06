@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -115,6 +116,11 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var claims = new List<Claim>
+                    {
+                        new Claim("amr", "pwd"),
+                    };
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
@@ -132,6 +138,8 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
+
+
             }
 
             // If we got this far, something failed, redisplay form

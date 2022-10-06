@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using eTicketData;
 using eTicketServices;
 using eTicketData.Entities;
+using Microsoft.VisualBasic;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +26,12 @@ builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.Requir
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddControllersWithViews();
+#region Authorization
+
+AddAuthorizationPolicies();
+
+#endregion
+
 
 //builder.Services.AddIdentity<User, IdentityRole>()
 //            .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -56,3 +64,18 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+void AddAuthorizationPolicies()
+{
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+    });
+
+    //builder.Services.AddAuthorization(options =>
+    //{
+    //    options.AddPolicy(Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
+    //    options.AddPolicy(Constants.Policies.RequireManager, policy => policy.RequireRole(Constants.Roles.Manager));
+    //});
+}
+

@@ -22,10 +22,10 @@ public class Event
     public string Description { get; set; }
     [Required]
     public DateTime Date { get; set; } 
-    [Required]
-    public int EventCreatorId { get; set; }
+ 
+    
     // Navigation property for related User object
-    public EventCreator? Creator { get; set; }
+    public AspNetUser? AspNetUser { get; set; }
 
     public List<Category> MyCategory { get; set; } = new List<Category>(); 
     public List<Favorite> EventFavorites { get; set; } = new List<Favorite>();

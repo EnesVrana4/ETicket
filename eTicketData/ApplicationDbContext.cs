@@ -15,11 +15,6 @@ public class ApplicationDbContext : IdentityDbContext<AspNetUser>
         : base(options) { }
 
 
-    public DbSet<User> Users { get; set; }
-
-    public DbSet<AspNetUser> AspNetUsers { get; set; }
-    // public DbSet<EventCreator> EventCreators { get; set; } 
-
     public DbSet<Event> Events { get; set; }
     public DbSet<Category> Categorys { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
