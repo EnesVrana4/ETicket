@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using eTicketData;
 using eTicketServices;
 using eTicketData.Entities;
+using AutoMapper;
+using eTicketWebApp;
 using Microsoft.VisualBasic;
 
 
@@ -38,6 +40,18 @@ AddAuthorizationPolicies();
 //            .AddDefaultTokenProviders();
 
 builder.Services.AddRazorPages();
+
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutoMapperProfile());
+});
+
+var mapper = config.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
+
+
 
 var app = builder.Build();
 
