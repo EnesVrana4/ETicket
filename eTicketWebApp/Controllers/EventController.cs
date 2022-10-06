@@ -1,4 +1,4 @@
-﻿using eTicketServices.IServices;
+﻿//using eTicketServices.IServices;
 using eTicketWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,20 +8,20 @@ namespace eTicketWebApp.Controllers
     public class EventController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IEventService _service;
+        //private readonly IEventService _service;
 
 
-        public EventController(IEventService service)
-        {
-            _service = service;
-        }
+        //public EventController(IEventService service)
+        //{
+        //    _service = service;
+        //}
 
-        public async Task<IActionResult> Index()
-        {
-            var data = await _service.GetAll();
+        //public async Task<IActionResult> Index()
+        //{
+        //    var data = await _service.GetAll();
 
-            return View(data);
-        }
+        //    return View(data);
+        //}
 
         public IActionResult Privacy()
         {
