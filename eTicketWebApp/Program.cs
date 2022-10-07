@@ -24,18 +24,9 @@ builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddUserManager<UserManager<AspNetUser>>();
-
 builder.Services.AddControllersWithViews();
 
-#region Authorization
-
 AddAuthorizationPolicies();
-
-#endregion
-
 
 //builder.Services.AddIdentity<User, IdentityRole>()
 //            .AddEntityFrameworkStores<ApplicationDbContext>()
