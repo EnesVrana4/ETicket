@@ -1,15 +1,16 @@
 using eTicketData.Entities;
+using SharedComponents.ViewModel;
 
 namespace eTicketServices.IServices
 {
     public interface IEventService
     {
+        ICollection<EventViewModel> GetEvents();
 
-        Task<IEnumerable<Event>> GetAll();
+        EventViewModel GetEvent(int id);
 
-        Event GetById(int id);
-        void Add(Event theevent);
-        Event Update(int id, Event newevent);
+        void UpdateEvent(EventViewModel event1, int id);
+        void Add(EventViewModel event1);
 
         void Delete(int id);
 

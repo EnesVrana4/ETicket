@@ -14,7 +14,7 @@ public class Ticket
     public Category? MyCategory { get; set; }
     public AspNetUser? AspNetUser { get; set; }
 
-    public bool Buyed { get; set; } = false;
+    //public bool Buyed { get; set; } = false;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;

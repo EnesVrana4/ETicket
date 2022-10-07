@@ -32,6 +32,4 @@ public class Event
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
-    public string AspNetUserId { get; set; }
-    public string UserId { get; set; }
 }

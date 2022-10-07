@@ -1,45 +1,106 @@
+using AutoMapper;
 using eTicketData;
 using eTicketData.Entities;
+using eTicketData.Repositories.Interfaces;
 using eTicketServices.IServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using SharedComponents.ViewModel;
+using System.Data.Entity;
+using System.Security.Cryptography.X509Certificates;
+using System.Web.Mvc;
 
 namespace eTicketServices.Services
 {
     public class EventsService : IEventService
     {
-        private readonly ApplicationDbContext _context;
+       // private readonly ApplicationDbContext _context;
 
-        public EventsService(ApplicationDbContext context)
+        private readonly IEventRepository _EventRepo;
+        private readonly IMapper _mapper;
+
+
+        public EventsService(IEventRepository EventRepo , IMapper mapper)
         {
-            _context = context;
+            _EventRepo = EventRepo;
+            _mapper = mapper;
         }
 
-
-        public void Add(Event newevent)
+        public void Add(EventViewModel eventViewModel)
         {
-            throw new NotImplementedException();
+            Event event1 = _mapper.Map<Event>(eventViewModel);
+
+            _EventRepo.Add(event1);
+
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Event event2 = _EventRepo.GetEvent(id);
+
+            _EventRepo.Delete(event2);
         }
 
-        public async Task<IEnumerable<Event>> GetAll()
+        public EventViewModel GetEvent(int id)
         {
-            var result = await _context.Events.ToListAsync();
-            return result;
+            Event Event1 = _EventRepo.GetEvent(id);
+            EventViewModel eventViewModel = _mapper.Map<EventViewModel>(Event1);
+            return eventViewModel;
         }
 
-        public Event GetById(int id)
+        public ICollection<EventViewModel> GetEvents()
         {
-            var result = _context.Events.FirstOrDefault(e => e.EventId == id);
-            return result;
+            List<EventViewModel> EventViewModelList = new List<EventViewModel>();
+            List<Event> Mylist = (List<Event>)_EventRepo.GetEvents();
+           foreach(var event1 in Mylist)
+            {
+                EventViewModel eventViewModel =_mapper.Map<EventViewModel>(event1);
+                EventViewModelList.Add(eventViewModel);
+            }
+
+           return EventViewModelList;
         }
 
-        public Event Update(int id, Event newevent)
+        public void UpdateEvent(EventViewModel eventViewModel,int id)
         {
-            throw new NotImplementedException();
-        }
+            Event event1 = _EventRepo.GetEvent(id);
+            event1.Name= eventViewModel.Name;
+            event1.Date = eventViewModel.Date;
+            event1.Location = eventViewModel.Location;
+            event1.Description = eventViewModel.Description;
+
+            _EventRepo.UpdateEvent(); 
+        } 
     }
+
+
+        //public void Add(Event newevent)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void Delete(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IEnumerable<Event>> GetAll()
+        //{
+        //    var result = await _context.Events.ToListAsync();
+        //    var eventViewModel = _mapper.Map<EventViewModel>(Event1);
+        //    return result;
+        //}
+
+        //public Event GetById(int id)
+        //{
+        //    var result = _context.Events.FirstOrDefault(e => e.EventId == id);
+        //    return result;
+        //}
+
+        //public Event Update(int id, Event newevent)
+        //{
+        //    throw new NotImplementedException();
+        //}
+    
 }

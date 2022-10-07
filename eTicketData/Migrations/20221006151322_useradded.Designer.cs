@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTicketData;
 
@@ -10,9 +11,10 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221006151322_useradded")]
+    partial class useradded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,6 +138,7 @@ namespace eTicketData.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AspNetUserId")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -374,7 +377,9 @@ namespace eTicketData.Migrations
                 {
                     b.HasOne("eTicketData.Entities.AspNetUser", "AspNetUser")
                         .WithMany("CreatedEvents")
-                        .HasForeignKey("AspNetUserId");
+                        .HasForeignKey("AspNetUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AspNetUser");
                 });

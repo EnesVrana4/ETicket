@@ -6,8 +6,8 @@ using eTicketData.Entities;
 using AutoMapper;
 using eTicketWebApp;
 using Microsoft.VisualBasic;
-
-
+using eTicketData.Repositories.Interfaces;
+using eTicketWebApp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,7 +51,7 @@ var mapper = config.CreateMapper();
 
 builder.Services.AddSingleton(mapper);
 
-
+builder.Services.AddScoped<IEventRepository, EventRepository>();
 
 var app = builder.Build();
 
