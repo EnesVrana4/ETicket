@@ -39,5 +39,8 @@ public class AspNetUser : IdentityUser
     public List<Event>? CreatedEvents { get; set; }
 }
 
+public class AspNetRole: IdentityRole
+{
 
+}
 

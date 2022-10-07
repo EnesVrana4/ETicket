@@ -1,18 +1,18 @@
-using SharedComponents.Models;
+//using eTicketData.Entities;
 
-namespace eTicketServices.IServices
-{
-    public interface IEventService
-    {
+//namespace eTicketServices.IServices
+//{
+//    public interface IEventService
+//    {
 
-        Task<IEnumerable<Event>> GetAll();
+//        Task<IEnumerable<Event>> GetAll();
 
-        Event GetById(int id);
-        void Add(Event eventModel);
-        Event Update(int id, Event eventModel);
-        void Delete(int id);
+//        Event GetById(int id);
+//        void Add(Event theevent);
+//        Event Update(int id, Event newevent);
+
+//        void Delete(int id);
 
 
-    }
-
-}
+//    }
+//}

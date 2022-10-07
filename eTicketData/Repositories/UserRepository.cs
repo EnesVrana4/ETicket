@@ -1,40 +1,46 @@
-﻿using SharedComponents.Models;
-using SharedComponents.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eTicketData;
+using eTicketData.Entities;
+using eTicketData.Repositories.Interfaces;
 
-namespace eTicketData.Repositories
+namespace eTicketWebApp.Repositories
 {
+
     public class UserRepository : IUserRepository
     {   
-        private readonly ApplicationDbContext _dbContext;
+            private readonly ApplicationDbContext _context;
 
-        public UserRepository(ApplicationDbContext dbContext)
+            public UserRepository(ApplicationDbContext context)
         {
-            _dbContext = dbContext;
+                _context = context;
+          
         }
 
-        public Task<User> CreateAsync(User orgnaizer)
+            public ICollection<AspNetUser> GetUsers()
         {
-            throw new NotImplementedException();
+                return _context.Users.ToList();
         }
 
-        public Task<User> DeleteAsync(int id)
+            public AspNetUser GetUser(string id)
         {
-            throw new NotImplementedException();
+                return _context.Users.FirstOrDefault(u => u.Id == id);
         }
 
-        public Task<User> GetByIdAsync(int id)
+            public AspNetUser UpdateUser(AspNetUser user)
         {
-            throw new NotImplementedException();
+                _context.Update(user);
+                _context.SaveChanges();
+
+                return user;
         }
 
-        public Task<User> UpdateAsync(User orgnaizer)
-        {
-            throw new NotImplementedException();
-        }
+        //AspNetUser IUserRepository.GetUser(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public AspNetUser UpdateAspNetUser(AspNetUser user)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
