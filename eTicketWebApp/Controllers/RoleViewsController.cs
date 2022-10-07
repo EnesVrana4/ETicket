@@ -1,33 +1,27 @@
-﻿using Castle.Core.Internal;
-using eTicketWebApp.Models;
+﻿using Abp.Domain.Policies;
+using Castle.Core.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using System.Data;
-
-
 namespace eTicketWebApp.Controllers
 {
-    public class RoleController : Controller
+    public class RoleViewsController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Policy = Constantss.Policies.RequireAdmin)]
+       // [Authorize(Policy = Constants.Policies.RequireManager)]
         public IActionResult Manager()
         {
             return View();
         }
 
-        //[Authorize(Policy = "RequireAdmin")]
-        [Authorize(Roles = $"{Constantss.Roles.Administrator},{Constantss.Roles.Manager}")]
+        [Authorize(Policy = "RequireAdmin")]
         public IActionResult Admin()
         {
             return View();
         }
     }
 }
-
-

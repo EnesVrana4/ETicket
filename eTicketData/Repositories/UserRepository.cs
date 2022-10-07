@@ -12,7 +12,8 @@ namespace eTicketWebApp.Repositories
             public UserRepository(ApplicationDbContext context)
             {
                 _context = context;
-            }
+          
+        }
 
             public ICollection<AspNetUser> GetUsers()
             {
@@ -32,14 +33,14 @@ namespace eTicketWebApp.Repositories
                 return user;
             }
 
-        AspNetUser IUserRepository.GetUser(string id)
-        {
-            throw new NotImplementedException();
-        }
+        //AspNetUser IUserRepository.GetUser(string id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public AspNetUser UpdateAspNetUser(AspNetUser user)
-        {
-            throw new NotImplementedException();
-        }
+        //public AspNetUser UpdateAspNetUser(AspNetUser user)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
     }

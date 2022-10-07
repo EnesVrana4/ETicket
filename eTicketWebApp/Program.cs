@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using eTicketData;
-using eTicketServices;
+//using eTicketServices;
 using eTicketData.Entities;
 using Microsoft.VisualBasic;
 using eTicketWebApp.Repositories;
 using eTicketData.Repositories.Interfaces;
+using eTicketWebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddMemoryCache();
-builder.Services.AddETicketServices();
+//builder.Services.AddETicketServices();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
@@ -44,10 +45,7 @@ builder.Services.AddRazorPages();
 
 AddScoped();
 
-void AddScoped()
-{
-    throw new NotImplementedException();
-}
+
 
 var app = builder.Build();
 
@@ -82,16 +80,17 @@ void AddAuthorizationPolicies()
         options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
     });
 
-    //builder.Services.AddAuthorization(options =>
-    //{
-    //    options.AddPolicy(Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
-    //    options.AddPolicy(Constants.Policies.RequireManager, policy => policy.RequireRole(Constants.Roles.Manager));
-    //});
-    void AddScoped()
+    builder.Services.AddAuthorization(options =>
     {
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-    }
+        options.AddPolicy(Constantss.Policies.RequireAdmin, policy => policy.RequireRole(Constantss.Roles.Administrator));
+        options.AddPolicy(Constantss.Policies.RequireManager, policy => policy.RequireRole(Constantss.Roles.Manager));
+    });
+
 }
 
+void AddScoped()
+{
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+}
