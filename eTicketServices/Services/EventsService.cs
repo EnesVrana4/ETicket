@@ -37,14 +37,14 @@ namespace eTicketServices.Services
 
         public void Delete(int id)
         {
-            Event event2 = _EventRepo.GetEvent(id);
+            Event event2 = _EventRepo.Get(id);
 
-            _EventRepo.Delete(event2);
+            _EventRepo.Remove(event2);
         }
 
         public EventViewModel GetEvent(int id)
         {
-            Event Event1 = _EventRepo.GetEvent(id);
+            Event Event1 = _EventRepo.Get(id);
             EventViewModel eventViewModel = _mapper.Map<EventViewModel>(Event1);
             return eventViewModel;
         }
@@ -52,7 +52,7 @@ namespace eTicketServices.Services
         public ICollection<EventViewModel> GetEvents()
         {
             List<EventViewModel> EventViewModelList = new List<EventViewModel>();
-            List<Event> Mylist = (List<Event>)_EventRepo.GetEvents();
+            List<Event> Mylist = (List<Event>)_EventRepo.GetAll();
            foreach(var event1 in Mylist)
             {
                 EventViewModel eventViewModel =_mapper.Map<EventViewModel>(event1);
@@ -64,13 +64,13 @@ namespace eTicketServices.Services
 
         public void UpdateEvent(EventViewModel eventViewModel,int id)
         {
-            Event event1 = _EventRepo.GetEvent(id);
+            Event event1 = _EventRepo.Get(id);
             event1.Name= eventViewModel.Name;
             event1.Date = eventViewModel.Date;
             event1.Location = eventViewModel.Location;
             event1.Description = eventViewModel.Description;
 
-            _EventRepo.UpdateEvent(); 
+            _EventRepo.Update(event1); 
         } 
     }
 }

@@ -3,17 +3,8 @@ using eTicketData;
 
 namespace eTicketData.Repositories.Interfaces
 {
-    public interface IEventRepository 
+    public interface IEventRepository : IRepository<Event>
     {
-        ICollection<Event> GetEvents();
-
-        Event GetEvent(int id);
-
-        void UpdateEvent();
-
-        void Add(Event event1);
-
-        void Delete(Event event2);
-       
+ 
     }
 }
