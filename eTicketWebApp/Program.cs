@@ -20,7 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddMemoryCache();
-//builder.Services.AddETicketServices();
+builder.Services.AddETicketData();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
