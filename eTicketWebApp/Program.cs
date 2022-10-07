@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using eTicketData;
-using eTicketServices;
+//using eTicketServices;
 using eTicketData.Entities;
 using AutoMapper;
 using eTicketWebApp;
 using Microsoft.VisualBasic;
-using eTicketData.Repositories.Interfaces;
 using eTicketWebApp.Repositories;
+using eTicketData.Repositories.Interfaces;
+using eTicketWebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,23 +18,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+
 builder.Services.AddMemoryCache();
-builder.Services.AddETicketServices();
+//builder.Services.AddETicketServices();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddUserManager<UserManager<AspNetUser>>();
-
 builder.Services.AddControllersWithViews();
 
-#region Authorization
-
 AddAuthorizationPolicies();
-
-#endregion
-
 
 //builder.Services.AddIdentity<User, IdentityRole>()
 //            .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -86,10 +81,17 @@ void AddAuthorizationPolicies()
         options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
     });
 
-    //builder.Services.AddAuthorization(options =>
-    //{
-    //    options.AddPolicy(Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
-    //    options.AddPolicy(Constants.Policies.RequireManager, policy => policy.RequireRole(Constants.Roles.Manager));
-    //});
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy(Constantss.Policies.RequireAdmin, policy => policy.RequireRole(Constantss.Roles.Administrator));
+        options.AddPolicy(Constantss.Policies.RequireManager, policy => policy.RequireRole(Constantss.Roles.Manager));
+    });
+
 }
 
+void AddScoped()
+{
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+}
