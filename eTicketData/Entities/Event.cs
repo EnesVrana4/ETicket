@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTicketData.Entities;
-public class Event
+public class Event : AuditableEntity
 {
     [Key]
     public int EventId { get; set; } 
@@ -29,7 +29,4 @@ public class Event
 
     public List<Category> MyCategory { get; set; } = new List<Category>(); 
     public List<Favorite> EventFavorites { get; set; } = new List<Favorite>();
-
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }

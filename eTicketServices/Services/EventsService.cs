@@ -1,27 +1,20 @@
 using AutoMapper;
-using eTicketData;
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 using eTicketServices.IServices;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SharedComponents.ViewModel;
-using System.Data.Entity;
-using System.Security.Cryptography.X509Certificates;
-using System.Web.Mvc;
 
 namespace eTicketServices.Services
 {
     public class EventsService : IEventService
     {
-       // private readonly ApplicationDbContext _context;
+        // private readonly ApplicationDbContext _context;
 
         private readonly IEventRepository _EventRepo;
         private readonly IMapper _mapper;
 
 
-        public EventsService(IEventRepository EventRepo , IMapper mapper)
+        public EventsService(IEventRepository EventRepo, IMapper mapper)
         {
             _EventRepo = EventRepo;
             _mapper = mapper;
@@ -53,24 +46,24 @@ namespace eTicketServices.Services
         {
             List<EventViewModel> EventViewModelList = new List<EventViewModel>();
             List<Event> Mylist = (List<Event>)_EventRepo.GetAll();
-           foreach(var event1 in Mylist)
+            foreach (var event1 in Mylist)
             {
-                EventViewModel eventViewModel =_mapper.Map<EventViewModel>(event1);
+                EventViewModel eventViewModel = _mapper.Map<EventViewModel>(event1);
                 EventViewModelList.Add(eventViewModel);
             }
 
-           return EventViewModelList;
+            return EventViewModelList;
         }
 
-        public void UpdateEvent(EventViewModel eventViewModel,int id)
+        public void UpdateEvent(EventViewModel eventViewModel, int eventId)
         {
-            Event event1 = _EventRepo.Get(id);
-            event1.Name= eventViewModel.Name;
-            event1.Date = eventViewModel.Date;
-            event1.Location = eventViewModel.Location;
-            event1.Description = eventViewModel.Description;
+            Event newEvent = _EventRepo.Get(eventId);
 
-            _EventRepo.Update(event1); 
-        } 
+
+            newEvent = _mapper.Map<Event>(eventViewModel);
+
+
+            _EventRepo.Update(newEvent);
+        }
     }
 }

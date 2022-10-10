@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace eTicketData.Entities;
 
-// Add profile data for application users by adding properties to the AppUser class
-public class AspNetUser : IdentityUser
+
+public class AspNetUser : IdentityUser ,IAuditableEntity
 {
     public AspNetUser()
     {
@@ -29,10 +29,11 @@ public class AspNetUser : IdentityUser
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
 
-
-
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-    public DateTime UpdatedAt { get; set; } = DateTime.Now;
+    public string CreatedBy { get; set; }
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
+    public string LastUpdatedBy { get; set; }
+    public DateTime LastUpdatedDate { get; set; } = DateTime.Now;
+    public bool IsActive { get; set; } = true;
 
     public List<Ticket> MyTickets { get; set; }
     public List<Favorite> MyFavorites { get; set; }

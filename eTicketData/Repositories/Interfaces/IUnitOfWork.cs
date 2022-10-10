@@ -15,6 +15,8 @@ namespace eTicketData.Repositories.Interfaces
 
         IRoleRepository Role { get; }
 
+        IEventRepository Event { get; }
+
     }
 
 }

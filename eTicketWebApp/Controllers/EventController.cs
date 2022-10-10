@@ -43,33 +43,33 @@ namespace eTicketWebApp.Controllers
         //    return View(data);
         //}
 
-        public void AddEvent()
-        {
-            var Event1 = new Event()
-            {
-                Name= "Cinema",
-                Location = "Tirana",
-                Description = "Very fun",
-                Date = DateTime.Now,
-                //AspNetUserId = "3b1b42f9 - 144f - 45b9 - bb90 - 4b591166f05d"
-            };
-            var Event2 = new Event()
-            {
-                Name = "Theatre",
-                Location = "Elbasan",
-                Description = "Very fun",
-                Date = DateTime.Now,
-                //AspNetUserId = "3b1b42f9 - 144f - 45b9 - bb90 - 4b591166f05d"
+        //public void AddEvent()
+        //{
+        //    var Event1 = new Event()
+        //    {
+        //        Name= "Cinema",
+        //        Location = "Tirana",
+        //        Description = "Very fun",
+        //        Date = DateTime.Now,
+        //        //AspNetUserId = "3b1b42f9 - 144f - 45b9 - bb90 - 4b591166f05d"
+        //    };
+        //    var Event2 = new Event()
+        //    {
+        //        Name = "Theatre",
+        //        Location = "Elbasan",
+        //        Description = "Very fun",
+        //        Date = DateTime.Now,
+        //        //AspNetUserId = "3b1b42f9 - 144f - 45b9 - bb90 - 4b591166f05d"
 
 
-            };
-       
-            //_context.Events.Add(Event1);
-            //_context.Events.Add(Event2);
-            //_context.SaveChanges();
-       
+        //    };
 
-        }
+        //    //_context.Events.Add(Event1);
+        //    //_context.Events.Add(Event2);
+        //    //_context.SaveChanges();
+
+
+        //}
 
 
         public void OnGet()
@@ -77,7 +77,7 @@ namespace eTicketWebApp.Controllers
             var Event1 = new Event();
             var eventViewModel = _mapper.Map<EventViewModel>(Event1); //convert project object to projectDTO;
         }
-
+        [HttpGet]
         public IActionResult ShowEvent()
         {
 
@@ -86,6 +86,7 @@ namespace eTicketWebApp.Controllers
             ViewBag.eventViewModels = _eventService.GetEvents();
             return View();
         }
+
         public IActionResult CreateEvent()
         {
             return View();
@@ -106,6 +107,7 @@ namespace eTicketWebApp.Controllers
             return View("CreateEvent");
         }
 
+        [HttpPut]
         public IActionResult Update(int id)
         {
             EventViewModel eventViewModel= _eventService.GetEvent(id);
@@ -127,13 +129,12 @@ namespace eTicketWebApp.Controllers
                 return RedirectToAction("Update", new { id = id });
 
         }
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             _eventService.Delete(id);
             return RedirectToAction("ShowEvent");
         }
-
-
 
 
 

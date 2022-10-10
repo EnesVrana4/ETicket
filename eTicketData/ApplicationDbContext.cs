@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using eTicketData.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -15,11 +16,12 @@ public class ApplicationDbContext : IdentityDbContext<AspNetUser>
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
 
-
+    Microsoft.AspNetCore.Http.HttpContext _httpContext { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<Category> Categorys { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<Favorite> Favorites { get; set; }
+    public string CurrentUserId { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -30,6 +32,77 @@ public class ApplicationDbContext : IdentityDbContext<AspNetUser>
         // Add your customizations after calling base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
+    }
+    public override int SaveChanges()
+    {
+        UpdateAuditEntities();
+        return base.SaveChanges();
+    }
+
+
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {
+        //UpdateAuditEntities();
+        //SaveAuditTrail();
+        return base.SaveChanges(acceptAllChangesOnSuccess);
+    }
+
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+    {
+        UpdateAuditEntities();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+    {
+        UpdateAuditEntities();
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+
+
+    private void UpdateAuditEntities()
+    {
+        var modifiedEntries = ChangeTracker.Entries()
+           .Where(x => x.Entity is IAuditableEntity && (x.State == EntityState.Added || x.State == EntityState.Modified || x.State == EntityState.Deleted));
+
+
+        foreach (var entry in modifiedEntries)
+        {
+            var entity = (IAuditableEntity)entry.Entity;
+            DateTime now = DateTime.Now;
+            if (entry.State == EntityState.Added)
+            {
+                entity.IsActive = true;
+
+                if (entity.CreatedDate.Equals(DateTime.MinValue))
+                    entity.CreatedDate = now;
+                if (CurrentUserId != null)
+                    entity.CreatedBy = CurrentUserId;
+                else
+                    entity.CreatedBy = "";
+            }
+            else if (entry.State == EntityState.Deleted)
+            {
+                entry.State = EntityState.Modified;
+                entity.IsActive = false;
+                base.Entry(entity).Property(x => x.CreatedBy).IsModified = false;
+                base.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
+            }
+            else
+            {
+                entity.IsActive = true;
+                base.Entry(entity).Property(x => x.CreatedBy).IsModified = false;
+                base.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
+            }
+
+            entity.LastUpdatedDate = now;
+            if (CurrentUserId != null)
+                entity.LastUpdatedBy = CurrentUserId;
+            else
+                entity.LastUpdatedBy = "";
+        }
     }
 
 }

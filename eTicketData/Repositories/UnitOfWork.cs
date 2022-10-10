@@ -4,16 +4,20 @@ using eTicketData.Repositories.Interfaces;
 
 namespace eTicketWebApp.Repositories
 {
-      public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
+    {
+        public IUserRepository User { get; }
+        public IRoleRepository Role { get; }
+
+        public IEventRepository Event { get; }
+
+        public UnitOfWork(IUserRepository _user, IRoleRepository _role, IEventRepository _event)
         {
-            public IUserRepository User { get; }
-            public IRoleRepository Role { get; }
 
-            public UnitOfWork(IUserRepository user, IRoleRepository role) { 
+            User = _user;
+            Role = _role;
+            Event = _event;
 
-                User = user;
-                Role = role;
-             
-            }
         }
+    }
 }

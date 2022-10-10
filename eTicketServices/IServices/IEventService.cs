@@ -1,9 +1,10 @@
+using Abp.Domain.Repositories;
 using eTicketData.Entities;
 using SharedComponents.ViewModel;
 
 namespace eTicketServices.IServices
 {
-    public interface IEventService
+    public interface IEventService 
     {
         ICollection<EventViewModel> GetEvents();
 

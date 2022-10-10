@@ -13,7 +13,7 @@ namespace SharedComponents.ViewModel
         public string Location { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public int EventCreatorId { get; set; }
+      //  public int EventCreatorId { get; set; }
     }
 
     public class EventViewModel : EventBaseViewModel

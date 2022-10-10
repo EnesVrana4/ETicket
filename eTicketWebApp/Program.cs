@@ -9,6 +9,7 @@ using Microsoft.VisualBasic;
 using eTicketWebApp.Repositories;
 using eTicketData.Repositories.Interfaces;
 using eTicketWebApp.Models;
+using eTicketServices.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
+builder.Services.AddScoped<HttpContextUnitOfWork>();
 builder.Services.AddMemoryCache();
 builder.Services.AddETicketData();
 
@@ -47,6 +49,7 @@ var mapper = config.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<eTicketServices.IServices.IEventService, EventsService>();
 
 var app = builder.Build();
 
@@ -94,4 +97,5 @@ void AddScoped()
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IRoleRepository, RoleRepository>();
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+    builder.Services.AddScoped<IEventRepository, EventRepository>();
 }
