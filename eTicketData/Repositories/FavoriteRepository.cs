@@ -2,7 +2,7 @@
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 
-namespace eTicketWebApp.Repositories
+namespace eTicketData.Repositories
 {
    
     

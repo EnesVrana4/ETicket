@@ -23,8 +23,9 @@ namespace eTicketServices.Services
         public void Add(EventViewModel eventViewModel)
         {
             Event event1 = _mapper.Map<Event>(eventViewModel);
-
+          
             _EventRepo.Add(event1);
+            _EventRepo.SaveChange1();
 
         }
 
@@ -33,6 +34,8 @@ namespace eTicketServices.Services
             Event event2 = _EventRepo.Get(id);
 
             _EventRepo.Remove(event2);
+            _EventRepo.SaveChange1();
+
         }
 
         public EventViewModel GetEvent(int id)
@@ -64,6 +67,8 @@ namespace eTicketServices.Services
 
 
             _EventRepo.Update(newEvent);
+            _EventRepo.SaveChange1();
+
         }
     }
 }

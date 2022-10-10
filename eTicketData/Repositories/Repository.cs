@@ -1,4 +1,5 @@
 ﻿using eTicketData.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Data.Entity;
 using System.Linq;
 namespace eTicketData.Repositories
@@ -8,10 +9,11 @@ namespace eTicketData.Repositories
         protected readonly ApplicationDbContext _context;
         protected readonly Microsoft.EntityFrameworkCore.DbSet<TEntity> _entities;
 
-        public Repository(ApplicationDbContext context)
+        public Repository(ApplicationDbContext context, IHttpContextAccessor httpAccessor)
         {
             _context = context;
             _entities = context.Set<TEntity>();
+            context.CurrentUserId = httpAccessor.HttpContext.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value?.Trim();
         }
 
         //private readonly ApplicationDbContext _context;
@@ -24,6 +26,8 @@ namespace eTicketData.Repositories
         public virtual void Add(TEntity entity)
         {
             _entities.Add(entity);
+          
+          
         }
 
         public virtual void AddRange(IEnumerable<TEntity> entities)
@@ -126,6 +130,12 @@ namespace eTicketData.Repositories
         public IQueryable<TEntity> GetAllQueryable()
         {
             return _entities;
+        }
+
+
+        public void SaveChange1()
+        {
+            _context.SaveChanges();
         }
     }
 }
