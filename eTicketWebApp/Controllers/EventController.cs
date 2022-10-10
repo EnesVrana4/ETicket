@@ -1,15 +1,12 @@
 ﻿//using eTicketServices.IServices;
 using AutoMapper;
-using eTicketData;
 using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SharedComponents.ViewModel;
 using System.Diagnostics;
-using System.Xml.Linq;
 
 namespace eTicketWebApp.Controllers
 {
@@ -91,14 +88,18 @@ namespace eTicketWebApp.Controllers
         {
             return View();
         }
+        
 
 
-            [HttpPost]
+
+
+
+    [HttpPost]
         public IActionResult CreateEvent(EventViewModel eventViewModel)
         {
             if (ModelState.IsValid)
             {
-                // event1.AspNetUserId=
+                
                 _eventService.Add(eventViewModel);
             return RedirectToAction("ShowEvent");
             
