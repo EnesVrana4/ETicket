@@ -1,7 +1,11 @@
-﻿using eTicketData.Repositories.Interfaces;
+﻿using eTicketData.Entities;
+using eTicketData.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
+
 namespace eTicketData.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
@@ -108,7 +112,8 @@ namespace eTicketData.Repositories
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-            var all = _entities.ToList();
+            Expression<Func<Event, bool>> isTeenAgerExpr = s => s.IsActive==true;
+            var all = _entities.Where(isTeenAgerExpr).ToList();
             return all;
         }
         public virtual async Task<TEntity> GetAsync(int id)
@@ -133,7 +138,7 @@ namespace eTicketData.Repositories
         }
 
 
-        public void SaveChange1()
+        public void SaveChanges()
         {
             _context.SaveChanges();
         }

@@ -36,7 +36,7 @@ namespace eTicketData.Repositories.Interfaces
 
         Task<TEntity> GetAsync(int id);
 
-        public void SaveChange1();
+        public void SaveChanges();
 
         Task<IEnumerable<TEntity>> GetAllAsync();
 
