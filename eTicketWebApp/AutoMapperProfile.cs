@@ -8,9 +8,15 @@ namespace eTicketWebApp
     {
         public AutoMapperProfile()
         {
-            CreateMap<EventViewModel,Event>(); //reverse so the both direction
-            CreateMap<Event,EventViewModel>();
+          //  CreateMap<EventViewModel,Event>(); 
+            CreateMap<Event,EventViewModel>(); 
+
+            CreateMap<EventEditViewModel, Event>();
+           // CreateMap<Event, EventEditViewModel>();
             //CreateMap<EventViewModel,EventViewModel>();
+
+            //CreateMap<MedicalCard, MedicalCardViewModel>();
+            //CreateMap<MedicalCardEditViewModel, MedicalCard>();
 
 
 

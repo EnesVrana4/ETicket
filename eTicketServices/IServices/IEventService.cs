@@ -10,8 +10,8 @@ namespace eTicketServices.IServices
 
         EventViewModel GetEvent(int id);
 
-        void UpdateEvent(EventViewModel event1, int id);
-        void Add(EventViewModel event1);
+        EventViewModel UpdateEvent(EventEditViewModel event1, int id);
+        EventViewModel Add(EventEditViewModel event1);
         void Delete(int id);
 
 
