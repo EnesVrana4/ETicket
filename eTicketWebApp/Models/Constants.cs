@@ -8,7 +8,6 @@
             public const string Manager = "Manager";
             public const string User = "User";
         }
-
         public static class Policies
         {
             public const string RequireAdmin = "RequireAdmin";

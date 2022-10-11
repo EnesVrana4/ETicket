@@ -15,6 +15,7 @@ namespace eTicketServices
         public static IServiceCollection AddETicketServices(this IServiceCollection services)
         {
             services.AddScoped<IEventService, EventsService>();
+            services.AddScoped<ICategoryService, CategorysService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<ITicketService, TicketService>();

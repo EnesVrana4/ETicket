@@ -112,7 +112,7 @@ namespace eTicketData.Repositories
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-          //  Expression<Func<Event, bool>> isTeenAgerExpr = s => s.IsActive==true;
+           // Expression<Func<Event, bool>> isTeenAgerExpr = s => s.IsActive==true;
             var all = _entities.ToList();
             return all;
         }
