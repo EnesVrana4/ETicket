@@ -1,38 +1,22 @@
 ﻿using eTicketData;
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
+using eTicketData.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace eTicketData.Repositories
 {
    
-    
-    public class FavoriteRepository : IFavoriteRepository
+    public class FavoriteRepository :  Repository<Favorite>, IFavoriteRepository
     {
-        private readonly ApplicationDbContext _context;
 
-        public FavoriteRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public FavoriteRepository(ApplicationDbContext context, IHttpContextAccessor httpAccessor) : base(context, httpAccessor)
+        { }
+        private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
 
-        public ICollection<Favorite> GetFavorites()
-        {
-            return _context.Favorites.ToList();
-        }
-
-        public Favorite GetFavorite(int id)
-        {
-            return _context.Favorites.FirstOrDefault(u => u.FavoriteId == id);
-        }
-
-        public Favorite UpdateFavorite(Favorite favorite)
-        {
-            _context.Update(favorite);
-            _context.SaveChanges();
-
-            return favorite;
-        }
-
-        
+        //public void Update(Event entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
