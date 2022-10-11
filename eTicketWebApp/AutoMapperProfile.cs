@@ -24,8 +24,6 @@ namespace eTicketWebApp
 
             CreateMap<UserViewModel, AspNetUser>();
             CreateMap<AspNetUser, UserViewModel>();
-
-
         }
     }
 }
