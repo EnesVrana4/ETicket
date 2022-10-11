@@ -49,11 +49,18 @@ namespace eTicketWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
+
             var user = _unitOfWork.User.GetUser(data.User.Id);
             if (user == null)
             {
                 return NotFound();
             }
+
+            var selectedRoles = data.Roles.Where(r => r.Selected)
+                                          .Select(r=> r.Text);
+            var result = await _signInManager.UserManager.AddToRolesAsync(user, selectedRoles);
+            if (!result.Succeeded)
+                throw new Exception();
 
             var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
             var rolesToAdd = new List<string>();

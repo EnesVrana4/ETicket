@@ -3,6 +3,7 @@ using AutoMapper;
 using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedComponents.ViewModel;
@@ -32,7 +33,6 @@ namespace eTicketWebApp.Controllers
         [HttpGet]
         public IActionResult ShowEvent()
         {
-
             //ViewBag.eventViewModel =  _eventService.GetEvent(2);
 
             ViewBag.eventViewModels = _eventService.GetEvents();
@@ -70,6 +70,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="Admin, Manager")]
         public IActionResult Update(int id)
         {
             EventEditViewModel eventEditViewModel = _eventService.GetEditEvent(id);

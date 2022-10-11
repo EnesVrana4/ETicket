@@ -1,7 +1,7 @@
 ﻿using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;

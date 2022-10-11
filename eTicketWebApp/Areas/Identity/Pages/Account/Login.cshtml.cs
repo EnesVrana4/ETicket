@@ -119,7 +119,10 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                     var claims = new List<Claim>
                     {
                         new Claim("amr", "pwd"),
+                        //new Claim("MyRole", "Admin"),
                     };
+
+                    await _signInManager.SignInWithClaimsAsync(user, true, claims);
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

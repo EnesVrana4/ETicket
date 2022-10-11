@@ -11,9 +11,8 @@ namespace eTicketData
         public static IServiceCollection AddETicketData(this IServiceCollection services) {
 
             services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
-
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                //.AddRoles<IdentityRole>()
                 .AddUserManager<UserManager<AspNetUser>>();
             services.AddScoped<IEventRepository,EventRepository>();
             services.AddScoped<ICategoryRepository,CategoryRepository>();

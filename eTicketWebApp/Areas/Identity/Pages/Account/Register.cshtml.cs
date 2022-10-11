@@ -126,7 +126,7 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var user = new AspNetUser();
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
@@ -134,6 +134,10 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                result = await _signInManager.UserManager.AddToRoleAsync(user, "User");
+                if (!result.Succeeded)
+                    throw new Exception();
 
                 if (result.Succeeded)
                 {
