@@ -12,12 +12,12 @@ namespace eTicketWebApp.Controllers
 {
     public class EventController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<EventController> _logger;
         private readonly IMapper _mapper;
         private readonly IEventService _eventService;
 
         private IdentityUser user;
-        public EventController(ILogger<HomeController> logger, IMapper mapper, IEventService eventService)
+        public EventController(ILogger<EventController> logger, IMapper mapper, IEventService eventService)
         {
             _logger = logger;
             _mapper = mapper;
@@ -25,55 +25,10 @@ namespace eTicketWebApp.Controllers
 
 
         }
-        //private readonly IEventService _service;
+   
 
 
-        //public EventController(IEventService service)
-        //{
-        //    _service = service;
-        //}
-
-        //public async Task<IActionResult> Index()
-        //{
-        //    var data = await _service.GetAll();
-
-        //    return View(data);
-        //}
-
-        //public void AddEvent()
-        //{
-        //    var Event1 = new Event()
-        //    {
-        //        Name= "Cinema",
-        //        Location = "Tirana",
-        //        Description = "Very fun",
-        //        Date = DateTime.Now,
-        //        //AspNetUserId = "3b1b42f9 - 144f - 45b9 - bb90 - 4b591166f05d"
-        //    };
-        //    var Event2 = new Event()
-        //    {
-        //        Name = "Theatre",
-        //        Location = "Elbasan",
-        //        Description = "Very fun",
-        //        Date = DateTime.Now,
-        //        //AspNetUserId = "3b1b42f9 - 144f - 45b9 - bb90 - 4b591166f05d"
-
-
-        //    };
-
-        //    //_context.Events.Add(Event1);
-        //    //_context.Events.Add(Event2);
-        //    //_context.SaveChanges();
-
-
-        //}
-
-
-        public void OnGet()
-        {
-            var Event1 = new Event();
-            var eventViewModel = _mapper.Map<EventViewModel>(Event1); //convert project object to projectDTO;
-        }
+      
         [HttpGet]
         public IActionResult ShowEvent()
         {

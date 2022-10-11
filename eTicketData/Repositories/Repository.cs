@@ -112,8 +112,8 @@ namespace eTicketData.Repositories
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-            Expression<Func<Event, bool>> isTeenAgerExpr = s => s.IsActive==true;
-            var all = _entities.Where(isTeenAgerExpr).ToList();
+           // Expression<Func<Event, bool>> isTeenAgerExpr = s => s.IsActive==true;
+            var all = _entities.ToList();
             return all;
         }
         public virtual async Task<TEntity> GetAsync(int id)

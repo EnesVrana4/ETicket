@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*<h1>@ViewBag.eventViewModel.Name   </h1>*@
+
+@foreach (var category in ViewBag.eventViewModels)
+{
+    <a asp-action="Details" asp-controller="Category" asp-route-id="@category.CategoryId">    <h1>@category.Name</h1> </a>
+
+    <h1>@category.NumOfTickets</h1>
+    <a asp-action="Delete" asp-controller="Category" asp-route-id="@category.CategoryId">    <h1>Delete @category.Name </h1> </a>
+    <a asp-action="Update" asp-controller="Category" asp-route-id="@category.CategoryId">    <h1>Edit @category.Name </h1> </a>
+
+
+}
+
+<a class="btn btn-primary" asp-action="Create" asp-controller="Category"> Create Category</a>
