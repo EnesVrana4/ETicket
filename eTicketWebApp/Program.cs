@@ -6,9 +6,7 @@ using AutoMapper;
 using eTicketWebApp;
 using Microsoft.VisualBasic;
 using eTicketData.Repositories;
-
 using eTicketData.Repositories.Interfaces;
-using eTicketData.Repositories;
 using eTicketWebApp.Models;
 using eTicketServices.Services;
 using eTicketServices.IServices;
