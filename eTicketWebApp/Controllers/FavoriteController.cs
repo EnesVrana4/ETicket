@@ -66,7 +66,7 @@ namespace eTicketWebApp.Controllers
             //if (ModelState.IsValid)
             //{
 
-                _favoriteService.Add(favoriteEditViewModel);
+               // _favoriteService.Add(favoriteEditViewModel);
                 return RedirectToAction("ShowFavorite");
 
 

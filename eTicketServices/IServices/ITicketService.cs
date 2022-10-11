@@ -15,7 +15,7 @@ namespace eTicketServices.IServices
             TicketViewModel Add(TicketEditViewModel ticket);
             void AddTicket(int categoryId);
         void Delete(int id);
-
+        
 
         }
     }

@@ -25,11 +25,7 @@ namespace eTicketWebApp.Controllers
 
         }
         
-        public void OnGet()
-        {
-            var ticket1 = new Ticket();
-            var ticketViewModel = _mapper.Map<EventViewModel>(ticket1); //convert project object to projectDTO;
-        }
+     
         [HttpGet]
         public IActionResult ShowTicket()
         {
@@ -54,31 +50,30 @@ namespace eTicketWebApp.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult CreateTicket(TicketEditViewModel ticketEditViewModel)
+        //[HttpPost]
+        //public IActionResult CreateTicket(TicketEditViewModel ticketEditViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        _ticketService.Add(ticketEditViewModel);
+        //        return RedirectToAction("ShowTicket");
+
+
+        //    }
+        //    return View("CreateTicket");
+        //}
+        
+        public IActionResult CreateTicket(int categoryId)
         {
-            if (ModelState.IsValid)
-            {
-
-                _ticketService.Add(ticketEditViewModel);
-                return RedirectToAction("ShowTicket");
-
-
-            }
-            return View("CreateTicket");
-        }
-        [HttpPost]
-        public IActionResult CreateTicket(int categoryId )
-        {
-            if (ModelState.IsValid)
-            {
+            
 
                 _ticketService.AddTicket(categoryId);
                 return RedirectToAction("ShowTicket");
 
 
-            }
-            return View("CreateTicket");
+            
+            
         }
 
 
