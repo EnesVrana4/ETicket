@@ -13,7 +13,6 @@ namespace eTicketServices.Services
         private readonly IFavoriteRepository _FavoriteRepo;
         private readonly IMapper _mapper;
 
-
         public FavoriteService(IFavoriteRepository FavoriteRepo, IMapper mapper)
         {
             _FavoriteRepo = FavoriteRepo;
