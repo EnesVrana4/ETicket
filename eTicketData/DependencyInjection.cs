@@ -16,6 +16,8 @@ namespace eTicketData
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
+
             return services;
         }
     }

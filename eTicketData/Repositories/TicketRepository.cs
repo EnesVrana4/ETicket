@@ -1,38 +1,18 @@
 ﻿using eTicketData;
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
-
+using Microsoft.AspNetCore.Http;
 
 namespace eTicketData.Repositories
 {
 
-    public class TicketRepository 
+    public class TicketRepository : Repository<Ticket>, ITicketRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public TicketRepository(ApplicationDbContext context)
+        public TicketRepository(ApplicationDbContext context, IHttpContextAccessor httpAccessor) : base(context, httpAccessor)
         {
             _context = context;
         }
-
-        public ICollection<Ticket> GetTickets()
-        {
-            return _context.Tickets.ToList();
-        }
-
-        public Ticket GetTicket(int id)
-        {
-            return _context.Tickets.FirstOrDefault(u => u.TicketId == id);
-        }
-
-        public Ticket UpdateTicket(Ticket ticket)
-        {
-            _context.Update(ticket);
-            _context.SaveChanges();
-
-            return ticket;
-        }
-
-        
     }
 }

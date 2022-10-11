@@ -17,6 +17,7 @@ namespace eTicketServices
             services.AddScoped<IEventService, EventsService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<ITicketService, TicketService>();
             return services;
         }
     }
