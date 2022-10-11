@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221010121751_Test")]
-    partial class Test
+    [Migration("20221010122434_SeedRoles")]
+    partial class SeedRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

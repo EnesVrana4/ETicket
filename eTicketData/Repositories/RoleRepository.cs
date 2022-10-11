@@ -3,7 +3,7 @@ using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
-namespace eTicketWebApp.Repositories
+namespace eTicketData.Repositories
 {
     public class RoleRepository : IRoleRepository
     {
@@ -20,5 +20,4 @@ namespace eTicketWebApp.Repositories
         }
     }
 }
-
 

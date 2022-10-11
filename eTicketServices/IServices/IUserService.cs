@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eTicketServices.IServices
 {
-    internal interface IUserService
+    public interface IUserService
     {
         Task<User> GetByIdAsync(int id);
         Task<User> CreateAsync(User orgnaizer);

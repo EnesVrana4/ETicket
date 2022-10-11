@@ -16,7 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<AspNetUser>
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
 
-    Microsoft.AspNetCore.Http.HttpContext _httpContext { get; set; }
+    HttpContext _httpContext { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<Category> Categorys { get; set; }
     public DbSet<Ticket> Tickets { get; set; }

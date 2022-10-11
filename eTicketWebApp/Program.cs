@@ -6,8 +6,8 @@ using eTicketData.Entities;
 using AutoMapper;
 using eTicketWebApp;
 using Microsoft.VisualBasic;
-using eTicketWebApp.Repositories;
 using eTicketData.Repositories.Interfaces;
+using eTicketData.Repositories;
 using eTicketWebApp.Models;
 using eTicketServices.Services;
 
@@ -24,7 +24,11 @@ builder.Services.AddScoped<HttpContextUnitOfWork>();
 builder.Services.AddMemoryCache();
 builder.Services.AddETicketData();
 
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+//builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -32,9 +36,9 @@ builder.Services.AddControllersWithViews();
 
 AddAuthorizationPolicies();
 
-//builder.Services.AddIdentity<User, IdentityRole>()
-//            .AddEntityFrameworkStores<ApplicationDbContext>()
-//            .AddDefaultTokenProviders();
+//builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = false)
+//    .AddRoles<IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
 
@@ -89,7 +93,7 @@ void AddAuthorizationPolicies()
         options.AddPolicy(Constantss.Policies.RequireAdmin, policy => policy.RequireRole(Constantss.Roles.Administrator));
         options.AddPolicy(Constantss.Policies.RequireManager, policy => policy.RequireRole(Constantss.Roles.Manager));
     });
-
+        
 }
 
 void AddScoped()

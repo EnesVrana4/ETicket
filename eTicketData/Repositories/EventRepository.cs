@@ -3,7 +3,7 @@ using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 using eTicketData.Repositories;
 
-namespace eTicketWebApp.Repositories
+namespace eTicketData.Repositories
 {
 
     public class EventRepository :  Repository<Event>, IEventRepository

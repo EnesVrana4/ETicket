@@ -1,5 +1,4 @@
-﻿using eTicketWebApp.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +11,6 @@ namespace eTicketData.Repositories.Interfaces
     public interface IUnitOfWork
     {
         IUserRepository User { get; }
-
         IRoleRepository Role { get; }
-
-        IEventRepository Event { get; }
-
     }
-
 }
