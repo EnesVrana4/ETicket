@@ -66,7 +66,7 @@ namespace eTicketServices.Services
             newEvent.Location = eventViewModel.Location;
             newEvent.Date = eventViewModel.Date;
 
-            //newEvent = _mapper.Map<Event>(eventViewModel);
+          //  newEvent = _mapper.Map<Event>(eventViewModel);
 
 
             _EventRepo.Update(newEvent);
