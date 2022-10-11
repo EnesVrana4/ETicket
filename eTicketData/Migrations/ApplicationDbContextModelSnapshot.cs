@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using eTicketData;
 
 #nullable disable
 
@@ -31,7 +32,6 @@ namespace eTicketData.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedDate")
@@ -58,7 +58,6 @@ namespace eTicketData.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("LastUpdatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("LastUpdatedDate")

@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eTicketServices.IServices
+namespace SharedComponents.ViewModel
 {
-    public interface IRoleService
+    public class RoleViewModel : IdentityRole
     {
-        ICollection<IdentityRole> GetRoles();
 
     }
 }

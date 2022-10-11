@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-//namespace eTicketData;
+namespace eTicketData;
 
 public class ApplicationDbContext : IdentityDbContext<AspNetUser>
 {

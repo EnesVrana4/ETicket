@@ -1,6 +1,7 @@
 ﻿using eTicketData;
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
+using System.Linq.Expressions;
 
 namespace eTicketData.Repositories
 {
@@ -33,14 +34,79 @@ namespace eTicketData.Repositories
                 return user;
         }
 
-        //AspNetUser IUserRepository.GetUser(string id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void Add(AspNetUser entity)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public AspNetUser UpdateAspNetUser(AspNetUser user)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void AddRange(IEnumerable<AspNetUser> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(AspNetUser entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateRange(IEnumerable<AspNetUser> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(AspNetUser entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveRange(IEnumerable<AspNetUser> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<AspNetUser> Find(Expression<Func<AspNetUser, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AspNetUser GetSingleOrDefault(Expression<Func<AspNetUser, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AspNetUser Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<AspNetUser> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<AspNetUser> GetAllQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<AspNetUser> GetAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<AspNetUser>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

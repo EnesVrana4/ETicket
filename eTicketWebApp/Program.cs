@@ -12,6 +12,8 @@ using eTicketData.Repositories.Interfaces;
 using eTicketData.Repositories;
 using eTicketWebApp.Models;
 using eTicketServices.Services;
+using eTicketServices.IServices;
+using eTicketServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +26,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<HttpContextUnitOfWork>();
 builder.Services.AddMemoryCache();
-builder.Services.AddETicketData();
-
-//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-//builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddETicketData(); 
+builder.Services.AddETicketServices();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -44,7 +41,6 @@ AddAuthorizationPolicies();
 
 builder.Services.AddRazorPages();
 
-
 var config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new AutoMapperProfile());
@@ -52,18 +48,17 @@ var config = new MapperConfiguration(cfg =>
 
 var mapper = config.CreateMapper();
 
-builder.Services.AddSingleton(mapper);
-builder.Services.AddScoped<eTicketServices.IServices.IEventService, EventsService>();
+builder.Services.AddSingleton(mapper); 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseExceptionHandler("/Home/Error");
+//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//    app.UseHsts();
+//}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -98,8 +93,5 @@ void AddAuthorizationPolicies()
 
 void AddScoped()
 {
-    builder.Services.AddScoped<IUserRepository, UserRepository>();
-    builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-    builder.Services.AddScoped<IEventRepository, EventRepository>();
+ 
 }

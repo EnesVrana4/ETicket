@@ -25,7 +25,7 @@ public class Event : AuditableEntity
  
     
     // Navigation property for related User object
-    public AspNetUser? AspNetUser { get; set; }
+    public AspNetUser AspNetUser { get; set; }
 
     public List<Category> MyCategory { get; set; } = new List<Category>(); 
     public List<Favorite> EventFavorites { get; set; } = new List<Favorite>();

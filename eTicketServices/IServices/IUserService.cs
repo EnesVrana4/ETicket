@@ -1,4 +1,5 @@
-﻿using SharedComponents.Models;
+﻿using eTicketData.Entities;
+using SharedComponents.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace eTicketServices.IServices
 {
     public interface IUserService
     {
-        Task<User> GetByIdAsync(int id);
-        Task<User> CreateAsync(User orgnaizer);
-        Task<User> UpdateAsync(User orgnaizer);
-        Task<User> DeleteAsync(int id);
+        ICollection<UserViewModel> GetUsers();
+        UserViewModel GetUser(string id);
+        UserViewModel UpdateUser(UserViewModel user);
+
     }
 }

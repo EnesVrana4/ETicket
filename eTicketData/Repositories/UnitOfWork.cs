@@ -11,10 +11,8 @@ namespace eTicketData.Repositories
 
         public UnitOfWork(IUserRepository _user, IRoleRepository _role)
         {
-
             User = _user;
             Role = _role;
-
         }
     }
 }
