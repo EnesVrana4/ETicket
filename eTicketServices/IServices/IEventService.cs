@@ -9,6 +9,7 @@ namespace eTicketServices.IServices
         ICollection<EventViewModel> GetEvents();
 
         EventViewModel GetEvent(int id);
+        EventEditViewModel GetEditEvent(int id);
 
         EventViewModel UpdateEvent(EventEditViewModel event1, int id);
         EventViewModel Add(EventEditViewModel event1);

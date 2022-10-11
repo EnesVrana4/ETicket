@@ -117,9 +117,9 @@ namespace eTicketWebApp.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            EventViewModel eventViewModel = _eventService.GetEvent(id);
+            EventEditViewModel eventEditViewModel = _eventService.GetEditEvent(id);
             ViewBag.EventId = id;
-            return View(eventViewModel);
+            return View(eventEditViewModel);
         }
 
         [HttpPost]

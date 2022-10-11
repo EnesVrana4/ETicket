@@ -49,6 +49,13 @@ namespace eTicketServices.Services
             return eventViewModel;
         }
 
+       public EventEditViewModel GetEditEvent(int id)
+        {
+            Event eventData = _EventRepo.Get(id);
+            EventEditViewModel eventViewModel = _mapper.Map<EventEditViewModel>(eventData);
+            return eventViewModel;
+        }
+
         public ICollection<EventViewModel> GetEvents()
         {
             List<EventViewModel> EventViewModelList = new List<EventViewModel>();

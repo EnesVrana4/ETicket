@@ -12,7 +12,11 @@ namespace eTicketWebApp
             CreateMap<Event,EventViewModel>(); 
 
             CreateMap<EventEditViewModel, Event>();
-           // CreateMap<Event, EventEditViewModel>();
+            CreateMap<Event, EventEditViewModel>();
+
+
+
+            // CreateMap<Event, EventEditViewModel>();
             //CreateMap<EventViewModel,EventViewModel>();
 
             //CreateMap<MedicalCard, MedicalCardViewModel>();
