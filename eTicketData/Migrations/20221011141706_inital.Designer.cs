@@ -11,8 +11,8 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221011125019_ok")]
-    partial class ok
+    [Migration("20221011141706_inital")]
+    partial class inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,16 +230,11 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("MyCategoryCategoryId")
-                        .HasColumnType("int");
-
                     b.HasKey("FavoriteId");
 
                     b.HasIndex("AspNetUserId");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("MyCategoryCategoryId");
 
                     b.ToTable("Favorites");
                 });
@@ -440,19 +435,15 @@ namespace eTicketData.Migrations
                         .WithMany("MyFavorites")
                         .HasForeignKey("AspNetUserId");
 
-                    b.HasOne("eTicketData.Entities.Event", null)
+                    b.HasOne("eTicketData.Entities.Event", "Event")
                         .WithMany("EventFavorites")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eTicketData.Entities.Category", "MyCategory")
-                        .WithMany()
-                        .HasForeignKey("MyCategoryCategoryId");
-
                     b.Navigation("AspNetUser");
 
-                    b.Navigation("MyCategory");
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.Ticket", b =>

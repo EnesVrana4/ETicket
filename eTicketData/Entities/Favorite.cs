@@ -11,6 +11,6 @@ public class Favorite : AuditableEntity
     [Required]
     public int EventId { get; set; }
 
-    public Category? MyCategory { get; set; }
+    public Event? MyEvent { get; set; }
     public AspNetUser? AspNetUser { get; set; }
 }

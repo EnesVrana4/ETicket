@@ -11,4 +11,6 @@
 <h1>  @ViewBag.MyEvent.Description   </h1>
 <h1>  @ViewBag.MyEvent.Location</h1>
 <h1> @ViewBag.MyEvent.Date </h1>
+
+<a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>
            

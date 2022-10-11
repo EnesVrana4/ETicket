@@ -28,5 +28,6 @@ public class Event : AuditableEntity
     public AspNetUser AspNetUser { get; set; }
 
     public List<Category> MyCategory { get; set; } = new List<Category>(); 
-    public List<Favorite> EventFavorites { get; set; } = new List<Favorite>();
+    public List<Favorite> EventFavorites { get; set; } = new List<Favorite>();
+
 }

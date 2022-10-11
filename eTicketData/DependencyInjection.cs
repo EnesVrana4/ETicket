@@ -16,6 +16,7 @@ namespace eTicketData
                 //.AddRoles<IdentityRole>()
                 .AddUserManager<UserManager<AspNetUser>>();
             services.AddScoped<IEventRepository,EventRepository>();
+            services.AddScoped<ICategoryRepository,CategoryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();

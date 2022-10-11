@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eTicketData.Migrations
 {
-    public partial class initial : Migration
+    public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,10 +42,10 @@ namespace eTicketData.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: false)
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    LastUpdatedBy = table.Column<string>(type: "longtext", nullable: false)
+                    LastUpdatedBy = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
@@ -276,7 +276,6 @@ namespace eTicketData.Migrations
                     FavoriteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     EventId = table.Column<int>(type: "int", nullable: false),
-                    MyCategoryCategoryId = table.Column<int>(type: "int", nullable: true),
                     AspNetUserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false)
@@ -295,11 +294,6 @@ namespace eTicketData.Migrations
                         column: x => x.AspNetUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Favorites_Categorys_MyCategoryCategoryId",
-                        column: x => x.MyCategoryCategoryId,
-                        principalTable: "Categorys",
-                        principalColumn: "CategoryId");
                     table.ForeignKey(
                         name: "FK_Favorites_Events_EventId",
                         column: x => x.EventId,
@@ -399,11 +393,6 @@ namespace eTicketData.Migrations
                 name: "IX_Favorites_EventId",
                 table: "Favorites",
                 column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Favorites_MyCategoryCategoryId",
-                table: "Favorites",
-                column: "MyCategoryCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_AspNetUserId",

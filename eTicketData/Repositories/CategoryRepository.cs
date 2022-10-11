@@ -1,39 +1,20 @@
 ﻿using eTicketData;
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
+using eTicketData.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace eTicketData.Repositories
 {
-   
-   
 
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        private readonly ApplicationDbContext _context;
 
-        public CategoryRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public CategoryRepository(ApplicationDbContext context, IHttpContextAccessor httpAccessor) : base(context, httpAccessor)
+        { }
+        private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
 
-        public ICollection<Category> GetCategorys()
-        {
-            return _context.Categorys.ToList();
-        }
 
-        public Category GetCategory(int id)
-        {
-            return _context.Categorys.FirstOrDefault(u => u.CategoryId == id);
-        }
 
-        public Category UpdateCategory(Category category)
-        {
-            _context.Update(category);
-            _context.SaveChanges();
-
-            return category;
-        }
-
-        
     }
 }
