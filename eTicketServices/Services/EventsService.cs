@@ -20,12 +20,16 @@ namespace eTicketServices.Services
             _mapper = mapper;
         }
 
-        public void Add(EventViewModel eventViewModel)
+        public EventViewModel Add(EventEditViewModel eventViewModel)
         {
             Event event1 = _mapper.Map<Event>(eventViewModel);
           
             _EventRepo.Add(event1);
             _EventRepo.SaveChanges();
+
+
+            EventViewModel eventViewModelReturn = _mapper.Map<EventViewModel>(event1);
+            return eventViewModelReturn; 
 
         }
 
@@ -40,8 +44,15 @@ namespace eTicketServices.Services
 
         public EventViewModel GetEvent(int id)
         {
-            Event Event1 = _EventRepo.Get(id);
-            EventViewModel eventViewModel = _mapper.Map<EventViewModel>(Event1);
+            Event eventData   = _EventRepo.Get(id);
+            EventViewModel eventViewModel = _mapper.Map<EventViewModel>(eventData);
+            return eventViewModel;
+        }
+
+       public EventEditViewModel GetEditEvent(int id)
+        {
+            Event eventData = _EventRepo.Get(id);
+            EventEditViewModel eventViewModel = _mapper.Map<EventEditViewModel>(eventData);
             return eventViewModel;
         }
 
@@ -58,19 +69,19 @@ namespace eTicketServices.Services
             return EventViewModelList;
         }
 
-        public void UpdateEvent(EventViewModel eventViewModel, int eventId)
+        public EventViewModel UpdateEvent(EventEditViewModel eventViewModel, int eventId)
         {
-            Event newEvent = _EventRepo.Get(eventId);
-            newEvent.Name = eventViewModel.Name;
-            newEvent.Description = eventViewModel.Description;
-            newEvent.Location = eventViewModel.Location;
-            newEvent.Date = eventViewModel.Date;
+            Event eventData = _EventRepo.Get(eventId);
+            if ( eventData == null)
+                return null;
 
-            //newEvent = _mapper.Map<Event>(eventViewModel);
+            eventData = _mapper.Map(eventViewModel, eventData);
 
-
-            _EventRepo.Update(newEvent);
+            _EventRepo.Update(eventData);
             _EventRepo.SaveChanges();
+
+            return _mapper.Map<EventViewModel>(eventData);
+
 
         }
     }

@@ -7,11 +7,12 @@
 
 @foreach (var event1 in ViewBag.eventViewModels)
 {
-    <a asp-action="Update" asp-controller="Event" asp-route-id="@event1.EventId">    <h1>@event1.Name</h1> </a>
+    <a asp-action="Details" asp-controller="Event" asp-route-id="@event1.EventId">    <h1>@event1.Name</h1> </a>
 
     <h1>@event1.Description</h1>
     <h1>@event1.Location</h1>
     <a asp-action="Delete" asp-controller="Event" asp-route-id="@event1.EventId">    <h1>Delete @event1.Name </h1> </a>
+    <a asp-action="Update" asp-controller="Event" asp-route-id="@event1.EventId">    <h1>Edit @event1.Name </h1> </a>
 
 
 }

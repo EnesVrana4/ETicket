@@ -83,46 +83,58 @@ namespace eTicketWebApp.Controllers
             ViewBag.eventViewModels = _eventService.GetEvents();
             return View();
         }
+     
 
+
+        [HttpGet]
         public IActionResult CreateEvent()
         {
             return View();
         }
-        
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            EventViewModel eventViewModel = _eventService.GetEvent(id);
+            ViewBag.MyEvent = eventViewModel;
+            return View();
+        }
 
-    [HttpPost]
-        public IActionResult CreateEvent(EventViewModel eventViewModel)
+
+        [HttpPost]
+        public IActionResult CreateEvent(EventEditViewModel eventEditViewModel)
         {
             if (ModelState.IsValid)
             { 
-                _eventService.Add(eventViewModel);
-                 return RedirectToAction("ShowEvent");
-            
+                
+                _eventService.Add(eventEditViewModel);
+                return RedirectToAction("ShowEvent");
+
+
             }
             return View("CreateEvent");
         }
 
-      
+        [HttpGet]
         public IActionResult Update(int id)
         {
-            EventViewModel eventViewModel= _eventService.GetEvent(id);
+            EventEditViewModel eventEditViewModel = _eventService.GetEditEvent(id);
             ViewBag.EventId = id;
-            return View(eventViewModel);
+            return View(eventEditViewModel);
         }
 
         [HttpPost]
-            public IActionResult Update(EventViewModel eventViewModel,int id)
+            public IActionResult Update(EventEditViewModel eventEditViewModel, int id)
         {
             if (ModelState.IsValid)
             { 
-                 _eventService.UpdateEvent(eventViewModel,id);
+                 _eventService.UpdateEvent(eventEditViewModel, id);
                 return RedirectToAction("ShowEvent");
             }
 
                 //  EventViewModel eventViewModel1= _eventService.GetEvent(id);
 
                 return RedirectToAction("Update", new { id = id });
-
+            
         }
        
         public IActionResult Delete(int id)

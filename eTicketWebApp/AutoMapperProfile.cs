@@ -8,8 +8,19 @@ namespace eTicketWebApp
     {
         public AutoMapperProfile()
         {
-            CreateMap<EventViewModel,Event>(); 
-            CreateMap<Event,EventViewModel>();
+          //  CreateMap<EventViewModel,Event>(); 
+            CreateMap<Event,EventViewModel>(); 
+
+            CreateMap<EventEditViewModel, Event>();
+            CreateMap<Event, EventEditViewModel>();
+
+
+
+            // CreateMap<Event, EventEditViewModel>();
+            //CreateMap<EventViewModel,EventViewModel>();
+
+            //CreateMap<MedicalCard, MedicalCardViewModel>();
+            //CreateMap<MedicalCardEditViewModel, MedicalCard>();
 
             CreateMap<UserViewModel, AspNetUser>();
             CreateMap<AspNetUser, UserViewModel>();
