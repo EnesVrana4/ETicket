@@ -90,25 +90,19 @@ namespace eTicketWebApp.Controllers
         }
         
 
-
-
-
-
     [HttpPost]
         public IActionResult CreateEvent(EventViewModel eventViewModel)
         {
             if (ModelState.IsValid)
-            {
-                
+            { 
                 _eventService.Add(eventViewModel);
-            return RedirectToAction("ShowEvent");
+                 return RedirectToAction("ShowEvent");
             
-
             }
             return View("CreateEvent");
         }
 
-        [HttpPut]
+      
         public IActionResult Update(int id)
         {
             EventViewModel eventViewModel= _eventService.GetEvent(id);
@@ -130,13 +124,12 @@ namespace eTicketWebApp.Controllers
                 return RedirectToAction("Update", new { id = id });
 
         }
-        [HttpDelete]
+       
         public IActionResult Delete(int id)
         {
             _eventService.Delete(id);
             return RedirectToAction("ShowEvent");
         }
-
 
 
             public IActionResult Privacy()

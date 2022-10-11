@@ -65,12 +65,12 @@ public class ApplicationDbContext : IdentityDbContext<AspNetUser>
     private void UpdateAuditEntities()
     {
         var modifiedEntries = ChangeTracker.Entries()
-           .Where(x => x.Entity is IAuditableEntity && (x.State == EntityState.Added || x.State == EntityState.Modified || x.State == EntityState.Deleted));
+           .Where(x => x.Entity is AuditableEntity && (x.State == EntityState.Added || x.State == EntityState.Modified || x.State == EntityState.Deleted));
 
 
         foreach (var entry in modifiedEntries)
         {
-            var entity = (IAuditableEntity)entry.Entity;
+            var entity = (AuditableEntity)entry.Entity;
             DateTime now = DateTime.Now;
             if (entry.State == EntityState.Added)
             {

@@ -36,6 +36,8 @@ namespace eTicketData.Repositories.Interfaces
 
         Task<TEntity> GetAsync(int id);
 
+        public void SaveChanges();
+
         Task<IEnumerable<TEntity>> GetAllAsync();
 
         //PagedList<TEntity> GetPaginatedList(int? pageSize, int? pageNumber, Expression<Func<TEntity, bool>> expression);

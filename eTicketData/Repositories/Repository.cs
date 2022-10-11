@@ -1,6 +1,11 @@
-﻿using eTicketData.Repositories.Interfaces;
+﻿using eTicketData.Entities;
+using eTicketData.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
+
 namespace eTicketData.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
@@ -8,10 +13,11 @@ namespace eTicketData.Repositories
         protected readonly ApplicationDbContext _context;
         protected readonly Microsoft.EntityFrameworkCore.DbSet<TEntity> _entities;
 
-        public Repository(ApplicationDbContext context)
+        public Repository(ApplicationDbContext context, IHttpContextAccessor httpAccessor)
         {
             _context = context;
             _entities = context.Set<TEntity>();
+            context.CurrentUserId = httpAccessor.HttpContext.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value?.Trim();
         }
 
         //private readonly ApplicationDbContext _context;
@@ -24,6 +30,8 @@ namespace eTicketData.Repositories
         public virtual void Add(TEntity entity)
         {
             _entities.Add(entity);
+          
+          
         }
 
         public virtual void AddRange(IEnumerable<TEntity> entities)
@@ -104,7 +112,8 @@ namespace eTicketData.Repositories
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-            var all = _entities.ToList();
+            Expression<Func<Event, bool>> isTeenAgerExpr = s => s.IsActive==true;
+            var all = _entities.Where(isTeenAgerExpr).ToList();
             return all;
         }
         public virtual async Task<TEntity> GetAsync(int id)
@@ -126,6 +135,12 @@ namespace eTicketData.Repositories
         public IQueryable<TEntity> GetAllQueryable()
         {
             return _entities;
+        }
+
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

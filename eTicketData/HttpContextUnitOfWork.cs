@@ -9,9 +9,9 @@ namespace eTicketData
 {
     public class HttpContextUnitOfWork
     {
-        public HttpContextUnitOfWork(ApplicationDbContext context, IHttpContextAccessor httpAccessor) { 
-        
-                context.CurrentUserId = httpAccessor.HttpContext.User?.FindFirst("Subject")?.Value?.Trim();
+        public HttpContextUnitOfWork(ApplicationDbContext context, IHttpContextAccessor httpAccessor)
+        { 
+                context.CurrentUserId = httpAccessor.HttpContext.User?.FindFirst("sub")?.Value?.Trim();
         }
     }
 }
