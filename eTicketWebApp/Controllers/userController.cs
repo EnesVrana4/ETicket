@@ -59,8 +59,8 @@ namespace eTicketWebApp.Controllers
             var selectedRoles = data.Roles.Where(r => r.Selected)
                                           .Select(r=> r.Text);
             var result = await _signInManager.UserManager.AddToRolesAsync(user, selectedRoles);
-            if (!result.Succeeded)
-                throw new Exception();
+            //if (!result.Succeeded)
+            //    throw new Exception();
 
             var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
             var rolesToAdd = new List<string>();

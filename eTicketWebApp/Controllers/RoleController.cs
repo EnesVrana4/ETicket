@@ -22,7 +22,7 @@ namespace eTicketWebApp.Controllers
         }
 
         //[Authorize(Policy = "RequireAdmin")]
-        [Authorize(Roles = $"{Constantss.Roles.Administrator},{Constantss.Roles.Manager}")]
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Admin()
         {
             return View();

@@ -3,10 +3,12 @@ using AutoMapper;
 using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedComponents.ViewModel;
 using System.Diagnostics;
+using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
 {
@@ -83,7 +85,9 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
-            public IActionResult Update(FavoriteEditViewModel favoriteEditViewModel, int id)
+        [Authorize(Roles = "Admin, Manager")]
+
+        public IActionResult Update(FavoriteEditViewModel favoriteEditViewModel, int id)
         {
             if (ModelState.IsValid)
             {
