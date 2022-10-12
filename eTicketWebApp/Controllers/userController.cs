@@ -1,9 +1,11 @@
 ﻿using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
 {
@@ -17,13 +19,14 @@ namespace eTicketWebApp.Controllers
             _unitOfWork = unitOfWork;
             _signInManager = signInManager;
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             var users = _unitOfWork.User.GetUsers();
             return View(users);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _unitOfWork.User.GetUser(id);
@@ -47,6 +50,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
 
@@ -59,8 +63,8 @@ namespace eTicketWebApp.Controllers
             var selectedRoles = data.Roles.Where(r => r.Selected)
                                           .Select(r=> r.Text);
             var result = await _signInManager.UserManager.AddToRolesAsync(user, selectedRoles);
-            if (!result.Succeeded)
-                throw new Exception();
+            //if (!result.Succeeded)
+            //    throw new Exception();
 
             var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
             var rolesToAdd = new List<string>();

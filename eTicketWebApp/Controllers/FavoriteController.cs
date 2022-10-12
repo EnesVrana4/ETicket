@@ -3,10 +3,12 @@ using AutoMapper;
 using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedComponents.ViewModel;
 using System.Diagnostics;
+using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
 {
