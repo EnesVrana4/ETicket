@@ -15,5 +15,6 @@ namespace eTicketData.Repositories.Interfaces
         int Count();
         Favorite Get(int id);
         IEnumerable<Favorite> GetAll();
+       
     }
 }
