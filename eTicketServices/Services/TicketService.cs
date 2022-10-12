@@ -74,6 +74,19 @@ namespace eTicketServices.Services
 
         }
 
+        public ICollection<TicketViewModel> GetMyTickets()
+        {
+            List<TicketViewModel> TicketViewModelList = new List<TicketViewModel>();
+            List<Ticket> Mylist = (List<Ticket>)_TicketRepo.GetMyTickets();
+            foreach (var ticket in Mylist)
+            {
+                TicketViewModel ticketViewModel = _mapper.Map<TicketViewModel>(ticket);
+                TicketViewModelList.Add(ticketViewModel);
+            }
+
+            return TicketViewModelList;
+        }
+
         public TicketViewModel GetTicket(int id)
         {
             Ticket ticket2 = _TicketRepo.Get(id);

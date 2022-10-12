@@ -84,5 +84,18 @@ namespace eTicketServices.Services
 
 
         }
+
+        public ICollection<EventViewModel> GetMyEvents()
+        {
+            List<EventViewModel> EventViewModelList = new List<EventViewModel>();
+            List<Event> Mylist = (List<Event>)_EventRepo.GetMyEvents();
+            foreach (var event1 in Mylist)
+            {
+                EventViewModel eventViewModel = _mapper.Map<EventViewModel>(event1);
+                EventViewModelList.Add(eventViewModel);
+            }
+
+            return EventViewModelList;
+        }
     }
 }

@@ -81,5 +81,19 @@ namespace eTicketServices.Services
 
             return FavoriteViewModelList;
         }
+
+        public ICollection<FavoriteViewModel> GetMYFavorites()
+        {
+
+            List<FavoriteViewModel> FavoriteViewModelList = new List<FavoriteViewModel>();
+            List<Favorite> Mylist = (List<Favorite>)_FavoriteRepo.GetMyFavorites();
+            foreach (var favorite1 in Mylist)
+            {
+                FavoriteViewModel favoriteViewModel = _mapper.Map<FavoriteViewModel>(favorite1);
+                FavoriteViewModelList.Add(favoriteViewModel);
+            }
+
+            return FavoriteViewModelList;
+        }
     }
 }

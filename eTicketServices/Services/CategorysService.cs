@@ -86,5 +86,18 @@ namespace eTicketServices.Services
 
 
         }
+
+        public ICollection<CategoryViewModel> GetByEventId(int eventId)
+        {
+            List<CategoryViewModel> categoryViewModelList = new List<CategoryViewModel>();
+            List<Category> Mylist = (List<Category>)_CategoryRepo.GetByEventId(eventId);
+            foreach (var category in Mylist)
+            {
+                CategoryViewModel categoryViewModel = _mapper.Map<CategoryViewModel>(category);
+                categoryViewModelList.Add(categoryViewModel);
+            }
+
+            return categoryViewModelList;
+        }
     }
 }

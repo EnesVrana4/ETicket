@@ -7,6 +7,7 @@ namespace eTicketServices.IServices
     public interface ICategoryService 
     {
         ICollection<CategoryViewModel> GetCategorys();
+        ICollection<CategoryViewModel> GetByEventId(int eventId);
 
         CategoryViewModel GetCategory(int id);
         CategoryEditViewModel GetEditCategory(int id);

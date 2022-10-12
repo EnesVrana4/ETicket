@@ -14,7 +14,11 @@ namespace eTicketData.Repositories
         { }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
 
-
-
+        public IEnumerable<Category> GetByEventId(int eventId)
+        {
+            var all = _context.Categorys.
+                 Where(e =>e.IsActive == true && e.EventId==eventId).ToList();
+            return all;
+        }
     }
 }

@@ -14,5 +14,14 @@ namespace eTicketData.Repositories
         {
             _context = context;
         }
+
+        public IEnumerable<Ticket> GetMyTickets()
+        {
+            var all = _context.Favorites.
+                Where(e => e.CreatedBy == _context.CurrentUserId && e.IsActive == true).ToList();
+            return (IEnumerable<Ticket>)all;
+        }
+
+       
     }
 }

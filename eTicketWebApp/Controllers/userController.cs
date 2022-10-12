@@ -19,6 +19,9 @@ namespace eTicketWebApp.Controllers
             _unitOfWork = unitOfWork;
             _signInManager = signInManager;
         }
+
+     
+
         [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {

@@ -10,8 +10,9 @@ namespace eTicketServices.IServices
     public interface ITicketService
     {
             ICollection<TicketViewModel> GetTickets();
+            ICollection<TicketViewModel> GetMyTickets();
 
-            TicketViewModel GetTicket(int id);
+        TicketViewModel GetTicket(int id);
             TicketViewModel Add(TicketEditViewModel ticket);
             bool AddTicket(int categoryId,int numberOfTicket);
              void Delete(int id);

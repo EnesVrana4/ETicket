@@ -17,6 +17,13 @@ namespace eTicketData.Repositories
         { }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
 
+        public IEnumerable<Favorite> GetMyFavorites()
+        {
+            var all = _context.Favorites.
+                Where(e => e.CreatedBy == _context.CurrentUserId && e.IsActive == true).ToList();
+            return all;
+        }
+
         public void UpdateFavorite(Favorite favorite, int favoriteId)
         {
             throw new NotImplementedException();

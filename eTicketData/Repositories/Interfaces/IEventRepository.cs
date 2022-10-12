@@ -14,5 +14,7 @@ namespace eTicketData.Repositories.Interfaces
         int Count();
         Event Get(int id);
         IEnumerable<Event> GetAll();
+        IEnumerable<Event> GetMyEvents();
+        
     }
 }

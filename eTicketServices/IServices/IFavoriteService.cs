@@ -11,5 +11,6 @@ namespace eTicketServices.IServices
         FavoriteEditViewModel GetEditFavorite(int id);
         void Add(int eventId);
         ICollection<FavoriteViewModel> GetAll();     
+        ICollection<FavoriteViewModel> GetMYFavorites();
     }
 }

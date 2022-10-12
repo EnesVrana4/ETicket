@@ -19,6 +19,7 @@ namespace eTicketData.Repositories.Interfaces
         int Count();
         Ticket Get(int id);
         IEnumerable<Ticket> GetAll();
+        IEnumerable<Ticket> GetMyTickets();
     }
 
    
