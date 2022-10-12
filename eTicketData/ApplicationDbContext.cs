@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eTicketData;
-
 public class ApplicationDbContext : IdentityDbContext<AspNetUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -52,7 +51,6 @@ public class ApplicationDbContext : IdentityDbContext<AspNetUser>
         //SaveAuditTrail();
         return base.SaveChanges(acceptAllChangesOnSuccess);
     }
-
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
     {
@@ -121,3 +119,5 @@ public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<AspNe
         builder.Property(u => u.LastName).HasMaxLength(255);
     }
 }
+
+

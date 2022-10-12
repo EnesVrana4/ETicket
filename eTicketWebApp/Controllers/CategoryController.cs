@@ -4,10 +4,12 @@ using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketServices.Services;
 using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedComponents.ViewModel;
 using System.Diagnostics;
+using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
 {
@@ -40,7 +42,6 @@ namespace eTicketWebApp.Controllers
         }
         [HttpGet]
         public IActionResult Details(int id)
-          
         {
             CategoryViewModel categoryViewModel = _categoryService.GetCategory(id);
             ViewBag.MyCategory = categoryViewModel;
@@ -56,12 +57,12 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CategoryEditViewModel categoryEditViewModel,int eventId)
+        public IActionResult Create(CategoryEditViewModel categoryEditViewModel, int eventId)
         {
             if (ModelState.IsValid)
             {
 
-                _categoryService.Add(categoryEditViewModel,eventId);
+                _categoryService.Add(categoryEditViewModel, eventId);
                 return RedirectToAction("ShowCategory");
 
 
@@ -70,6 +71,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Update(int id)
         {
             CategoryEditViewModel categoryEditViewModel = _categoryService.GetEditCategory(id);
@@ -86,10 +88,7 @@ namespace eTicketWebApp.Controllers
                 return RedirectToAction("ShowCategory");
             }
 
-           
-
             return RedirectToAction("Update", new { id = id });
-
         }
 
         public IActionResult Delete(int id)
@@ -97,8 +96,6 @@ namespace eTicketWebApp.Controllers
             _categoryService.Delete(id);
             return RedirectToAction("ShowCategory");
         }
-
-
         public IActionResult Privacy()
         {
             return View();
