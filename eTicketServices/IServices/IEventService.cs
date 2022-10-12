@@ -14,7 +14,5 @@ namespace eTicketServices.IServices
         EventViewModel UpdateEvent(EventEditViewModel event1, int id);
         EventViewModel Add(EventEditViewModel event1);
         void Delete(int id);
-
-
     }
 }

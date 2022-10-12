@@ -187,6 +187,10 @@ namespace eTicketData.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Myimage")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -303,22 +307,24 @@ namespace eTicketData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c3079701-4451-496a-b1e5-9e23f17e77a1",
-                            ConcurrencyStamp = "8cb520cf-16cf-400c-b4de-f8bb17e9d375",
+                            Id = "ec4bb94e-556d-493e-9b24-7d64cc31627f",
+                            ConcurrencyStamp = "1cf00a4f-5d3f-4286-93a3-7e81d73f441c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "4d4431d2-2f27-4cb0-aca1-2ff2f407221d",
-                            ConcurrencyStamp = "bb681921-f148-439c-883c-1ae34d2fe193",
-                            Name = "Manager"
+                            Id = "8410612e-b5aa-40ac-86ae-16919e62ec22",
+                            ConcurrencyStamp = "fd8f56db-4ddd-4325-b279-f8b205d96b77",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "de659f41-85a5-402f-969d-ace16a20242b",
-                            ConcurrencyStamp = "885036fd-e9ff-4ff3-9ece-cdce1ada7aa3",
-                            Name = "Manager"
+                            Id = "045bbd97-b7f5-4534-ab05-ecd2298358b7",
+                            ConcurrencyStamp = "ca4d6673-b9b6-4c23-bd10-64ed8742a306",
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 

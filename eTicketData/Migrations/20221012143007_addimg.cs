@@ -4,39 +4,39 @@
 
 namespace eTicketData.Migrations
 {
-    public partial class migrationn : Migration
+    public partial class addimg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "128d730a-0ac8-4d57-803a-f1ab25c5b419");
+                keyValue: "03e8b2b8-d766-4fde-a0da-bf40b31a21c4");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "4d4431d2-2f27-4cb0-aca1-2ff2f407221d");
+                keyValue: "7b602451-8b9e-4fa3-9bab-180f8a95524c");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "de659f41-85a5-402f-969d-ace16a20242b");
+                keyValue: "90399a34-36db-431b-adbc-9403964cc5f7");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6c034caf-ba1b-4a20-9c5f-57efc6307ed2", "e236ebe8-2076-4244-8f4f-dbe07a6e8ba5", "User", "USER" });
+                values: new object[] { "045bbd97-b7f5-4534-ab05-ecd2298358b7", "ca4d6673-b9b6-4c23-bd10-64ed8742a306", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "a6d36c8a-e15a-4698-b0bc-f8549574115a", "b920d5be-b9e0-4c45-8726-88162b41f341", "Admin", "ADMIN" });
+                values: new object[] { "8410612e-b5aa-40ac-86ae-16919e62ec22", "fd8f56db-4ddd-4325-b279-f8b205d96b77", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ecc1ce2b-c9db-41bf-924f-3528eb01b717", "59b731de-f625-4ce0-b309-35bdc918237b", "Manager", "MANAGER" });
+                values: new object[] { "ec4bb94e-556d-493e-9b24-7d64cc31627f", "1cf00a4f-5d3f-4286-93a3-7e81d73f441c", "Admin", "ADMIN" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -44,32 +44,32 @@ namespace eTicketData.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "6c034caf-ba1b-4a20-9c5f-57efc6307ed2");
+                keyValue: "045bbd97-b7f5-4534-ab05-ecd2298358b7");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "a6d36c8a-e15a-4698-b0bc-f8549574115a");
+                keyValue: "8410612e-b5aa-40ac-86ae-16919e62ec22");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "ecc1ce2b-c9db-41bf-924f-3528eb01b717");
+                keyValue: "ec4bb94e-556d-493e-9b24-7d64cc31627f");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "128d730a-0ac8-4d57-803a-f1ab25c5b419", "4fca0193-3bf3-4ec5-a9e7-ecaa6ce2d85c", "Admin", null });
+                values: new object[] { "03e8b2b8-d766-4fde-a0da-bf40b31a21c4", "04a2003f-7a90-4f60-bf19-05d386780e9c", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "4d4431d2-2f27-4cb0-aca1-2ff2f407221d", "bb681921-f148-439c-883c-1ae34d2fe193", "Manager", null });
+                values: new object[] { "7b602451-8b9e-4fa3-9bab-180f8a95524c", "a9a66029-20c7-42d4-adc1-7d3bc134bff2", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "de659f41-85a5-402f-969d-ace16a20242b", "885036fd-e9ff-4ff3-9ece-cdce1ada7aa3", "Manager", null });
+                values: new object[] { "90399a34-36db-431b-adbc-9403964cc5f7", "2c25476f-482c-454a-9f68-ac046b09a069", "Admin", "ADMIN" });
         }
     }
 }

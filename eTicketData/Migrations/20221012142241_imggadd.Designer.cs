@@ -11,8 +11,8 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221011141706_inital")]
-    partial class inital
+    [Migration("20221012142241_imggadd")]
+    partial class imggadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,6 +189,10 @@ namespace eTicketData.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Myimage")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -301,6 +305,29 @@ namespace eTicketData.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "90399a34-36db-431b-adbc-9403964cc5f7",
+                            ConcurrencyStamp = "2c25476f-482c-454a-9f68-ac046b09a069",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "03e8b2b8-d766-4fde-a0da-bf40b31a21c4",
+                            ConcurrencyStamp = "04a2003f-7a90-4f60-bf19-05d386780e9c",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = "7b602451-8b9e-4fa3-9bab-180f8a95524c",
+                            ConcurrencyStamp = "a9a66029-20c7-42d4-adc1-7d3bc134bff2",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -435,7 +462,7 @@ namespace eTicketData.Migrations
                         .WithMany("MyFavorites")
                         .HasForeignKey("AspNetUserId");
 
-                    b.HasOne("eTicketData.Entities.Event", "Event")
+                    b.HasOne("eTicketData.Entities.Event", "MyEvent")
                         .WithMany("EventFavorites")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -443,7 +470,7 @@ namespace eTicketData.Migrations
 
                     b.Navigation("AspNetUser");
 
-                    b.Navigation("Event");
+                    b.Navigation("MyEvent");
                 });
 
             modelBuilder.Entity("eTicketData.Entities.Ticket", b =>
