@@ -46,8 +46,8 @@ body {
 }
 
 .footer {
-    /* position: fixed; */
-    /* bottom: 0; */
+     position: fixed; 
+     bottom: 0; 
     width: 100%;
     white-space: nowrap;
     /* Set the fixed height of the footer here */
@@ -69,19 +69,3 @@ body {
     color: white;
 }
 
-.movie {
-    position: relative;
-    width: 100%;
-    float: left;
-}
-
-.movie-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: white;
-    padding: 5px;
-    background-color: #0000006e;
-    width: 100%;
-    margin: 0;
-}
