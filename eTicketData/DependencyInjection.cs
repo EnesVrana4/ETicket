@@ -14,12 +14,14 @@ namespace eTicketData
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddUserManager<UserManager<AspNetUser>>();
-            services.AddScoped<IEventRepository,EventRepository>();
-            services.AddScoped<ICategoryRepository,CategoryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IEventRepository,EventRepository>();
+            services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            services.AddScoped<ICategoryRepository,CategoryRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
+
 
             return services;
         }

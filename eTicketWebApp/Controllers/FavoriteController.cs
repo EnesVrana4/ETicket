@@ -40,10 +40,10 @@ namespace eTicketWebApp.Controllers
 
             //ViewBag.eventViewModel =  _eventService.GetEvent(2);
 
-            ViewBag.favoriteViewModels = _favoriteService.GetFavorites();
+            ViewBag.favoriteViewModels = _favoriteService.GetAll();
             return View();
         }
-     
+
 
 
         //[HttpGet]
@@ -59,8 +59,21 @@ namespace eTicketWebApp.Controllers
         //            //    return View();
         //            //}
 
+        public IActionResult AddFavorite(int eventId)
+        {
 
-        //[HttpPost]
+
+            _favoriteService.Add(eventId);
+            return RedirectToAction("ShowEvent","Event");
+
+
+
+            
+        }
+        
+
+
+        
         public IActionResult CreateFavorite(int eventId)
         {
             //if (ModelState.IsValid)
@@ -82,32 +95,6 @@ namespace eTicketWebApp.Controllers
             return View(favoriteEditViewModel);
         }
 
-        [HttpPost]
-            public IActionResult Update(FavoriteEditViewModel favoriteEditViewModel, int id)
-        {
-            if (ModelState.IsValid)
-            {
-                _favoriteService.UpdateFavorite(favoriteEditViewModel, id);
-                return RedirectToAction("ShowFavorite");
-            }
-
-                //  EventViewModel eventViewModel1= _eventService.GetEvent(id);
-
-                return RedirectToAction("Update", new { id = id });
-            
-        }
-       
-        //public IActionResult Delete(int id)
-        //{
-        //    _favoriteService.Delete(id);
-        //    return RedirectToAction("ShowFavorite");
-        //}
-
-
-            public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

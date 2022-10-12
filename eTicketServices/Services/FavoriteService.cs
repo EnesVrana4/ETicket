@@ -1,45 +1,53 @@
 ﻿using AutoMapper;
+using eTicketData;
 using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
 using eTicketServices.IServices;
 using SharedComponents.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace eTicketServices.Services
 {
     public class FavoriteService : IFavoriteService
     {
-        // private readonly ApplicationDbContext _context;
-
         private readonly IFavoriteRepository _FavoriteRepo;
         private readonly IMapper _mapper;
-
-        public FavoriteService(IFavoriteRepository FavoriteRepo, IMapper mapper)
+        private readonly ApplicationDbContext _context;
+        public FavoriteService(IFavoriteRepository FavoriteRepo, IMapper mapper, ApplicationDbContext context)
         {
             _FavoriteRepo = FavoriteRepo;
             _mapper = mapper;
+            _context = context;
         }
 
-        public FavoriteViewModel Add(FavoriteEditViewModel favoriteViewModel)
+        public void Add(int eventId)
         {
-            Favorite favorite1 = _mapper.Map<Favorite>(favoriteViewModel);
+            
+            if(_FavoriteRepo.GetAll().Any(e=>e.EventId == eventId && e.CreatedBy == _context.CurrentUserId))
+            {
+                Favorite favorite = _FavoriteRepo.GetAll().FirstOrDefault(e=>e.EventId == eventId && e.CreatedBy == _context.CurrentUserId);
+                
+                if (favorite.IsActive == true)       
+                    _FavoriteRepo.Remove(favorite);
+                else
+                    _FavoriteRepo.Update(favorite);
+                
+                
+                _FavoriteRepo.SaveChanges();
+            }
+            else
+            {
+                Favorite favorite = new Favorite()
+                {
+                    EventId = eventId
+                };
 
-            _FavoriteRepo.Add(favorite1);
-            _FavoriteRepo.SaveChanges();
-
-
-            FavoriteViewModel favoriteViewModelReturn = _mapper.Map<FavoriteViewModel>(favorite1);
-            return favoriteViewModelReturn;
-
-        }
-
-        //public void Delete(int id)
-        //{
-        //    Favorite favorite2 = _FavoriteRepo.Get(id);
-
-        //    _FavoriteRepo.Remove(favorite2);
-        //    _FavoriteRepo.SaveChanges();
-
-        //}
+                _FavoriteRepo.Add(favorite);
+                _FavoriteRepo.SaveChanges();
+            }
+           }
 
         public FavoriteViewModel GetFavorite(int id)
         {
@@ -55,7 +63,13 @@ namespace eTicketServices.Services
             return favoriteViewModel;
         }
 
-        public ICollection<FavoriteViewModel> GetFavorites()
+
+        public ICollection<FavoriteViewModel> GetFavoritesByEventId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<FavoriteViewModel> GetAll()
         {
             List<FavoriteViewModel> FavoriteViewModelList = new List<FavoriteViewModel>();
             List<Favorite> Mylist = (List<Favorite>)_FavoriteRepo.GetAll();
@@ -66,22 +80,6 @@ namespace eTicketServices.Services
             }
 
             return FavoriteViewModelList;
-        }
-
-        public FavoriteViewModel UpdateFavorite(FavoriteEditViewModel favoriteViewModel, int favoriteId)
-        {
-            Favorite favoriteData = _FavoriteRepo.Get(favoriteId);
-            if (favoriteData == null)
-                return null;
-
-            favoriteData = _mapper.Map(favoriteViewModel, favoriteData);
-
-            _FavoriteRepo.Update(favoriteData);
-            _FavoriteRepo.SaveChanges();
-
-            return _mapper.Map<FavoriteViewModel>(favoriteData);
-
-
         }
     }
 }
