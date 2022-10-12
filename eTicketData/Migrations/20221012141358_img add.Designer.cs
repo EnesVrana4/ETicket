@@ -11,8 +11,8 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221012082030_MigF")]
-    partial class MigF
+    [Migration("20221012141358_img add")]
+    partial class imgadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,6 +189,10 @@ namespace eTicketData.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Myimage")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -305,22 +309,22 @@ namespace eTicketData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c3079701-4451-496a-b1e5-9e23f17e77a1",
-                            ConcurrencyStamp = "8cb520cf-16cf-400c-b4de-f8bb17e9d375",
+                            Id = "57ff3858-b7e2-48a5-9cd9-1c9694acf056",
+                            ConcurrencyStamp = "6548aa60-daac-4d61-b50f-c1cbd650d316",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3801fe31-6a55-4729-9026-6508e0973019",
-                            ConcurrencyStamp = "326ca743-909a-41b8-9997-c379713ab1e6",
+                            Id = "46d7ab75-2c85-4025-923f-c6635b9fed5d",
+                            ConcurrencyStamp = "33adeb14-cebb-4d48-b4ea-5941844e269f",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "0fb90c26-bb17-4124-b8aa-0eeb782a8bde",
-                            ConcurrencyStamp = "079e6926-0c5c-4715-91e2-33ac6dd29eea",
+                            Id = "994082d2-07bf-4969-9a6c-87d061ec99fb",
+                            ConcurrencyStamp = "00a37cd4-52a1-46d4-b3e5-e52f1cef018c",
                             Name = "User",
                             NormalizedName = "USER"
                         });

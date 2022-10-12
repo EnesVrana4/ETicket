@@ -23,13 +23,11 @@ namespace eTicketWebApp.Controllers
             _logger = logger;
             _mapper = mapper;
             _eventService = eventService;
-
-
         }
-   
 
 
-      
+ 
+
         [HttpGet]
         public IActionResult ShowEvent()
         {
@@ -39,7 +37,6 @@ namespace eTicketWebApp.Controllers
             return View();
         }
      
-
 
         [HttpGet]
         public IActionResult CreateEvent()

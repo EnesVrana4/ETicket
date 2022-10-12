@@ -29,6 +29,17 @@ namespace eTicketWebApp.Controllers
             return View(users);
         }
 
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
+
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {

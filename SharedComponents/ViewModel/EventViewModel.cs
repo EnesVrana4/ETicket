@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace SharedComponents.ViewModel
 {
@@ -13,7 +15,11 @@ namespace SharedComponents.ViewModel
         public string Location { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-      //  public int EventCreatorId { get; set; }
+
+        public string Myimage { get; set; } = string.Empty;
+
+        [NotMapped]
+        public IFormFile? Image { get; set; }
     }
 
     public class EventViewModel : EventBaseViewModel

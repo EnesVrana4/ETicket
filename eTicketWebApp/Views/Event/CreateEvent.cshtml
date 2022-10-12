@@ -13,7 +13,7 @@
 
 
 <div class="row">
-    <form asp-controller="Event" asp-action="CreateEvent" method="post">
+    <form asp-controller="Event" asp-action="CreateEvent" enctype="multipart/form-data" method="post">
         <div class="col-sm-6">
 
 
@@ -39,7 +39,11 @@
                 <span asp-validation-for="Date"></span>
                 <label asp-for="Date"></label>
                 <input type="date" asp-for="Date" class="form-control">
-
+            </div>
+            <div class="form-control flex-fill mb-0 uploadpic">
+                <label class="form-label" asp-for="Image" >Upload Image</label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image"></span>
             </div>
         </div>
 

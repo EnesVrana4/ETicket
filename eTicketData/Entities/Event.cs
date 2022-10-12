@@ -1,6 +1,7 @@
 #pragma warning disable CS8618
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace eTicketData.Entities;
 public class Event : AuditableEntity
@@ -21,9 +22,14 @@ public class Event : AuditableEntity
     [MinLength(3)]
     public string Description { get; set; }
     [Required]
-    public DateTime Date { get; set; } 
- 
+    public DateTime Date { get; set; }
     
+    public string Myimage { get; set; } = string.Empty;
+
+    [NotMapped]
+    public IFormFile? Image { get; set; }
+
+
     // Navigation property for related User object
     public AspNetUser AspNetUser { get; set; }
 
