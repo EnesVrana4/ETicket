@@ -13,8 +13,8 @@ namespace eTicketServices.IServices
 
             TicketViewModel GetTicket(int id);
             TicketViewModel Add(TicketEditViewModel ticket);
-            void AddTicket(int categoryId);
-        void Delete(int id);
+            bool AddTicket(int categoryId,int numberOfTicket);
+             void Delete(int id);
         
 
         }

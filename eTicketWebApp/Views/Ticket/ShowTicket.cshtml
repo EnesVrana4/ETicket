@@ -4,7 +4,7 @@
 }
 @foreach (var event1 in ViewBag.ticketViewModels)
 {
-    <a asp-action="Details" asp-controller="Event" asp-route-id="@event1.TicketId"> @event1.TicketId   </a>
+    <a asp-action="Details" asp-controller="Ticket" asp-route-id="@event1.TicketId"> @event1.TicketId   </a>
 
 
     <a asp-action="Delete" asp-controller="Ticket" asp-route-id="@event1.TicketId">    <h1>Delete @event1.TicketId  </h1> </a>

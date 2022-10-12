@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Runtime.Validation.Interception;
+using AutoMapper;
 using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketWebApp.Models;
@@ -64,16 +65,22 @@ namespace eTicketWebApp.Controllers
         //    return View("CreateTicket");
         //}
         
-        public IActionResult CreateTicket(int categoryId)
+        public IActionResult CreateTicket(int numberOfTicket,int categoryId)
         {
-            
 
-                _ticketService.AddTicket(categoryId);
+
+            var succses = _ticketService.AddTicket(categoryId, numberOfTicket);
+                if (!succses)
+            {
+                return RedirectToAction("Details" ,"Category", new { id = categoryId });
+
+            }
+            else
+            {
                 return RedirectToAction("ShowTicket");
 
-
-            
-            
+            }
+                
         }
 
 

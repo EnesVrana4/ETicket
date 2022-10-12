@@ -12,13 +12,15 @@ namespace eTicketServices.Services
         // private readonly ApplicationDbContext _context;
 
         private readonly ITicketRepository _TicketRepo;
+        private readonly ICategoryRepository _categoryRepo;
         private readonly IMapper _mapper;
 
 
-        public TicketService(ITicketRepository TicketRepo, IMapper mapper)
+        public TicketService(ITicketRepository TicketRepo, IMapper mapper, ICategoryRepository categoryRepo)
         {
             _TicketRepo = TicketRepo;
             _mapper = mapper;
+            _categoryRepo = categoryRepo;
         }
 
         public TicketViewModel Add(TicketEditViewModel ticketViewModel)
@@ -33,14 +35,32 @@ namespace eTicketServices.Services
             return ticketViewModelReturn;
 
         }
-       public void AddTicket(int categoryId)
+       public bool AddTicket(int categoryId,int numberOfTIcket)
         {
-            Ticket ticket = new Ticket()
+            Category category = _categoryRepo.Get(categoryId);
+            if (category.NumOfTickets < numberOfTIcket)
             {
-                CategoryId = categoryId,
-            };
-            _TicketRepo.Add(ticket);
-            _TicketRepo.SaveChanges();
+                return false;
+            }
+
+            for (int i = 0; i < numberOfTIcket; i++)
+            {
+                Ticket ticket = new Ticket()
+                {
+                    CategoryId = categoryId,
+                };
+                _TicketRepo.Add(ticket);
+                _TicketRepo.SaveChanges();
+            }
+
+           
+            
+            
+                category.NumOfTickets = category.NumOfTickets - numberOfTIcket;
+                _categoryRepo.SaveChanges();
+                return true;
+            
+          
 
         }
 

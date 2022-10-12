@@ -10,7 +10,19 @@
             
 <h1>  @ViewBag.MyCategory.NumOfTickets   </h1>
 
-<a class="btn btn-primary" asp-action="CreateTicket" asp-controller="Ticket" asp-route-categoryId="@ViewBag.MyCategory.CategoryId">Rezervate Ticket</a>
 
+
+<form asp-controller="Ticket" asp-action="CreateTicket" asp-route-categoryId="@ViewBag.MyCategory.CategoryId" method="post">
+    <div class="col-sm-6">
+        <div class="form-group">
+          
+            <label for="numberOfTicket"></label>
+            <input type="number" for="numberOfTicket" name="numberOfTicket" class="form-control">
+
+        </div>
+    <div class="col-sm-6">
+        <button type="submit" class="btn btn-primary mt-3">Rezervate </button>
+    </div>
+</form>
 
            

@@ -70,7 +70,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Admin, Manager")]
+      //  [Authorize(Roles ="Admin, Manager")]
         public IActionResult Update(int id)
         {
             EventEditViewModel eventEditViewModel = _eventService.GetEditEvent(id);
