@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eTicketData.Migrations
 {
-    public partial class imgadd : Migration
+    public partial class ilgi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -75,6 +75,25 @@ namespace eTicketData.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "IdentityRole",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NormalizedName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityRole", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -340,19 +359,19 @@ namespace eTicketData.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
+                table: "IdentityRole",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "46d7ab75-2c85-4025-923f-c6635b9fed5d", "33adeb14-cebb-4d48-b4ea-5941844e269f", "Manager", "MANAGER" });
+                values: new object[] { "35811647-a7ce-41b9-a126-031335aceb31", "f07c9ae9-9a8f-4d29-a70d-92bf5010223f", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
+                table: "IdentityRole",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "57ff3858-b7e2-48a5-9cd9-1c9694acf056", "6548aa60-daac-4d61-b50f-c1cbd650d316", "Admin", "ADMIN" });
+                values: new object[] { "3830366f-91ce-4fa9-b43e-dcfc7f039f37", "ffd125d8-1c20-4279-8fb0-fdcf77e8bd87", "User", "USER" });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
+                table: "IdentityRole",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "994082d2-07bf-4969-9a6c-87d061ec99fb", "00a37cd4-52a1-46d4-b3e5-e52f1cef018c", "User", "USER" });
+                values: new object[] { "b258213b-2a27-4c56-94a8-d17d9d2dd53b", "b53e0c92-8972-49fb-a654-aedc01e49e0d", "Manager", "MANAGER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -441,6 +460,9 @@ namespace eTicketData.Migrations
 
             migrationBuilder.DropTable(
                 name: "Favorites");
+
+            migrationBuilder.DropTable(
+                name: "IdentityRole");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

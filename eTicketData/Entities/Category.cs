@@ -13,7 +13,10 @@ public class Category : AuditableEntity
     public string Name { get; set; }
     [Required]
     [Display(Name = "Number of Tickets")]
-    public int NumOfTickets { get; set; } 
+    public int NumOfTickets { get; set; }
+    [Required]
+
+    public int Price { get; set; }
 
     public int EventId { get; set; }
     // Navigation property for related User object

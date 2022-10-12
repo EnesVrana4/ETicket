@@ -11,5 +11,9 @@ public class Ticket : AuditableEntity
     public int CategoryId { get; set; }
     public Category? MyCategory { get; set; }
     public AspNetUser? AspNetUser { get; set; }
+    [Required]
+
+    public int Price { get; set; }
+
 
 }

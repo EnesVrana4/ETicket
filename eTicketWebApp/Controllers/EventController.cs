@@ -2,10 +2,12 @@
 using AutoMapper;
 using eTicketData.Entities;
 using eTicketServices.IServices;
+using eTicketServices.Services;
 using eTicketWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SharedComponents.ViewModel;
 using System.Diagnostics;
 
@@ -16,13 +18,16 @@ namespace eTicketWebApp.Controllers
         private readonly ILogger<EventController> _logger;
         private readonly IMapper _mapper;
         private readonly IEventService _eventService;
+        private readonly ICategoryService _categoryService;
+      
 
         private IdentityUser user;
-        public EventController(ILogger<EventController> logger, IMapper mapper, IEventService eventService)
+        public EventController(ILogger<EventController> logger, IMapper mapper, IEventService eventService, ICategoryService categoryService)
         {
             _logger = logger;
             _mapper = mapper;
             _eventService = eventService;
+            _categoryService = categoryService;
         }
 
 
@@ -50,6 +55,16 @@ namespace eTicketWebApp.Controllers
             ViewBag.MyEvent = eventViewModel;
             return View();
         }
+        [HttpGet]
+        public IActionResult MenagerEventDetails(int id)
+        {
+
+            ViewBag.MyCategory = (List<CategoryViewModel>)_categoryService.GetByEventId(id);
+            EventViewModel eventViewModel = _eventService.GetEvent(id);
+            ViewBag.MyEvent = eventViewModel;
+            return View();
+        }
+
 
 
         [HttpPost]
@@ -59,7 +74,11 @@ namespace eTicketWebApp.Controllers
             { 
                 
                 _eventService.Add(eventEditViewModel);
-                return RedirectToAction("ShowEvent");
+                EventViewModel eventViewModel = _eventService.GetLastCreated();
+                
+                return RedirectToAction("MenagerEventDetails" ,new {id = eventViewModel.EventId });
+
+               // return RedirectToAction("ShowEvent");
 
 
             }
