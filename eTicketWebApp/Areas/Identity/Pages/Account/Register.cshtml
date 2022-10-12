@@ -38,6 +38,17 @@
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="my-3">
+                    
+                    @foreach(var role in @Model.Roles)
+                    {
+                        <div class="form-check">
+                           <label>@role.Name</label> @Html.RadioButtonFor(c => c.SelectedRole, role.Name)
+                            
+                            
+                        </div>
+                    }
+                </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using eTicketData.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace eTicketServices.IServices
 {
     public interface IRoleService
     {
-        ICollection<IdentityRole> GetRoles();
+        Task<IEnumerable<AspNetRole>> GetRolesAsync();
 
     }
 }

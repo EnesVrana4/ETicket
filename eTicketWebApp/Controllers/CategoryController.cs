@@ -18,18 +18,13 @@ namespace eTicketWebApp.Controllers
         private readonly ILogger<CategoryController> _logger;
         private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
-
         private IdentityUser user;
         public CategoryController(ILogger<CategoryController> logger, IMapper mapper, ICategoryService categoryService)
         {
             _logger = logger;
             _mapper = mapper;
             _categoryService = categoryService;
-
-
         }
-
-
 
         [HttpGet]
         public IActionResult ShowCategory()

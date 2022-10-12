@@ -60,7 +60,7 @@ namespace eTicketData.Repositories
             throw new NotImplementedException();
         }
 
-        public ICollection<IdentityRole> GetRoles()
+        public ICollection<AspNetRole> GetRoles()
         {
             return _context.Roles.ToList();
         }

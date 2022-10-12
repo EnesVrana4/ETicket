@@ -1,31 +1,29 @@
 ﻿using AutoMapper;
 using eTicketData.Entities;
-using Microsoft.AspNetCore.Identity;
-using SharedComponents.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using eTicketData.Repositories.Interfaces;
 using eTicketServices.IServices;
+using eTicketServices.Repositories;
+using Microsoft.EntityFrameworkCore;
+using SharedComponents.ViewModel;
 
 namespace eTicketServices.Services
 {
     public class RoleService : IRoleService
     {
         private readonly IUserRepository _repository;
+        private readonly AppRoleManager _roleManager;
         private readonly IMapper _mapper;
 
-        public RoleService(IUserRepository userRepository, IMapper mapper)
+        public RoleService(IUserRepository userRepository, IMapper mapper, AppRoleManager roleManager)
         {
             _repository = userRepository;
             _mapper = mapper;
+            _roleManager = roleManager;
         }
 
-        public ICollection<IdentityRole> GetRoles()
+        public async Task<IEnumerable<AspNetRole>> GetRolesAsync()
         {
-            throw new NotImplementedException();
+            return await _roleManager.Roles.ToListAsync();
         }
 
         public ICollection<RoleViewModel> GetUsers()

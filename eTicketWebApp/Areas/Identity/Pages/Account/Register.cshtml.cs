@@ -2,23 +2,17 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
+using eTicketData.Entities;
+using eTicketServices.IServices;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using eTicketData.Entities;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace eTicketWebApp.Areas.Identity.Pages.Account
 {
@@ -30,13 +24,15 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<AspNetUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IRoleService _roleService;
 
         public RegisterModel(
             UserManager<AspNetUser> userManager,
             IUserStore<AspNetUser> userStore,
             SignInManager<AspNetUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, 
+            IRoleService roleService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +40,7 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleService = roleService;
         }
 
         /// <summary>
@@ -52,6 +49,11 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
+
+        [BindProperty]
+        public string SelectedRole { get; set; }
+
+        public IEnumerable<AspNetRole> Roles { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -118,6 +120,8 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            var roles = await _roleService.GetRolesAsync();
+            Roles = roles.Where(r => !r.Name.Equals("Admin", StringComparison.OrdinalIgnoreCase));
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -136,8 +140,8 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 result = await _signInManager.UserManager.AddToRoleAsync(user, "User");
-                if (!result.Succeeded)
-                    throw new Exception();
+                //if (!result.Succeeded)
+                //    throw new Exception();
 
                 if (result.Succeeded)
                 {

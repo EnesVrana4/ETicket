@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eTicketData;
-public class ApplicationDbContext : IdentityDbContext<AspNetUser>
+public class ApplicationDbContext : IdentityDbContext<AspNetUser, AspNetRole, string>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }

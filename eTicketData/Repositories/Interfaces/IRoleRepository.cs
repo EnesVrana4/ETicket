@@ -5,7 +5,7 @@ namespace eTicketData.Repositories.Interfaces
 {
     public interface IRoleRepository : IRepository<IdentityRole>
     {
-            ICollection<IdentityRole> GetRoles();
+        ICollection<AspNetRole> GetRoles();
     }
 }
 

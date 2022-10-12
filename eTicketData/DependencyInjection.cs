@@ -1,6 +1,7 @@
 ﻿using eTicketData.Entities;
 using eTicketData.Repositories;
 using eTicketData.Repositories.Interfaces;
+using eTicketServices.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,8 +12,9 @@ namespace eTicketData
         public static IServiceCollection AddETicketData(this IServiceCollection services) {
 
             services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
+                .AddRoles<AspNetRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddRoleManager<AppRoleManager>()
                 .AddUserManager<UserManager<AspNetUser>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
