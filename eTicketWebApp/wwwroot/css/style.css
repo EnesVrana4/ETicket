@@ -85,9 +85,8 @@ body {
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
 
-
-.ilgi-fun2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../Images/BackImg.jpg");
+.register-style {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/Images/loginimg.jpg");
     height: 80%;
     background-position: center;
     background-size: cover;
