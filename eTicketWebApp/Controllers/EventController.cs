@@ -49,6 +49,11 @@ namespace eTicketWebApp.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult CreateEvent1()
+        {
+            return View();
+        }
+        [HttpGet]
         public IActionResult Details(int id)
         {
             EventViewModel eventViewModel = _eventService.GetEvent(id);
