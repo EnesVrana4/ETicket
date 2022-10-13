@@ -30,6 +30,9 @@
 }),/*!
  * Lightbox v2.10.0
  * by Lokesh Dhakar
+ * 
+ * 
+ * 
  *
  * More info:
  * http://lokeshdhakar.com/projects/lightbox2/
