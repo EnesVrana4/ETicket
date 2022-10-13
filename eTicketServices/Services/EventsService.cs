@@ -126,5 +126,12 @@ namespace eTicketServices.Services
 
             return EventViewModelList;
         }
+
+        public EventViewModel GetLastCreated()
+        {
+            Event eventData = _EventRepo.GetLastCreated();
+            EventViewModel eventViewModel = _mapper.Map<EventViewModel>(eventData);
+            return eventViewModel;
+        }
     }
 }

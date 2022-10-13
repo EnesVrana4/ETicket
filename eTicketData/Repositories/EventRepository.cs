@@ -14,6 +14,11 @@ namespace eTicketData.Repositories
         { }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
 
+        public Event GetLastCreated()
+        {
+            return _context.Events.OrderByDescending(e => e.CreatedDate).FirstOrDefault();
+        }
+
         public IEnumerable<Event> GetMyEvents()
         {
          

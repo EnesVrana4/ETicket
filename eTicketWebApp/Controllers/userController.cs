@@ -1,10 +1,13 @@
-﻿using eTicketData.Entities;
+﻿using eTicketData;
+using eTicketData.Entities;
 using eTicketData.Repositories.Interfaces;
+using eTicketServices.IServices;
 using eTicketWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
@@ -13,18 +16,18 @@ namespace eTicketWebApp.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly SignInManager<AspNetUser> _signInManager;
-
-        public UserController(IUnitOfWork unitOfWork, SignInManager<AspNetUser> signInManager)
+        private readonly IRoleService _roleService;
+        public UserController(IUnitOfWork unitOfWork, SignInManager<AspNetUser> signInManager, IRoleService roleService)
         {
             _unitOfWork = unitOfWork;
             _signInManager = signInManager;
+            _roleService = roleService;
         }
-
-     
 
         [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
+            
             var users = _unitOfWork.User.GetUsers();
             return View(users);
         }
@@ -34,9 +37,42 @@ namespace eTicketWebApp.Controllers
             return View();
         }
 
-        public IActionResult HomePage()
+        public async Task<IActionResult> HomePageAsync()
+        {
+            if (!User.Identity?.IsAuthenticated ?? false)
+                return ShowUnAuthenticatedHomePage();
+
+            if (User.IsInRole(AspNetRole.MANAGER))
+                return ShowManagerdHomePage();
+
+            else if (User.IsInRole(AspNetRole.ADMIN))
+                return ShowAdminHomePage();
+
+            return ShowUserHomePage();
+        }
+
+        private IActionResult ShowUnAuthenticatedHomePage()
         {
             return View();
+        }
+        private IActionResult ShowManagerdHomePage()
+        {
+            return View("ManagerHomePage");
+        }
+        private IActionResult ShowAdminHomePage()
+        {
+            return View("AdminHomePage");
+        }
+        private IActionResult ShowUserHomePage()
+        {
+            return View("UserHomePage");
+        }
+
+        public  IActionResult ManagerPage()
+        {
+            string CurrentUserId =  _unitOfWork.User.GetCurrentUser();
+            return View();
+
         }
 
 

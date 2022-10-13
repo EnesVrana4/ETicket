@@ -10,7 +10,9 @@ namespace SharedComponents.ViewModel
     public class TicketBaseViewModel
     {
         public int CategoryId { get; set; }
-        
+
+
+
     }
     public class TicketViewModel : TicketBaseViewModel
     {

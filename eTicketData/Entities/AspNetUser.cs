@@ -40,8 +40,9 @@ public class AspNetUser : IdentityUser ,IAuditableEntity
     public List<Event>? CreatedEvents { get; set; }
 }
 
-public class AspNetRole: IdentityRole
+public class  AspNetRole: IdentityRole
 {
-
+    public const string ADMIN = "Admin";
+    public const string MANAGER = "Manager";
 }
 

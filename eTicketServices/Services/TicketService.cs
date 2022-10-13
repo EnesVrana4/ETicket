@@ -48,6 +48,7 @@ namespace eTicketServices.Services
                 Ticket ticket = new Ticket()
                 {
                     CategoryId = categoryId,
+                    Price=category.Price,
                 };
                 _TicketRepo.Add(ticket);
                 _TicketRepo.SaveChanges();

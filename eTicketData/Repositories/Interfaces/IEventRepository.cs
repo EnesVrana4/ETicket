@@ -13,8 +13,10 @@ namespace eTicketData.Repositories.Interfaces
         void RemoveRange(IEnumerable<Event> entities);
         int Count();
         Event Get(int id);
+        Event GetLastCreated();
         IEnumerable<Event> GetAll();
         IEnumerable<Event> GetMyEvents();
+
         
     }
 }

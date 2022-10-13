@@ -11,8 +11,8 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221012141358_img add")]
-    partial class imgadd
+    [Migration("20221012214226_Category,TicketPrice")]
+    partial class CategoryTicketPrice
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,32 @@ namespace eTicketData.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("eTicketData.Entities.AspNetRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
 
             modelBuilder.Entity("eTicketData.Entities.AspNetUser", b =>
                 {
@@ -142,6 +168,9 @@ namespace eTicketData.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<int>("NumOfTickets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("CategoryId");
@@ -272,6 +301,9 @@ namespace eTicketData.Migrations
                     b.Property<DateTime>("LastUpdatedDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.HasKey("TicketId");
 
                     b.HasIndex("AspNetUserId");
@@ -287,44 +319,37 @@ namespace eTicketData.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("IdentityRole");
 
                     b.HasData(
                         new
                         {
-                            Id = "57ff3858-b7e2-48a5-9cd9-1c9694acf056",
-                            ConcurrencyStamp = "6548aa60-daac-4d61-b50f-c1cbd650d316",
+                            Id = "7bc3d2c6-eb63-4482-adb7-2c3a130f9c16",
+                            ConcurrencyStamp = "d9444425-9311-41ac-b705-4957c8d7a319",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "46d7ab75-2c85-4025-923f-c6635b9fed5d",
-                            ConcurrencyStamp = "33adeb14-cebb-4d48-b4ea-5941844e269f",
+                            Id = "b6ac13af-bd40-41c9-9f52-64f373075a48",
+                            ConcurrencyStamp = "99799059-f696-4f60-b48e-a6076d2b70a5",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "994082d2-07bf-4969-9a6c-87d061ec99fb",
-                            ConcurrencyStamp = "00a37cd4-52a1-46d4-b3e5-e52f1cef018c",
+                            Id = "30fc6a74-28e6-4fa6-83cb-2bf41687862a",
+                            ConcurrencyStamp = "601c1841-db93-45e8-8016-8a9e761622dd",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -492,7 +517,7 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("eTicketData.Entities.AspNetRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -519,7 +544,7 @@ namespace eTicketData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("eTicketData.Entities.AspNetRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

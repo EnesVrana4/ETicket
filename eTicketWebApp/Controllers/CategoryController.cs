@@ -51,14 +51,27 @@ namespace eTicketWebApp.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public IActionResult Create(CategoryEditViewModel categoryEditViewModel, int eventId)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        _categoryService.Add(categoryEditViewModel, eventId);
+        //        return RedirectToAction("ShowCategory");
+
+
+        //    }
+        //    return View("Create");
+        //}
+
         [HttpPost]
         public IActionResult Create(CategoryEditViewModel categoryEditViewModel, int eventId)
         {
             if (ModelState.IsValid)
             {
-
                 _categoryService.Add(categoryEditViewModel, eventId);
-                return RedirectToAction("ShowCategory");
+                return RedirectToAction("MenagerEventDetails","Event" , new { id = eventId });
 
 
             }

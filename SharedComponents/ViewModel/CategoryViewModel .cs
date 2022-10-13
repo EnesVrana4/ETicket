@@ -11,7 +11,9 @@ namespace SharedComponents.ViewModel
     {
         public string Name { get; set; }
         public string NumOfTickets { get; set; }
-     
+        public int Price { get; set; }
+
+
     }
 
     public class CategoryViewModel : CategoryBaseViewModel
