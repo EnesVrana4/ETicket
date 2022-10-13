@@ -16,6 +16,7 @@ namespace eTicketServices.Services
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
+
         public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _repository = userRepository;
@@ -55,6 +56,13 @@ namespace eTicketServices.Services
 
             return userVieModel;
 
+        }
+
+        public string GetCurrentUser() 
+        {
+            var userId = _repository.GetCurrentUser();
+
+            return userId;
         }
 
         public UserViewModel UpdateUser(UserViewModel user)

@@ -65,6 +65,7 @@ namespace eTicketData.Repositories
             return _context.Roles.ToList();
         }
 
+      
         public IdentityRole GetSingleOrDefault(Expression<Func<IdentityRole, bool>> predicate)
         {
             throw new NotImplementedException();

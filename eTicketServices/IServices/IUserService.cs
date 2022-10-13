@@ -13,6 +13,7 @@ namespace eTicketServices.IServices
         ICollection<UserViewModel> GetUsers();
         UserViewModel GetUser(string id);
         UserViewModel UpdateUser(UserViewModel user);
-
+        string GetCurrentUser();
+        
     }
 }

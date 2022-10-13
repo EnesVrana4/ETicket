@@ -34,6 +34,12 @@ namespace eTicketData.Repositories
                 return user;
         }
 
+        public string GetCurrentUser()
+        {
+            var LogedInUser = _context.CurrentUserId;
+
+            return LogedInUser;
+        }
         public void Add(AspNetUser entity)
         {
             throw new NotImplementedException();

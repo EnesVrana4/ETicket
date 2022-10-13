@@ -31,6 +31,9 @@ namespace eTicketWebApp
 
             CreateMap<UserViewModel, AspNetUser>();
             CreateMap<AspNetUser, UserViewModel>();
+
+            CreateMap<RoleViewModel, AspNetRole>();
+            CreateMap<AspNetRole, RoleViewModel>();
         }
     }
 }
