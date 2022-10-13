@@ -92,3 +92,18 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+/*.event_details_container {
+    max-width: 70%;
+    height: auto;
+    background-color: #efefef;
+    opacity: 0.7;
+    background-image: radial-gradient(#3097d1 0.5px, transparent 0.5px), radial-gradient(#3097d1 0.5px, #efefef 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
+    border: 1px solid #3097d1;
+    border-radius: 20px;
+}*/
