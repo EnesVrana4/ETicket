@@ -5,17 +5,64 @@
 
 <h1 class="text-center">This Event</h1>
 
-
-<h1>
-    @ViewBag.MyEvent.Name
-</h1>
-
-<h1>  @ViewBag.MyEvent.Description   </h1>
-<h1>  @ViewBag.MyEvent.Location</h1>
-<h1> @ViewBag.MyEvent.Date </h1>
+<div class="row">
+    <div class="col-sm-8">
+        <img style="width:100px ; height:auto" src="~/Images/@ViewBag.MyEvent.Myimage" asp-append-version="true" alt="">
 
 
-@if (@ViewBag.MyCategory != null){
+        <h1>
+            @ViewBag.MyEvent.Name
+        </h1>
+
+        <h1>  @ViewBag.MyEvent.Description   </h1>
+        <h1>  @ViewBag.MyEvent.Location</h1>
+        <h1> @ViewBag.MyEvent.Date </h1>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <form asp-controller="Category" asp-action="Create" asp-route-EventId="@ViewBag.MyEvent.EventId" method="post">
+                
+
+
+                    <div class="form-group">
+                        <span asp-validation-for="Name"></span>
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control">
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="NumOfTickets"></span>
+                        <label asp-for="NumOfTickets"></label>
+                        <input type="textarea" asp-for="NumOfTickets" class="form-control">
+
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="Price"></span>
+                        <label asp-for="Price"></label>
+                        <input type="textarea" asp-for="Price" class="form-control">
+
+                    </div>
+
+               
+
+                
+                    <button type="submit" class="btn btn-primary mt-3">Create</button>
+                
+            </form>
+
+            <a asp-action="ShowCategory" asp-controller="Category">Go Back</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@if (@ViewBag.MyCategory != null)
+{
     @foreach (var category in ViewBag.MyCategory)
     {
         <h1>@category.Name   </h1>
@@ -28,39 +75,5 @@
 
 
 
-<a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>
+//<a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>
 
-<div class="row">
-    <form asp-controller="Category" asp-action="Create" asp-route-EventId="@ViewBag.MyEvent.EventId" method="post">
-        <div class="col-sm-6">
-
-
-            <div class="form-group">
-                <span asp-validation-for="Name"></span>
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control">
-
-            </div>
-            <div class="form-group">
-                <span asp-validation-for="NumOfTickets"></span>
-                <label asp-for="NumOfTickets"></label>
-                <input type="textarea" asp-for="NumOfTickets" class="form-control">
-
-            </div>
-            <div class="form-group">
-                <span asp-validation-for="Price"></span>
-                <label asp-for="Price"></label>
-                <input type="textarea" asp-for="Price" class="form-control">
-
-            </div>
-
-        </div>
-
-        <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary mt-3">Create</button>
-        </div>
-    </form>
-
-    <a asp-action="ShowCategory" asp-controller="Category">Go Back</a>
-
-</div>
