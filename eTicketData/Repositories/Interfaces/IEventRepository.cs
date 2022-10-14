@@ -16,7 +16,12 @@ namespace eTicketData.Repositories.Interfaces
         Event GetLastCreated();
         IEnumerable<Event> GetAll();
         IEnumerable<Event> GetMyEvents();
+        public IEnumerable<Event> Search(string search);
+        public IEnumerable<Event> SearchByDate(DateTime start, DateTime end);
 
-        
+
+
+
+
     }
 }

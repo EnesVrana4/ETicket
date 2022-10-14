@@ -8,6 +8,8 @@ namespace eTicketServices.IServices
     {
         ICollection<EventViewModel> GetEvents();
         ICollection<EventViewModel> GetMyEvents();
+        ICollection<EventViewModel> Search(string search);
+        ICollection<EventViewModel> SearchByDate(DateTime start, DateTime end);
 
         EventViewModel GetEvent(int id);
         EventViewModel GetLastCreated();
