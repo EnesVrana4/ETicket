@@ -13,16 +13,16 @@
     <title>@ViewData["Title"] - EventProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
                  
-    <link rel="stylesheet" href="~/EventProject.site.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/EventProject.site.css" asp-append-version="true" />*@
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark navbar-toggleable-sm border-bottom box-shadow mb-4" style="background-color:#313131">
             <div class="container-fluid">
 
-                <a href="index.html" class="navbar-brand">
+                <a href="#" class="navbar-brand">
                     <img src="~/Images/logo-trans.png" alt="logo" class="img-fluid" width="80px" height="100px" />
                 </a>
 
@@ -54,11 +54,33 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+
+
+    <footer>
         <div class="container">
-            &copy; 2022 - EventProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="footer-left">
+                        <ul>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Term and Conditions</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="footer-right">
+                        <ul class="copyright-text">
+                      
+                            <li><div class="ftr-1"><i class="far fa-copyright"></i> <a> 2022 by TeamGroup</a>. All Rights Reserved.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

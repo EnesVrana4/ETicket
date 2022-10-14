@@ -36,10 +36,18 @@ namespace eTicketWebApp.Controllers
         }
 
         public IActionResult Profile()
-        {
+        {   
+            if(!User.Identity?.IsAuthenticated ?? false) 
+            {
+                return View("~/Areas/Identity/Pages/Account/Login.cshtml");
+                    
+            }
+            
+
             return View();
         }
 
+       
         public async Task<IActionResult> HomePageAsync()
         {
             if (!User.Identity?.IsAuthenticated ?? false)
