@@ -3,7 +3,11 @@
 
 
 @model EventEditViewModel
-
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+</head>
 <section class=" gradient-custom ilgi-fun2">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -40,6 +44,7 @@
                                     <span asp-validation-for="Image"></span>
                                 </div>
                                 <button type="submit" class="btn btn-ilgiOrange mt-3">Create</button>
+                                <a class="btn btn-ilgiOrange ms-3 mt-3 asp-action="ShowEvent" asp-controller="Event">Go Back</a>
 
                             </form>
                         </div>
@@ -49,7 +54,6 @@
         </div>
     </div>
 </section>
-<a asp-action="ShowEvent" asp-controller="Event">Go Back</a>
 
 
 

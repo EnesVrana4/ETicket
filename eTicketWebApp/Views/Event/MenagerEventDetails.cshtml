@@ -2,78 +2,74 @@
 @using eTicketData.Entities
 
 @model CategoryEditViewModel
-
-<h1 class="text-center">This Event</h1>
-
-<div class="row">
-    <div class="col-sm-8">
-        <img style="width:100px ; height:auto" src="~/Images/@ViewBag.MyEvent.Myimage" asp-append-version="true" alt="">
-
-
-        <h1>
-            @ViewBag.MyEvent.Name
-        </h1>
-
-        <h1>  @ViewBag.MyEvent.Description   </h1>
-        <h1>  @ViewBag.MyEvent.Location</h1>
-        <h1> @ViewBag.MyEvent.Date </h1>
+<div class="row ilgi-fun4">
+    <div class="row mt-4">
+        <div class="col-sm-5 ms-3">
+            <div class="card ilgi-fun3" >
+                <img style=" height:auto; border-radius: 5px 5px 0 0;" src="~/Images/@ViewBag.MyEvent.Myimage" asp-append-version="true" alt="">
+                <div class="card-body ">
+                    <h4 class="card-text color-orange">@ViewBag.MyEvent.Date.ToString("dddd, dd MMMM yyyy")   </h4>
+                    <h2 class="card-title">@ViewBag.MyEvent.Name</h2>
+                    <h4 class="card-subtitle color-white mb-2 text-muted">@ViewBag.MyEvent.Location   </h4>
+                    <p class="card-subtitle color-white mb-2 text-muted">@ViewBag.MyEvent.Description   </p>
+                </div>
+            </div>
+        </div>
+        <div class="offset-2 col-sm-4">
+            <div class="row">
+                <section class=" gradient-custom ilgi-fun">
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                                <div class="card-body p-5 text-center">
+                                    <form asp-controller="Category" asp-action="Create" asp-route-EventId="@ViewBag.MyEvent.EventId" method="post">
+                                        <div class="form-group">
+                                            <span asp-validation-for="Name"></span>
+                                            <label style="color: white" asp-for="Name"></label>
+                                            <input asp-for="Name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <span asp-validation-for="NumOfTickets"></span>
+                                            <label style="color: white" asp-for="NumOfTickets"></label>
+                                            <input type="textarea" asp-for="NumOfTickets" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <span asp-validation-for="Price"></span>
+                                            <label style="color: white" asp-for="Price"></label>
+                                            <input type="textarea" asp-for="Price" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-ilgiOrange mt-3">Create</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                @*<a asp-action="ShowCategory" asp-controller="Category">Go Back</a>*@
+            </div>
+        </div>
     </div>
-    <div class="col-sm-4">
+    <div class="container mx-auto mt-4">
         <div class="row">
-            <form asp-controller="Category" asp-action="Create" asp-route-EventId="@ViewBag.MyEvent.EventId" method="post">
-                
-
-
-                    <div class="form-group">
-                        <span asp-validation-for="Name"></span>
-                        <label asp-for="Name"></label>
-                        <input asp-for="Name" class="form-control">
-
+            @if (@ViewBag.MyCategory != null)
+            {
+                @foreach (var category in ViewBag.MyCategory)
+                {
+                    <div class="col-md-3">
+                        <div class="card ilgi-fun3" style="width: 18rem;">
+                            <img src="~/Images/ticket1.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h2 class="color-white card-title">@category.Name</h2>
+                                <h4 class=" color-white card-subtitle mb-2 text-muted">Number of tickets @category.NumOfTickets   </h4>
+                                <h4 class=" color-white card-text">$@category.Price </h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span asp-validation-for="NumOfTickets"></span>
-                        <label asp-for="NumOfTickets"></label>
-                        <input type="textarea" asp-for="NumOfTickets" class="form-control">
-
-                    </div>
-                    <div class="form-group">
-                        <span asp-validation-for="Price"></span>
-                        <label asp-for="Price"></label>
-                        <input type="textarea" asp-for="Price" class="form-control">
-
-                    </div>
-
-               
-
-                
-                    <button type="submit" class="btn btn-primary mt-3">Create</button>
-                
-            </form>
-
-            <a asp-action="ShowCategory" asp-controller="Category">Go Back</a>
-
+                }
+            }
         </div>
     </div>
 </div>
 
-
-
-
-
-
-@if (@ViewBag.MyCategory != null)
-{
-    @foreach (var category in ViewBag.MyCategory)
-    {
-        <h1>@category.Name   </h1>
-        <h1>@category.NumOfTickets   </h1>
-        <h1>@category.Price   </h1>
-    }
-}
-
-
-
-
-
-//<a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>
+@*<a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>*@
 
