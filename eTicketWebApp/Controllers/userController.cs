@@ -49,6 +49,7 @@ namespace eTicketWebApp.Controllers
                 return ShowAdminHomePage();
 
             return ShowUserHomePage();
+
         }
 
         private IActionResult ShowUnAuthenticatedHomePage()
@@ -61,6 +62,7 @@ namespace eTicketWebApp.Controllers
         }
         private IActionResult ShowAdminHomePage()
         {
+            return View("ManagerHomePage");
             return View("AdminHomePage");
         }
         private IActionResult ShowUserHomePage()
