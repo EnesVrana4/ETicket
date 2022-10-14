@@ -28,7 +28,7 @@ namespace eTicketWebApp.Controllers
             _eventService = eventService;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             
@@ -40,15 +40,11 @@ namespace eTicketWebApp.Controllers
         {   
             if(!User.Identity?.IsAuthenticated ?? false) 
             {
-                return View("~/Areas/Identity/Pages/Account/Login.cshtml");
-                    
+                return Redirect("~/Identity/Account/Login");
             }
-            
 
             return View();
         }
-
-       
         public async Task<IActionResult> HomePageAsync()
         {
             if (!User.Identity?.IsAuthenticated ?? false)
@@ -63,7 +59,6 @@ namespace eTicketWebApp.Controllers
             return ShowManagerdHomePage();
 
         }
-
         private IActionResult ShowUnAuthenticatedHomePage()
         {
             return View();
@@ -107,7 +102,7 @@ namespace eTicketWebApp.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _unitOfWork.User.GetUser(id);
@@ -131,7 +126,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
 

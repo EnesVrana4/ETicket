@@ -62,7 +62,7 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Manager")]
+        //[Authorize(Roles = "Manager")]
 
         public IActionResult CreateEvent()
         {
@@ -94,7 +94,7 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = AspNetRole.MANAGER)]
+        //[Authorize(Roles = AspNetRole.MANAGER)]
         public IActionResult CreateEvent(EventEditViewModel eventEditViewModel)
         {
             if (ModelState.IsValid)
@@ -113,7 +113,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Admin, Manager")]
+        [Authorize(Roles ="Manager")]
         public IActionResult Update(int id)
         {
             EventEditViewModel eventEditViewModel = _eventService.GetEditEvent(id);
@@ -135,7 +135,7 @@ namespace eTicketWebApp.Controllers
                 return RedirectToAction("Update", new { id = id });
             
         }
-        [Authorize(Roles ="Admin, Manager")]
+        [Authorize(Roles ="Manager")]
 
         public IActionResult Delete(int id)
         {
