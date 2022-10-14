@@ -46,31 +46,11 @@ namespace eTicketWebApp.Controllers
             return View();
         }
 
-
-
-        //[HttpGet]
-        //public IActionResult CreateFavorite()
-        //{
-        //    return View();
-        //}
-        //            //[HttpGet]
-        //            //public IActionResult Details(int id)
-        //            //{
-        //            //    FavoriteViewModel favoriteViewModel = _favoriteService.GetFavorite(id);
-        //            //    ViewBag.MyFavorite = favoriteViewModel;
-        //            //    return View();
-        //            //}
-
         public IActionResult AddFavorite(int eventId)
         {
-
-
             _favoriteService.Add(eventId);
-            return RedirectToAction("ShowEvent","Event");
-
-
-
-            
+            return RedirectToAction("Details","Event", new { id = eventId});
+       
         }
         
 

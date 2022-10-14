@@ -9891,14 +9891,4 @@ footer {
     background: #ff7555 !important;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.07) [class^=feather-], [class*=" feather-"]
 
-.feather-search{
-    font-family: feather !important;
-    speak: none;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+

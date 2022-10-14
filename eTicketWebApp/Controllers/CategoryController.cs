@@ -45,6 +45,8 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Manager")]
+
         public IActionResult Create(int eventId)
         {
             ViewBag.eventId = eventId;
@@ -66,6 +68,8 @@ namespace eTicketWebApp.Controllers
         //}
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
+
         public IActionResult Create(CategoryEditViewModel categoryEditViewModel, int eventId)
         {
             if (ModelState.IsValid)
@@ -88,6 +92,8 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Manager")]
+
         public IActionResult Update(CategoryEditViewModel categoryEditViewModel, int id)
         {
             if (ModelState.IsValid)
@@ -98,6 +104,7 @@ namespace eTicketWebApp.Controllers
 
             return RedirectToAction("Update", new { id = id });
         }
+        [Authorize(Roles = "Admin, Manager")]
 
         public IActionResult Delete(int id)
         {

@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Users</h1>
-    @if (@Model != null && @Model.Any())
+    @if (@ViewBag.AllUsers != null)
     {
         <table class="table">
             <thead>
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var user in Model)
+                @foreach (var user in ViewBag.AllUsers)
                 {
                     <tr>
                         <th scope="row">@user.Id</th>
@@ -26,7 +26,7 @@
                         <td>@user.LastName</td>
                         <td>@user.Email</td>
                         <td>
-                            <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                            <a  asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
                         </td>
                     </tr>
                 }
