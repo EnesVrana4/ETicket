@@ -32,8 +32,8 @@ namespace eTicketData.Repositories
         {
 
             var all = _context.Events
-                .Where(s => s.CreatedDate > start && s.CreatedDate < end)
-                .Where(e =>  e.IsActive == true).ToList();
+                .Where(s => s.Date > start && s.Date < end)
+                /*.Where(e =>  e.IsActive == true)*/.ToList();
             return all;
 
         }
@@ -44,7 +44,7 @@ namespace eTicketData.Repositories
 
             
             var all = _context.Events.
-                Where(e => e.Name.Contains(search) && e.IsActive).ToList();
+                Where(e => e.Name!.Contains(search) && e.IsActive).ToList();
             return all;
 
         }

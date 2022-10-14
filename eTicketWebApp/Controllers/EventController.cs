@@ -41,7 +41,25 @@ namespace eTicketWebApp.Controllers
             ViewBag.eventViewModels = _eventService.GetEvents();
             return View();
         }
-     
+        [HttpPost]
+        public IActionResult Search(string Name)
+        {
+            var search =_eventService.Search(Name);
+
+            return RedirectToAction("ShowUserHomePage", "User", new{search=search});
+        }
+        [HttpPost]
+
+        public IActionResult SearchByDate(DateTime Date)
+
+        {
+
+            List<Event> searchByDate = (List<Event>)_eventService.SearchByDate(DateTime.Now, Date);
+            return RedirectToAction("ShowUserHomePage", "User", new { searchByDate = searchByDate });
+
+        }
+
+
 
         [HttpGet]
         public IActionResult CreateEvent()

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using System.Xml.Linq;
 using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
@@ -46,7 +47,7 @@ namespace eTicketWebApp.Controllers
                 return ShowUnAuthenticatedHomePage();
 
             if (User.IsInRole("User"))
-                return ShowUserHomePage();
+                return ShowUserHomePage(null,DateTime.MaxValue);
 
             else if (User.IsInRole(AspNetRole.ADMIN))
                 return ShowAdminHomePage();
@@ -59,7 +60,7 @@ namespace eTicketWebApp.Controllers
         {
             return View();
         }
-        private IActionResult ShowManagerdHomePage()
+        public IActionResult ShowManagerdHomePage()
         {
            ViewBag.MYEvents =  _eventService.GetMyEvents();
            return View("ManagerHomePage");
@@ -69,8 +70,22 @@ namespace eTicketWebApp.Controllers
         {
             return View("AdminHomePage");
         }
-        private IActionResult ShowUserHomePage()
+        
+        public IActionResult ShowUserHomePage(string Name ,DateTime Date)
         {
+
+            ViewBag.Events = _eventService.GetEvents();
+
+            if (!String.IsNullOrEmpty(Name))
+            {
+                ViewBag.Events = _eventService.Search(Name);
+            }
+            if (Date >=DateTime.Now)
+            {
+                ViewBag.Events = _eventService.SearchByDate(DateTime.Now, Date);
+            }
+
+
             return View("HomePage");
         }
 
