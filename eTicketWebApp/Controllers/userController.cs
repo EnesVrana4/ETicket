@@ -61,12 +61,13 @@ namespace eTicketWebApp.Controllers
         }
         private IActionResult ShowManagerdHomePage()
         {
-           ViewBag.MYEvents =  _eventService.GetMyEvents();
-           return View("ManagerHomePage");
+            ViewBag.MYEvents = _eventService.GetMyEvents();
+            return View("ManagerHomePage");
         }
 
         private IActionResult ShowAdminHomePage()
         {
+           ViewBag.AllUsers = _unitOfWork.User.GetUsers();
             return View("AdminHomePage");
         }
         private IActionResult ShowUserHomePage()
