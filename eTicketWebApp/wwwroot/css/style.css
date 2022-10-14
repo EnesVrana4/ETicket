@@ -85,6 +85,7 @@ body {
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
 
+
 .register-style {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/Images/loginimg.jpg");
     height: 80%;
@@ -95,8 +96,9 @@ body {
 
 .btn-ilgiOrange {
     background-color: #ff7555;
-    color:white;
+    color: white;
 }
+
 .color-orange {
     color: #ff7555;
 }
@@ -137,11 +139,12 @@ body {
 .ilgi-fun2 {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../Images/BackImg.jpg");
     height: 100%;
-    width:100%;
+    width: 100%;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 }
+
 .ilgi-fun4 {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../Images/BackImg2.jpg");
     height: 100%;
@@ -150,6 +153,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
 .ilgi-fun {
     height: 100%;
     width: 100%;
@@ -157,11 +161,12 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
 .ilgi-fun3 {
-    background-color : #212529;
-    color:white;
+    background-color: #212529;
+    color: white;
 }
 
-.color-white{
+.color-white {
     color: white;
 }
