@@ -1,4 +1,137 @@
-﻿
+﻿@using SharedComponents.ViewModel
+
+@model EventViewModel
+@{
+    ViewData["Title"] = "Manager Home Page";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="modal fade" id="modalview">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title h4">Messages</div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-unstyled">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+                        <img src="./Images/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </li>
+                    </a>
+                    <hr class="my-3">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+                        <img src="./Images/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </li>
+                    </a>
+                    <hr class="my-3">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+                        <img src="./Images/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </li>
+                    </a>
+                    <hr class="my-3">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+                        <img src="./Images/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </li>
+                    </a>
+                    <hr class="my-3">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+                        <img src="./Images/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </li>
+                    </a>
+                    <hr class="my-3">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+                        <img src="./Images/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </li>
+                    </a>
+
+                    <hr class="my-3">
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+
+                        <img src="./Images/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                        </div>
+
+                    </li>
+                    </a>
+                    <hr class="my-3">
+
+
+
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+
+                        <img src="./Images/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                        </div>
+
+                    </li>
+                    </a>
+
+
+                    <hr class="my-3">
+
+
+                    <a href="#" class="text-decoration-none">
+                    <li class="media hover-media">
+
+                        <img src="./Images/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+
+                        <div class="media-body text-dark">
+                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
+                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                        </div>
+                    </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-------------------------------MOdal Ends---------------------------->
+@*tici*@
+
 <div class="main-section">
     <div class="container">
         <div class="row">
@@ -17,12 +150,7 @@
                                         <input class="search-form-input datepicker-here" data-language="en" type="text" placeholder="Select Date">
                                     </div>
                                     <div class="col-lg-2 col-md-12 col-sm-12">
-                                        <button class="search-btn" type="submit">
-                                            <i class="feather-search">
-                                                Search
-                                            </i>
-                                            <span>Search</span>
-                                        </button>
+                                        <button class="search-btn" type="submit"><i class="feather-search"></i><span>Search</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -56,286 +184,35 @@
                             <div class="tab-pane fade show active" id="tab-top" role="tabpanel">
                                 <div class="main-posts">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-1.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
+                                        @foreach (var item in ViewBag.MYEvents)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="event-main-post">
+                                                    <div class="main-photo">
+                                                        <a href="event_detail_view.html">
+                                                            <div class="photo-overlay"></div>
+                                                            <img src="@item.Myimage" alt="">
+                                                        </a>
+                                                        
+                                                    </div>
+                                                    <div class="event-body">
+                                                        <span class="event-time">@item.Date</span>
+                                                        <a href="event_detail_view.html" class="event-title">@item.Name</a>
+                                                        <span class="event-type">@item.Location</span>
+                                                        <span class="event-type">@item.Description/span>
+                                                        <p class="ingo-counter">
+                                                            <span>25 Interested</span>
+                                                            <span>11 Going</span>
+                                                        </p>
+                                                        <div class="group-btns">
+                                                            <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
+                                                            <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Ludhiana</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="<i class="fa-thin fa-heart"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-2.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Online</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-3.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Location</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-4.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Online</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-5.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Online</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-6.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Online</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-7.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Location</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="event-main-post">
-                                                <div class="main-photo">
-                                                    <a href="event_detail_view.html">
-                                                        <div class="photo-overlay"></div>
-                                                        <img src="./Images/post-img-8.jpg" alt="">
-                                                    </a>
-                                                    <div class="option-ellipsis">
-                                                        <div class="dropdown">
-                                                            <a class="ellipsis-btn dropdown-toggle-no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="post-link-item" href="#"><i class="feather-eye-off icon-mr1"></i>Hide</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-bookmark icon-mr1"></i>Save</a>
-                                                                <a class="post-link-item" href="#"><i class="feather-user icon-mr1"></i>User Profile</a>
-                                                                <a class="post-link-item" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="feather-flag icon-mr1"></i>Report</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                    <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Location</span>
-                                                    <p class="ingo-counter">
-                                                        <span>25 Interested</span>
-                                                        <span>11 Going</span>
-                                                    </p>
-                                                    <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
-                                                        <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="loading-btn">
-                                                <button class="process-btn btn-hover" type="button">
-                                                    <i class="fa-solid fa-spinner fa-spin"></i>
-                                                    Loading...
-                                                </button>
-                                            </div>
-                                        </div>
+                                        }
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -362,15 +239,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
-                                                    <span class="event-type">Tirana</span>
+                                                    <span class="event-type">Ludhiana</span>
                                                     <p class="ingo-counter">
                                                         <span>25 Interested</span>
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -396,7 +273,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -404,7 +281,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -430,7 +307,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -438,7 +315,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -464,7 +341,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -472,7 +349,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -498,7 +375,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -506,7 +383,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -532,7 +409,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -540,7 +417,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -566,7 +443,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -600,7 +477,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -608,7 +485,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -648,7 +525,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Ludhiana</span>
                                                     <p class="ingo-counter">
@@ -656,7 +533,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -682,7 +559,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -690,7 +567,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -716,7 +593,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -724,7 +601,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -750,7 +627,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -758,7 +635,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -784,7 +661,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -792,7 +669,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -818,7 +695,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -826,7 +703,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -852,7 +729,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -860,7 +737,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -886,7 +763,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -894,7 +771,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -934,7 +811,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -942,7 +819,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -968,7 +845,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -976,7 +853,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -1002,7 +879,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -1010,7 +887,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -1036,7 +913,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Location</span>
                                                     <p class="ingo-counter">
@@ -1044,7 +921,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -1093,7 +970,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -1101,7 +978,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -1127,7 +1004,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -1135,7 +1012,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -1161,7 +1038,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="event-body">
-                                                    <span class="event-time">thu,30 October 2022 at 3.00 pm</span>
+                                                    <span class="event-time">thu,30 june 2022 at 3.00 pm</span>
                                                     <a href="event_detail_view.html" class="event-title">Event Title Here</a>
                                                     <span class="event-type">Online</span>
                                                     <p class="ingo-counter">
@@ -1169,7 +1046,7 @@
                                                         <span>11 Going</span>
                                                     </p>
                                                     <div class="group-btns">
-                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Favorite</button>
+                                                        <button class="interest-btn btn-hover"><i class="feather-star me-2"></i>Interested</button>
                                                         <button class="share-btn btn-hover" data-bs-toggle="modal" data-bs-target="#shareModal"><i class="feather-share-2"></i></button>
                                                     </div>
                                                 </div>
@@ -1211,7 +1088,7 @@
                             </div>
                             <div class="user-main-details">
                                 <h4>John Doe</h4>
-                                <span><i class="feather-map-pin"></i>Tirana</span>
+                                <span><i class="feather-map-pin"></i>India</span>
                             </div>
                             <ul class="followers-dts">
                                 <li>
@@ -1238,70 +1115,70 @@
                         </div>
                         <div class="categories-items">
                             <div class="categories-container">
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-1.png" alt="Music">Music</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-2.png" alt="Classics">Classics</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-3.png" alt="Comedy">Comedy</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-4.png" alt="Crafts">Crafts</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-5.png" alt="Drinks">Dance</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-6.png" alt="Drinks">Drinks</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-7.png" alt="Fitness &amp; workouts">Fitness &amp; workouts</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-8.png" alt="Foods">Foods</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-9.png" alt="Games">Games</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-10.png" alt="Gardening">Gardening</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-11.png" alt="Health &amp; Medical">Health &amp; Medical</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-12.png" alt="Healthy living and self-care">Healthy living and self-care</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-13.png" alt="Home and garden">Home and garden</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-14.png" alt="Music and audio">Music and audio</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-15.png" alt="Parties">Parties</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-16.png" alt="Professional Networking">Professional Networking</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-17.png" alt="Religions">Religions</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-18.png" alt="Shopping">Shopping</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-19.png" alt="Social Issues">Social Issues</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-20.png" alt="Sports">Sports</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-21.png" alt="Theatre">Theatre</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-22.png" alt="TV and films">TV and films</a>
-                                <a class="category-item" href="explore.html"><img src="./Images/icon-23.png" alt="Visual arts">Visual arts</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-1.png" alt="Music">Music</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-2.png" alt="Classics">Classics</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-3.png" alt="Comedy">Comedy</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-4.png" alt="Crafts">Crafts</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-5.png" alt="Drinks">Dance</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-6.png" alt="Drinks">Drinks</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-7.png" alt="Fitness &amp; workouts">Fitness &amp; workouts</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-8.png" alt="Foods">Foods</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-9.png" alt="Games">Games</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-10.png" alt="Gardening">Gardening</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-11.png" alt="Health &amp; Medical">Health &amp; Medical</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-12.png" alt="Healthy living and self-care">Healthy living and self-care</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-13.png" alt="Home and garden">Home and garden</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-14.png" alt="Music and audio">Music and audio</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-15.png" alt="Parties">Parties</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-16.png" alt="Professional Networking">Professional Networking</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-17.png" alt="Religions">Religions</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-18.png" alt="Shopping">Shopping</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-19.png" alt="Social Issues">Social Issues</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-20.png" alt="Sports">Sports</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-21.png" alt="Theatre">Theatre</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-22.png" alt="TV and films">TV and films</a>
+                                <a class="category-item" href="explore.html"><img src="images/category-icons/icon-23.png" alt="Visual arts">Visual arts</a>
                             </div>
                         </div>
                     </div>
                     <div class="user-data full-width">
                         <div class="categories-left-heading">
-                            <h3>Singers</h3>
-                        </div>
-                       <div class="sugguest-user">
-                            <div class="sugguest-user-dt">
-                               <img src="./Images/bora.jpg" alt=""></a>
-                                <a href="#"><h4>Johnson</h4></a>
-                            </div>
-                            @*<button class="request-btn"><i class="feather-user-plus"></i></button>*@
+                            <h3>Peoples</h3>
                         </div>
                         <div class="sugguest-user">
                             <div class="sugguest-user-dt">
-                                <a href=""><img src="./Images/left-img-2.jpg" alt=""></a>
-                                <a href="#"><h4>Jassica William</h4></a>
+                                <a href="user_profile.html"><img src="./Images/left-img-1.jpg" alt=""></a>
+                                <a href="user_profile.html"><h4>Johnson</h4></a>
                             </div>
-                           @* <button class="request-btn"><i class="feather-user-plus"></i></button>*@
+                            <button class="request-btn"><i class="feather-user-plus"></i></button>
                         </div>
                         <div class="sugguest-user">
                             <div class="sugguest-user-dt">
-                                <a href="#"><img src="./Images/left-img-3.jpg" alt=""></a>
-                                <a href="#"><h4>Rock</h4></a>
+                                <a href="user_profile.html"><img src="./Images/left-img-2.jpg" alt=""></a>
+                                <a href="user_profile.html"><h4>Jassica William</h4></a>
                             </div>
-                            @*<button class="request-btn"><i class="feather-user-plus"></i></button>*@
+                            <button class="request-btn"><i class="feather-user-plus"></i></button>
                         </div>
-                          <div class="sugguest-user">
+                        <div class="sugguest-user">
                             <div class="sugguest-user-dt">
-                                <a href="#"><img src="./Images/left-img-4.jpg" alt=""></a>
-                                <a href="#"><h4>Davil Smith</h4></a>
+                                <a href="user_profile.html"><img src="./Images/left-img-3.jpg" alt=""></a>
+                                <a href="user_profile.html"><h4>Rock</h4></a>
                             </div>
-                            @*<button class="request-btn"><i class="feather-user-plus"></i></button>*@
+                            <button class="request-btn"><i class="feather-user-plus"></i></button>
                         </div>
-                            <div class="sugguest-user">
+                        <div class="sugguest-user">
                             <div class="sugguest-user-dt">
-                                <a href="#"><img src="./Images/left-img-5.jpg" alt=""></a>
-                                <a href="#"><h4>Ricky Doe</h4></a>
+                                <a href="user_profile.html"><img src="./Images/left-img-4.jpg" alt=""></a>
+                                <a href="user_profile.html"><h4>Davil Smith</h4></a>
                             </div>
-                           @* <button class="request-btn"><i class="feather-user-plus"></i></button>*@
+                            <button class="request-btn"><i class="feather-user-plus"></i></button>
+                        </div>
+                        <div class="sugguest-user">
+                            <div class="sugguest-user-dt">
+                                <a href="user_profile.html"><img src="./Images/left-img-5.jpg" alt=""></a>
+                                <a href="user_profile.html"><h4>Ricky Doe</h4></a>
+                            </div>
+                            <button class="request-btn"><i class="feather-user-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1312,7 +1189,8 @@
                     <div class="post-event">
                         <h6>Want to Post Your Event</h6>
                         <p>Post your event on Goeveni for free. Just make an account and add it through the simple form. As simple as that.</p>
-                        <a href="add_new_event.html" class="add-nw-event">Post It Now</a>
+                        <a class="nav-link" asp-area="" asp-controller="Event" asp-action="CreateEvent">Post It Now</a>
+
                     </div>
                     <div class="explore-events">
                         <h4>Explore Events</h4>
@@ -1384,9 +1262,9 @@
                     <div class="w-weather">
                         <div class="weather-top">
                             <div class="weather-left">
-                                <div class="weather-city">Tirana</div>
+                                <div class="weather-city">Ludhiana</div>
                                 <div class="week-text">Monday</div>
-                                <div class="week-text">14 Oct 2022</div>
+                                <div class="week-text">14 Oct 2019</div>
                                 <div class="week-text" style="font-size: 18px;"><i class="fas fa-tint"></i> 30%</div>
                                 <ul>
                                     <li>
@@ -1442,7 +1320,7 @@
                         <div class="categories-items">
                             <div class="news-item">
                                 <div class="news-item-heading">
-                                    <img src="./Images/icon-1.png" alt="Music">
+                                    <img src="images/category-icons/icon-1.png" alt="Music">
                                     <h6>Music</h6>
                                 </div>
                                 <div class="news-description">
@@ -1451,7 +1329,7 @@
                             </div>
                             <div class="news-item">
                                 <div class="news-item-heading">
-                                    <img src="./Images/icon-23.png" alt="Visual arts">
+                                    <img src="images/category-icons/icon-23.png" alt="Visual arts">
                                     <h6>Art</h6>
                                 </div>
                                 <div class="news-description">
@@ -1460,7 +1338,7 @@
                             </div>
                             <div class="news-item">
                                 <div class="news-item-heading">
-                                    <img src="./Images/icon-20.png" alt="Sports">
+                                    <img src="images/category-icons/icon-20.png" alt="Sports">
                                     <h6>Sports</h6>
                                 </div>
                                 <div class="news-description">
@@ -1475,4 +1353,3 @@
         </div>
     </div>
 </div>
-<script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
