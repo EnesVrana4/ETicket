@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace eTicketData.Entities;
 
-
 public class AspNetUser : IdentityUser ,IAuditableEntity
 {
     public AspNetUser()
@@ -45,4 +44,3 @@ public class  AspNetRole: IdentityRole
     public const string ADMIN = "Admin";
     public const string MANAGER = "Manager";
 }
-

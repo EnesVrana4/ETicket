@@ -26,7 +26,27 @@ namespace eTicketData.Repositories
             var all = _context.Events.
                 Where(e=>e.CreatedBy== _context.CurrentUserId  && e.IsActive==true).ToList();
             return all;
-        
-    }
+
+        }
+        public IEnumerable<Event> SearchByDate(DateTime start, DateTime end)
+        {
+
+            var all = _context.Events
+                .Where(s => s.CreatedDate > start && s.CreatedDate < end)
+                .Where(e =>  e.IsActive == true).ToList();
+            return all;
+
+        }
+
+       
+        public IEnumerable<Event> Search(string search)
+        {
+
+            
+            var all = _context.Events.
+                Where(e => e.Name.Contains(search) && e.IsActive).ToList();
+            return all;
+
+        }
     }
 }

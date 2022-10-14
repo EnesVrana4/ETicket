@@ -39,12 +39,6 @@ namespace eTicketServices.Services
             }
             return fileName;
         }
-
-
-
-
-
-
         public EventViewModel Add(EventEditViewModel eventViewModel)
         {
           
@@ -56,10 +50,8 @@ namespace eTicketServices.Services
             _EventRepo.Add(event1);
             _EventRepo.SaveChanges();
 
-
             EventViewModel eventViewModelReturn = _mapper.Map<EventViewModel>(event1);
             return eventViewModelReturn; 
-
         }
 
         public void Delete(int id)
@@ -132,6 +124,32 @@ namespace eTicketServices.Services
             Event eventData = _EventRepo.GetLastCreated();
             EventViewModel eventViewModel = _mapper.Map<EventViewModel>(eventData);
             return eventViewModel;
+        }
+
+        public ICollection<EventViewModel> Search(string search)
+        {
+            List<EventViewModel> EventViewModelList = new List<EventViewModel>();
+            List<Event> Mylist = (List<Event>)_EventRepo.Search(search);
+            foreach (var event1 in Mylist)
+            {
+                EventViewModel eventViewModel = _mapper.Map<EventViewModel>(event1);
+                EventViewModelList.Add(eventViewModel);
+            }
+
+            return EventViewModelList;
+        }
+
+        public ICollection<EventViewModel> SearchByDate(DateTime start, DateTime end)
+        {
+            List<EventViewModel> EventViewModelList = new List<EventViewModel>();
+            List<Event> Mylist = (List<Event>)_EventRepo.SearchByDate(start,end);
+            foreach (var event1 in Mylist)
+            {
+                EventViewModel eventViewModel = _mapper.Map<EventViewModel>(event1);
+                EventViewModelList.Add(eventViewModel);
+            }
+
+            return EventViewModelList;
         }
     }
 }
