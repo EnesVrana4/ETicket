@@ -65,8 +65,9 @@ namespace eTicketWebApp.Controllers
         }
         private IActionResult ShowUserHomePage()
         {
-            return View("UserHomePage");
+            return View("HomePage");
         }
+
 
         public  IActionResult ManagerPage()
         {
