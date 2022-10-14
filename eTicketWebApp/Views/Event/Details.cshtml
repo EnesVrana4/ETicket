@@ -4,104 +4,51 @@
 @*@ViewBag.MyEvent*@
 <head>
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-        
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
 </head>
 
-@*         <h1>
-    @ViewBag.MyEvent.Name
-         </h1>
-            
-<h1>  @ViewBag.MyEvent.Description   </h1>
-<h1>  @ViewBag.MyEvent.Location</h1>
-<h1> @ViewBag.MyEvent.Date </h1>
-
-<a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>
-    *@       
-
-
-    @*<div class="event_details_container">
-        <div class="display_flex">
-            <div class="name_pic_fav_div">
-                <h1>  @ViewBag.MyEvent.Name   </h1>
-                <img style="width:100px ; height:auto" src="~/Images/@ViewBag.MyEvent.Myimage"    asp-append-version="true" alt="">
-                <a class="btn btn-primary" asp-action="Create" asp-controller="Category" asp-route-eventId="@ViewBag.MyEvent.EventId"> Create Category</a>
-            </div>
-            <p>@ViewBag.MyEvent.Description</p>
-            <p>• @ViewBag.MyEvent.Location</p>
-            <p>• @ViewBag.MyEvent.Date </p>
-        </div>
-        <div class="buy_tickets_div display_flex">
-            <div class="buy_the_ticket_div"> 
-                <h3>Standard</h3>
-                <p>Available Tickets:</p>
-                <p>@ViewBag.MyEvent.Name tickets</p>
-                <div>
-                    <div>
-                        ticket nr.:
-                        <button id="minus">−</button>
-                        <input type="number" value="0" id="input"/>
-                        <button id="plus">+</button>
-                    </div>
-                    <div>
-                        <p>value *  @ViewBag.MyEvent.Name</p>
-                        <button>Reserve</button>
-                    </div>
-                </div>
-            </div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>*@
-
-@*<script>
-    const minusButton = document.getElementById('minus');
-    const plusButton = document.getElementById('plus');
-    const inputField = document.getElementById('input');
-
-    minusButton.addEventListener('click', event => {
-      event.preventDefault();
-      const currentValue = Number(inputField.value) || 0;
-      inputField.value = currentValue - 1;
-    });
-
-    plusButton.addEventListener('click', event => {
-      event.preventDefault();
-      const currentValue = Number(inputField.value) || 0;
-      inputField.value = currentValue + 1;
-    });
-</script>*@
-
-<header>
-    <nav class="details_nav">
-
-    </nav>
-
-</header>
 <main>
-    <div class="details_div display_flex">
+    <div class="details_div display_flex space_between">
 
         <div class="details_left_div">
             <div class="details_left_first">
-                //img-full-width
-                <div class="details_event_title_favorite display_flex">
+                <img  src="~/Images/@ViewBag.MyEvent.Myimage"    asp-append-version="true" alt="">
+                <div class="details_event_title_favorite display_flex space_between align_content">
                     <div class="details_event_title">
-                        <p>//date</p>
-                        <h4>//event_title</h4>
+                        <p>@ViewBag.MyEvent.Date</p>
+                        <h3>@ViewBag.MyEvent.Name</h3>
                     </div>
-                    <div class="details_favorite">
-                        <a>Add to Favorite ♡</a>
+                    <div class="details_favorite align_content">
+                        <a id="details_favorite_button" asp-action="AddFavorite" asp-controller="Favorite" asp-route-eventId="@ViewBag.MyEvent.EventId">Add to Favorite ♡</a>
                     </div>
                 </div>
             </div>
+
+
             <div class="details_left_second">
                 <div class="details_details">
                     <p>Details</p>
                 </div>
                 <div class="details_info">
-                    <p>"//Description italic-fontstyle"</p>
-                    <p>Event by //Event_Organizer</p>
-                    <p>//Location</p>
+                    <p>@ViewBag.MyEvent.Description</p>
+                    <p>Event by </p>
+                    <p>@ViewBag.MyEvent.Location</p>
                     <p>private/public</p>
+                </div>
+            </div>
+            <div class="ticket_div display_flex space_evenly">
+                <div class=" tickets_details row ">
+                    <p>standart</p>
+                </div>
+                <div class="tickets_details ">
+                    <p>standart</p>
+
+                </div>
+                <div class="tickets_details row ">
+                    <p>standart</p>
+
                 </div>
             </div>
         </div>
@@ -113,12 +60,13 @@
             </div>
             <div class="little_details_right">
                 <p>Go with friends</p>
-                <div class="display_flex">
-                    <div class="go_with_friends">
+                <div class="display_flex space_evenly">
+                    <div class="go_with_friends_left">
                         <h3> going-nr </h3>
                         <h5>Going</h5>
                     </div>
-                    <div class="go_with_friends">
+
+                    <div class="go_with_friends_right">
                         <h3> Int-nr </h3>
                         <h5>Interested</h5>
                     </div>
@@ -126,14 +74,13 @@
             </div>
             <div class="little_details_right">
                 <p>Host</p>
-                <div class="display_flex">
-                    //img-event-organizer
-                    <div>
-                        <h4>//name surname</h4>
-                        <h6>Event Organizer</h6>
-                    </div>
+                <div class="event_organizer">                    
+                    <h4>//name surname</h4>
+                    <h6>Event Organizer</h6>                    
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+
