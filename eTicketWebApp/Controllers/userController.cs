@@ -17,11 +17,14 @@ namespace eTicketWebApp.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly SignInManager<AspNetUser> _signInManager;
         private readonly IRoleService _roleService;
-        public UserController(IUnitOfWork unitOfWork, SignInManager<AspNetUser> signInManager, IRoleService roleService)
+        private readonly IEventService _eventService;
+
+        public UserController(IUnitOfWork unitOfWork, SignInManager<AspNetUser> signInManager, IRoleService roleService, IEventService eventService)
         {
             _unitOfWork = unitOfWork;
             _signInManager = signInManager;
             _roleService = roleService;
+            _eventService = eventService;
         }
 
         [Authorize(Roles = "Admin")]
@@ -42,13 +45,13 @@ namespace eTicketWebApp.Controllers
             if (!User.Identity?.IsAuthenticated ?? false)
                 return ShowUnAuthenticatedHomePage();
 
-            if (User.IsInRole(AspNetRole.MANAGER))
-                return ShowManagerdHomePage();
+            if (User.IsInRole("User"))
+                return ShowUserHomePage();
 
             else if (User.IsInRole(AspNetRole.ADMIN))
                 return ShowAdminHomePage();
 
-            return ShowUserHomePage();
+            return ShowManagerdHomePage();
 
         }
 
@@ -58,11 +61,12 @@ namespace eTicketWebApp.Controllers
         }
         private IActionResult ShowManagerdHomePage()
         {
-            return View("ManagerHomePage");
+           ViewBag.MYEvents =  _eventService.GetMyEvents();
+           return View("ManagerHomePage");
         }
+
         private IActionResult ShowAdminHomePage()
         {
-            return View("ManagerHomePage");
             return View("AdminHomePage");
         }
         private IActionResult ShowUserHomePage()
