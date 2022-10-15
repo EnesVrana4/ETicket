@@ -38,17 +38,18 @@ namespace eTicketWebApp.Controllers
 
         public IActionResult Profile()
         {   
-            if(!User.Identity?.IsAuthenticated ?? false) 
-            {
-                return View("~/Areas/Identity/Pages/Account/Login.cshtml");
-                    
-            }
+            if(!User.Identity?.IsAuthenticated ?? false)
+                return Redirect("~/Identity/Account/Login");
             
+            if (User.IsInRole("User"))
+                return View();
 
-            return View();
+            if (User.IsInRole(AspNetRole.ADMIN))
+                return View("AdminHomePage");
+
+            return View("ManagerProfile");
         }
 
-       
         public async Task<IActionResult> HomePageAsync()
         {
             if (!User.Identity?.IsAuthenticated ?? false)
@@ -61,9 +62,7 @@ namespace eTicketWebApp.Controllers
                 return ShowAdminHomePage();
 
             return ShowManagerdHomePage();
-
         }
-
         private IActionResult ShowUnAuthenticatedHomePage()
         {
             return View();
