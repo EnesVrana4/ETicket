@@ -3,10 +3,12 @@ using AutoMapper;
 using eTicketData.Entities;
 using eTicketServices.IServices;
 using eTicketWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SharedComponents.ViewModel;
 using System.Diagnostics;
+using static eTicketWebApp.Models.Constantss;
 
 namespace eTicketWebApp.Controllers
 {
@@ -64,7 +66,8 @@ namespace eTicketWebApp.Controllers
         //    }
         //    return View("CreateTicket");
         //}
-        
+        [Authorize(Roles =" Manager")]
+
         public IActionResult CreateTicket(int numberOfTicket,int categoryId)
         {
 
@@ -83,6 +86,7 @@ namespace eTicketWebApp.Controllers
                 
         }
 
+        [Authorize(Roles = " Manager")]
 
         public IActionResult Delete(int id)
         {
@@ -90,6 +94,7 @@ namespace eTicketWebApp.Controllers
             return RedirectToAction("ShowTicket");
         }
 
+        [Authorize(Roles = "Manager")]
 
         public IActionResult Privacy()
         {

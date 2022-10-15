@@ -115,7 +115,7 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = await _signInManager.UserManager.FindByNameAsync(Input.Email);
                 var result = await _signInManager.CheckPasswordSignInAsync(user, Input.Password,false);
-                {
+                
                     var claims = new List<Claim>
                     {
                         new Claim("amr", "pwd"),
@@ -123,10 +123,14 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                     };
 
                     await _signInManager.SignInWithClaimsAsync(user, true, claims);
-
+                var Result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                if (Result.Succeeded)
+                {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
+                
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });

@@ -16,12 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-
 builder.Services.AddScoped<HttpContextUnitOfWork>();
 builder.Services.AddMemoryCache();
 builder.Services.AddETicketData(); 
 builder.Services.AddETicketServices();
-
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using System.Xml.Linq;
 using static eTicketWebApp.Models.Constantss;
 namespace eTicketWebApp.Controllers
 {
@@ -26,7 +27,7 @@ namespace eTicketWebApp.Controllers
             _eventService = eventService;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             
@@ -35,17 +36,21 @@ namespace eTicketWebApp.Controllers
         }
 
         public IActionResult Profile()
-        {
+        {   
+            if(!User.Identity?.IsAuthenticated ?? false) 
+            {
+                return Redirect("~/Identity/Account/Login");
+            }
+
             return View();
         }
-
         public async Task<IActionResult> HomePageAsync()
         {
             if (!User.Identity?.IsAuthenticated ?? false)
                 return ShowUnAuthenticatedHomePage();
 
             if (User.IsInRole("User"))
-                return ShowUserHomePage();
+                return ShowUserHomePage(null,DateTime.MaxValue);
 
             else if (User.IsInRole(AspNetRole.ADMIN))
                 return ShowAdminHomePage();
@@ -53,23 +58,37 @@ namespace eTicketWebApp.Controllers
             return ShowManagerdHomePage();
 
         }
-
         private IActionResult ShowUnAuthenticatedHomePage()
         {
             return View();
         }
-        private IActionResult ShowManagerdHomePage()
+        public IActionResult ShowManagerdHomePage()
         {
-           ViewBag.MYEvents =  _eventService.GetMyEvents();
-           return View("ManagerHomePage");
+            ViewBag.MYEvents = _eventService.GetMyEvents();
+            return View("ManagerHomePage");
         }
 
         private IActionResult ShowAdminHomePage()
         {
+           ViewBag.AllUsers = _unitOfWork.User.GetUsers();
             return View("AdminHomePage");
         }
-        private IActionResult ShowUserHomePage()
+        
+        public IActionResult ShowUserHomePage(string Name ,DateTime Date)
         {
+
+            ViewBag.Events = _eventService.GetEvents();
+
+            if (!String.IsNullOrEmpty(Name))
+            {
+                ViewBag.Events = _eventService.Search(Name);
+            }
+            if (Date >=DateTime.Now)
+            {
+                ViewBag.Events = _eventService.SearchByDate(DateTime.Now, Date);
+            }
+
+
             return View("HomePage");
         }
 
@@ -82,7 +101,7 @@ namespace eTicketWebApp.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _unitOfWork.User.GetUser(id);
@@ -106,7 +125,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTicketData;
 
@@ -10,9 +11,10 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221014220845_NewMig")]
+    partial class NewMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -339,15 +341,15 @@ namespace eTicketData.Migrations
                         },
                         new
                         {
-                            Id = "4abcc7a6-22ee-45ee-8009-410eaa04a6ba",
-                            ConcurrencyStamp = "ccb0ebe0-f42f-4b1d-b46f-e3fb3f488f9b",
+                            Id = "eec2f77d-1005-439b-abc6-0b81cfde22b1",
+                            ConcurrencyStamp = "d7bce3a4-67c2-444c-ab70-53a37b99ca57",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "cbb79542-7847-4bea-b891-758815e9ed4b",
-                            ConcurrencyStamp = "2b8c1aa3-42bc-40e2-808c-91c364c8da9d",
+                            Id = "2c16573c-cf55-4839-98d2-2437f1d3e9dc",
+                            ConcurrencyStamp = "8d331b6c-b497-40c8-aacb-00e393c25daa",
                             Name = "User",
                             NormalizedName = "USER"
                         });

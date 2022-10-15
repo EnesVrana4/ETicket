@@ -41,9 +41,29 @@ namespace eTicketWebApp.Controllers
             ViewBag.eventViewModels = _eventService.GetEvents();
             return View();
         }
-     
+        [HttpPost]
+        public IActionResult Search(string Name)
+        {
+            var search =_eventService.Search(Name);
+
+            return RedirectToAction("ShowUserHomePage", "User", new{search=search});
+        }
+        [HttpPost]
+
+        public IActionResult SearchByDate(DateTime Date)
+
+        {
+
+            List<Event> searchByDate = (List<Event>)_eventService.SearchByDate(DateTime.Now, Date);
+            return RedirectToAction("ShowUserHomePage", "User", new { searchByDate = searchByDate });
+
+        }
+
+
 
         [HttpGet]
+        //[Authorize(Roles = "Manager")]
+
         public IActionResult CreateEvent()
         {
             return View();
@@ -62,6 +82,7 @@ namespace eTicketWebApp.Controllers
             return View();
         }
         [HttpGet]
+        [Authorize(Roles = "Manager")]
         public IActionResult MenagerEventDetails(int id)
         {
 
@@ -74,6 +95,7 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpPost]
+        //[Authorize(Roles = AspNetRole.MANAGER)]
         public IActionResult CreateEvent(EventEditViewModel eventEditViewModel)
         {
             if (ModelState.IsValid)
@@ -92,7 +114,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpGet]
-      //  [Authorize(Roles ="Admin, Manager")]
+        [Authorize(Roles ="Manager")]
         public IActionResult Update(int id)
         {
             EventEditViewModel eventEditViewModel = _eventService.GetEditEvent(id);
@@ -114,7 +136,8 @@ namespace eTicketWebApp.Controllers
                 return RedirectToAction("Update", new { id = id });
             
         }
-       
+        [Authorize(Roles ="Manager")]
+
         public IActionResult Delete(int id)
         {
             _eventService.Delete(id);
