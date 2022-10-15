@@ -17,6 +17,13 @@ namespace eTicketData.Repositories
         { }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
 
+        public IEnumerable<Favorite> GetFavoritesByEventId(int eventId)
+        {
+            var all = _context.Favorites.
+                 Where(e =>e.EventId == eventId && e.IsActive == true).ToList();
+            return all;
+        }
+
         public IEnumerable<Favorite> GetMyFavorites()
         {
             var all = _context.Favorites.
@@ -28,15 +35,5 @@ namespace eTicketData.Repositories
         {
             throw new NotImplementedException();
         }
-
-        //public void Update(Event entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        // public Favorite FirstOrDefault(int eventId, string CurrentUserId)
-        //{
-        //    _context.fi
-        //}
     }
 }

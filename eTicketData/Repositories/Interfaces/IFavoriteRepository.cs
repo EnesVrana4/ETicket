@@ -3,7 +3,6 @@ using eTicketData;
 
 namespace eTicketData.Repositories.Interfaces
 {
-
     public interface IFavoriteRepository : IRepository<Favorite>
     {
         void Add(Favorite entity);
@@ -16,6 +15,6 @@ namespace eTicketData.Repositories.Interfaces
         Favorite Get(int id);
         IEnumerable<Favorite> GetAll();
         IEnumerable<Favorite> GetMyFavorites();
-
+        IEnumerable<Favorite> GetFavoritesByEventId(int eventId);
     }
 }
