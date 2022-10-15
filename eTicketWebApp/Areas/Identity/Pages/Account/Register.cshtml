@@ -51,12 +51,12 @@
 
                                             @foreach (var role in @Model.Roles)
                                             {
-                                                <div class="form-check">
-                                                    <label>@role.Name</label> @Html.RadioButtonFor(c => c.SelectedRole, role.Name)
-
+                                                <div class="form-check" >
+                                                <label>@role.Name</label> @Html.RadioButtonFor(c => c.SelectedRole, role.Name)
 
                                                 </div>
                                             }
+                                                <span asp-validation-for="SelectedRole" class="text-danger"></span>
                                         </div>
                                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
                                     </form>

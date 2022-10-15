@@ -50,7 +50,8 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
-        [BindProperty]
+        [BindProperty, Required]
+        [Display(Name = "Role")]
         public string SelectedRole { get; set; }
 
         public IEnumerable<AspNetRole> Roles { get; set; }
@@ -113,6 +114,9 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            public int Role { get; set; }
         }
 
 
@@ -139,7 +143,7 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
-                result = await _signInManager.UserManager.AddToRoleAsync(user, "User");
+                result = await _signInManager.UserManager.AddToRoleAsync(user, SelectedRole.ToString());
                 //if (!result.Succeeded)
                 //    throw new Exception();
 
