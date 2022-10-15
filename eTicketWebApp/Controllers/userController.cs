@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 using System.Xml.Linq;
 using static eTicketWebApp.Models.Constantss;
-
 namespace eTicketWebApp.Controllers
 {
     public class UserController : Controller
@@ -28,7 +27,7 @@ namespace eTicketWebApp.Controllers
             _eventService = eventService;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             
@@ -38,18 +37,13 @@ namespace eTicketWebApp.Controllers
 
         public IActionResult Profile()
         {   
-            if(!User.Identity?.IsAuthenticated ?? false)
+            if(!User.Identity?.IsAuthenticated ?? false) 
+            {
                 return Redirect("~/Identity/Account/Login");
-            
-            if (User.IsInRole("User"))
-                return View();
+            }
 
-            if (User.IsInRole(AspNetRole.ADMIN))
-                return View("AdminHomePage");
-
-            return View("ManagerProfile");
+            return View();
         }
-
         public async Task<IActionResult> HomePageAsync()
         {
             if (!User.Identity?.IsAuthenticated ?? false)
@@ -106,7 +100,7 @@ namespace eTicketWebApp.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _unitOfWork.User.GetUser(id);
@@ -130,7 +124,7 @@ namespace eTicketWebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
 

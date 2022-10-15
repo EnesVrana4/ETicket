@@ -66,7 +66,7 @@ namespace eTicketWebApp.Controllers
         //    }
         //    return View("CreateTicket");
         //}
-        [Authorize(Roles ="Admin, Manager")]
+        [Authorize(Roles =" Manager")]
 
         public IActionResult CreateTicket(int numberOfTicket,int categoryId)
         {
@@ -86,7 +86,7 @@ namespace eTicketWebApp.Controllers
                 
         }
 
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = " Manager")]
 
         public IActionResult Delete(int id)
         {
@@ -94,7 +94,7 @@ namespace eTicketWebApp.Controllers
             return RedirectToAction("ShowTicket");
         }
 
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Manager")]
 
         public IActionResult Privacy()
         {

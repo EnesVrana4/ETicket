@@ -118,8 +118,6 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
             [Required]
             public int Role { get; set; }
         }
-
-
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;

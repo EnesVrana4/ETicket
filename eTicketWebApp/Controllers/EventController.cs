@@ -62,7 +62,7 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Manager")]
+        //[Authorize(Roles = "Manager")]
 
         public IActionResult CreateEvent()
         {
@@ -77,6 +77,7 @@ namespace eTicketWebApp.Controllers
         public IActionResult Details(int id)
         {
             EventViewModel eventViewModel = _eventService.GetEvent(id);
+            ViewBag.MyCategory = _categoryService.GetByEventId(id); 
             ViewBag.MyEvent = eventViewModel;
             return View();
         }

@@ -48,6 +48,12 @@ namespace eTicketWebApp.Controllers
 
         public IActionResult AddFavorite(int eventId)
         {
+            if(!User.Identity?.IsAuthenticated ?? false)
+            {
+                return Redirect("~/Identity/Account/Login");
+            }
+           
+
             _favoriteService.Add(eventId);
             return RedirectToAction("Details","Event", new { id = eventId});
        
