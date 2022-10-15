@@ -24,7 +24,10 @@ namespace eTicketServices.Services
 
         public void Add(int eventId)
         {
-            
+            //if(_context.CurrentUserId == null)
+            //{
+            //    Redirect("~/Identity/Account/Login");
+            //}
             if(_FavoriteRepo.GetAll().Any(e=>e.EventId == eventId && e.CreatedBy == _context.CurrentUserId))
             {
                 Favorite favorite = _FavoriteRepo.GetAll().FirstOrDefault(e=>e.EventId == eventId && e.CreatedBy == _context.CurrentUserId);

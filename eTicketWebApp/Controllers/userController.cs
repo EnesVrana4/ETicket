@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 using static eTicketWebApp.Models.Constantss;
-
 namespace eTicketWebApp.Controllers
 {
     public class UserController : Controller

@@ -57,6 +57,7 @@ namespace eTicketWebApp.Controllers
         public IActionResult Details(int id)
         {
             EventViewModel eventViewModel = _eventService.GetEvent(id);
+            ViewBag.MyCategory = _categoryService.GetByEventId(id); 
             ViewBag.MyEvent = eventViewModel;
             return View();
         }
