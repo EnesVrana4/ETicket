@@ -62,7 +62,7 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager")]
 
         public IActionResult CreateEvent()
         {
