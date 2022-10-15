@@ -64,7 +64,7 @@ namespace eTicketWebApp.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager")]
 
         public IActionResult CreateEvent()
         {
@@ -96,9 +96,8 @@ namespace eTicketWebApp.Controllers
         }
 
 
-
         [HttpPost]
-        //[Authorize(Roles = AspNetRole.MANAGER)]
+        [Authorize(Roles = "Manager")]
         public IActionResult CreateEvent(EventEditViewModel eventEditViewModel)
         {
             if (ModelState.IsValid)
@@ -106,9 +105,7 @@ namespace eTicketWebApp.Controllers
                 
                 _eventService.Add(eventEditViewModel);
                 EventViewModel eventViewModel = _eventService.GetLastCreated();
-                
                 return RedirectToAction("MenagerEventDetails" ,new {id = eventViewModel.EventId });
-
                // return RedirectToAction("ShowEvent");
 
 

@@ -114,6 +114,13 @@ namespace eTicketWebApp.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = await _signInManager.UserManager.FindByNameAsync(Input.Email);
+
+                if (user is null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
+
                 var result = await _signInManager.CheckPasswordSignInAsync(user, Input.Password,false);
                 
                     var claims = new List<Claim>

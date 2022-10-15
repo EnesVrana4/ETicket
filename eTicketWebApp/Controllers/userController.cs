@@ -56,7 +56,6 @@ namespace eTicketWebApp.Controllers
                 return ShowAdminHomePage();
 
             return ShowManagerdHomePage();
-
         }
         private IActionResult ShowUnAuthenticatedHomePage()
         {
