@@ -9,6 +9,7 @@ namespace eTicketData.Repositories.Interfaces
 
         AspNetUser GetUser(string id);
 
+        AspNetUser GetByEventId(int id);
         AspNetUser UpdateUser(AspNetUser user);
         string GetCurrentUser();
         void SaveChanges();

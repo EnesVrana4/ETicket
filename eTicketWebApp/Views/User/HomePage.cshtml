@@ -77,9 +77,9 @@
                                             <div class="col-md-6">
                                                 <div class="event-main-post">
                                                     <div class="main-photo">
-                                                        <a href="/Event/ShowEvent">
+                                                        <a asp-action="Details" asp-controller="Event" asp-route-id="@eventData.EventId">
                                                             <div class="photo-overlay"></div>
-                                                            <img src="~/Images/@eventData.Myimage" alt="">
+                                                             <img src="~/Images/@eventData.Myimage" alt=""> 
                                                         </a>
                                                         <div class="option-ellipsis">
                                                             <div class="dropdown">
@@ -96,9 +96,9 @@
                                                     <div class="event-body">
                                                         <span class="event-time"> @eventData.Date.ToString("dddd, dd MMMM yyyy")  </span>
 
-                                                       @* koment*@
+                                                      
 
-                                                    <span asp-action="ShowEvent" asp-controller="Event"class="event-title">@eventData.Name</span>
+                                                    <span class="event-title">@eventData.Name</span>
                                                         <span class="event-type">@eventData.Location</span>
                                                         <p class="ingo-counter">
                                                             <span>25 Interested</span>

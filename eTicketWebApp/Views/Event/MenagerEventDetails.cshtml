@@ -69,6 +69,7 @@
                                 <h2 class="color-white card-title">@category.Name</h2>
                                 <h4 class=" color-white card-subtitle mb-2 text-muted">Number of tickets @category.NumOfTickets   </h4>
                                 <h4 class=" color-white card-text">$@category.Price </h4>
+                                <a class="btn mt-3 btn-ilgiOrange  " asp-action="Delete" asp-controller="Category" asp-route-id="@category.CategoryId"> Delete Category </a>
                             </div>
                         </div>
                     </div>

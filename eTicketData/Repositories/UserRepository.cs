@@ -34,6 +34,12 @@ namespace eTicketData.Repositories
                 return user;
         }
 
+        public AspNetUser GetByEventId(int id)
+        {
+            string eventCreator = _context.Events.FirstOrDefault(e => e.EventId == id).CreatedBy;
+            return GetUser(eventCreator);
+        }
+
         public string GetCurrentUser()
         {
             var LogedInUser = _context.CurrentUserId;

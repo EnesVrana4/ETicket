@@ -41,7 +41,12 @@ namespace eTicketServices.Services
 
             return UserViewModelList;
         }
-       
+
+        public AspNetUser GetByEventId(int id)
+        {
+            return _repository.GetByEventId(id);
+        }
+
         public UserViewModel UpdateUser(UserViewModel user, string userId)
         {
             var EntUser = _repository.GetUser(userId);

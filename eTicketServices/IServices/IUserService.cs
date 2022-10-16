@@ -12,6 +12,9 @@ namespace eTicketServices.IServices
     {
         ICollection<UserViewModel> GetUsers();
         UserViewModel GetUser(string id);
+
+        public AspNetUser GetByEventId(int id);
+
         UserViewModel UpdateUser(UserViewModel user);
         string GetCurrentUser();
         

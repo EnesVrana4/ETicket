@@ -189,11 +189,14 @@
                                         {
                                             <div class="col-md-6">
                                                 <div class="event-main-post">
+                                                    <a asp-action="MenagerEventDetails" asp-controller="Event" asp-route-id="@item.EventId">
+
                                                     <div class="main-photo">
-                                                            <a class="nav-link" href="/Event/MenagerEventDetails/@item.EventId"></a>
+                                                          
                                                             <div class="photo-overlay"></div>
                                                             <img style=" height:auto; border-radius: 5px 5px 0 0;" src="~/Images/@item.Myimage" asp-append-version="true" alt="">
                                                     </div>
+                                                    </a>
                                                     <div class="event-body">
                                                         <span class="event-time">@item.Date</span>
                                                         <a href="/Event/MenagerEventDetails/@item.EventId" class="event-title">@item.Name</a>

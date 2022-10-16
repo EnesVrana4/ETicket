@@ -106,10 +106,10 @@ namespace eTicketWebApp.Controllers
         }
         [Authorize(Roles = "Admin, Manager")]
 
-        public IActionResult Delete(int id)
+        void  Delete(int id)
         {
             _categoryService.Delete(id);
-            return RedirectToAction("ShowCategory");
+        
         }
         public IActionResult Privacy()
         {

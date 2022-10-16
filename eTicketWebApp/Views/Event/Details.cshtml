@@ -48,7 +48,7 @@
                 </div>
                 <div class="details_info">
                     <p id="details_description">"@ViewBag.MyEvent.Description"</p>
-                    <p> <i class="fa fa-flag"></i>Event by </p>
+                    <p> <i class="fa fa-flag"></i>Event by @ViewBag.eventCreator.FirstName @ViewBag.eventCreator.LastName </p>
                     <p> <i class="fa fa-map-marker"></i>@ViewBag.MyEvent.Location</p>
                     <p> <i class="fa fa-calendar-o"></i>@ViewBag.MyEvent.Date.ToString("dddd, dd MMMM yyyy")</p>
                     <p> <i class="fa fa-clock-o"></i>@ViewBag.MyEvent.Date.ToString("h:mm tt")</p>
@@ -104,7 +104,7 @@
             <div class="little_details_right">
                 <p>Host</p>
                 <div class="event_organizer">
-                    <h4>//name surname</h4>
+                    <h4>@ViewBag.eventCreator.FirstName @ViewBag.eventCreator.LastName</h4>
                     <h6>Event Organizer</h6>
                 </div>
             </div>
