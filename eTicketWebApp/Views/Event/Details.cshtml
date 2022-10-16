@@ -52,11 +52,11 @@
 									<div class="card-body">
 										<h2 class="ticket_name color-black card-title">@category.Name</h2>
 										<h4 class="ticket_name color-white card-subtitle mb-2 text-muted">Number of tickets @category.NumOfTickets   </h4>
-                                        <form asp-action="" asp-controller="">
+                                        <form asp-action="CreateTicket" asp-controller="Ticket"  asp-route-categoryId="@category.CategoryId" asp-route-eventId="@ViewBag.MyEvent.EventId">
 
                                             <div class="price_details ">
                                                 <p>Ticket Number:</p>
-                                                <input type="number" value="0" id="input"/><br>
+                                                <input type="number" value="0" id="input" for="numberOfTicket" name="numberOfTicket"/><br>                                                
                                                 <div class="price_total">
                                                     
                                                     <h3>Price: $@category.Price</h3>
