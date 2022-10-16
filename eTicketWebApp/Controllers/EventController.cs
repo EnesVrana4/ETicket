@@ -75,13 +75,18 @@ namespace eTicketWebApp.Controllers
         {
             return View();
         }
+        
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? alert)
         {
             EventViewModel eventViewModel = _eventService.GetEvent(id);
             ViewBag.MyCategory = _categoryService.GetByEventId(id); 
             ViewBag.MyEvent = eventViewModel;
             ViewBag.MyFavorite = _favoriteService.GetFavoritesByEventId(id).Count;
+            if (alert != null)
+            {
+                ViewBag.Alert = alert;
+            }
             return View();
         }
         [HttpGet]

@@ -10,6 +10,23 @@
 </head>
 
 <main>
+    @if(@ViewBag.Alert != null)
+    {
+        @if (@ViewBag.Alert == "Reservation was SUCCESSFUL! Have fun!")
+        {
+        <div class="details_alert"  style="background-color:green;">
+            <span class="details_closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <p>@ViewBag.Alert</p>
+        </div>
+        }
+        else
+        {
+        <div class="details_alert">
+            <span class="details_closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <p>@ViewBag.Alert</p>
+        </div>                    
+        }
+    }
     <div class="details_div display_flex space_between">
 
         <div class="details_left_div">
@@ -81,12 +98,7 @@
             </div>
             <div class="little_details_right">
                 <p>Go with friends</p>
-                <div class="display_flex space_evenly">
-                    <div class="go_with_friends_left">
-                        <h3> going-nr </h3>
-                        <h5>Going</h5>
-                    </div>
-
+                <div class="display_flex space_evenly">                 
                     <div class="go_with_friends_right">
                         <h3>@ViewBag.MyFavorite</h3>
                         <h5>Interested</h5>
