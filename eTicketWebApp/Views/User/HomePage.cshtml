@@ -77,7 +77,7 @@
                                             <div class="col-md-6">
                                                 <div class="event-main-post">
                                                     <div class="main-photo">
-                                                        <a href="event_detail_view.html">
+                                                        <a href="/Event/ShowEvent">
                                                             <div class="photo-overlay"></div>
                                                             <img src="~/Images/@eventData.Myimage" alt="">
                                                         </a>
@@ -95,7 +95,10 @@
                                                     </div>
                                                     <div class="event-body">
                                                         <span class="event-time"> @eventData.Date.ToString("dddd, dd MMMM yyyy")  </span>
-                                                        <a href="event_detail_view.html" class="event-title">@eventData.Name</a>
+
+                                                       @* koment*@
+
+                                                    <span asp-action="ShowEvent" asp-controller="Event"class="event-title">@eventData.Name</span>
                                                         <span class="event-type">@eventData.Location</span>
                                                         <p class="ingo-counter">
                                                             <span>25 Interested</span>
@@ -128,7 +131,7 @@
                                     <div class="col-md-6">
                                         <div class="event-main-post">
                                             <div class="main-photo">
-                                                <a href="event_detail_view.html">
+                                    <a href="/Event/ShowEvent">
                                                     <div class="photo-overlay"></div>
                                                     <img src="./Images/post-img-1.jpg" alt="">
                                                 </a>
@@ -146,7 +149,7 @@
                                             </div>
                                             <div class="event-body">
                                                 <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                <a href="event_detail_view.html" class="event-title">Event Title Here</a>
+                                                <a href="/Event/ShowEvent" class="event-title">Event Title Here</a>
                                                 <span class="event-type">Tirana</span>
                                                 <p class="ingo-counter">
                                                     <span>25 Interested</span>
@@ -162,7 +165,7 @@
                                     <div class="col-md-6">
                                         <div class="event-main-post">
                                             <div class="main-photo">
-                                                <a href="event_detail_view.html">
+                                    <a href="/Event/ShowEvent">
                                                     <div class="photo-overlay"></div>
                                                     <img src="./Images/post-img-2.jpg" alt="">
                                                 </a>
@@ -180,7 +183,7 @@
                                             </div>
                                             <div class="event-body">
                                                 <span class="event-time">thu,30 october 2022 at 3.00 pm</span>
-                                                <a href="event_detail_view.html" class="event-title">Event Title Here</a>
+                                                <a href="/Event/ShowEvent" class="event-title">Event Title Here</a>
                                                 <span class="event-type">Online</span>
                                                 <p class="ingo-counter">
                                                     <span>25 Interested</span>
@@ -325,7 +328,7 @@
                 <div class="post-event">
                     <h6>Want to Post Your Event</h6>
                     <p>Post your event. Just make an account and add it through the simple form. As simple as that.</p>
-                    <a class="add-nw-event" asp-area="" asp-controller="Event" asp-action="CreateEvent">Post It Now</a>
+                    <a class="add-nw-event" @*asp-area="CreateEvent" *@asp-controller="Event" asp-action="CreateEvent">Post It Now</a>
                 </div>
                 <div class="explore-events">
                     <h4>Explore Events</h4>
