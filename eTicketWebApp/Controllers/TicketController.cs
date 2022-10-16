@@ -74,12 +74,13 @@ namespace eTicketWebApp.Controllers
             var succses = _ticketService.AddTicket(categoryId, numberOfTicket);
                 if (!succses)
             {
-                return RedirectToAction("Details" ,"Event", new { id = eventId });
+
+                return RedirectToAction("Details" ,"Event", new { id = eventId , alert="Reservation Failed! Please do not exceed the number of tickets in stock. Try again!"});
             }
             else
             {
-                return RedirectToAction("Details", "Event", new { id = eventId });
-            }
+                return RedirectToAction("Details", "Event", new { id = eventId, alert = "Reservation was SUCCESSFUL! Have fun!"});
+                }
         }
 
         [Authorize(Roles = " Manager")]
