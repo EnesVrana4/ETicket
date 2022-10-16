@@ -19,15 +19,17 @@ namespace eTicketWebApp.Controllers
         private readonly IMapper _mapper;
         private readonly IEventService _eventService;
         private readonly ICategoryService _categoryService;
+        private readonly IFavoriteService _favoriteService;
       
 
         private IdentityUser user;
-        public EventController(ILogger<EventController> logger, IMapper mapper, IEventService eventService, ICategoryService categoryService)
+        public EventController(ILogger<EventController> logger, IMapper mapper, IEventService eventService, ICategoryService categoryService, IFavoriteService favoriteService)
         {
             _logger = logger;
             _mapper = mapper;
             _eventService = eventService;
             _categoryService = categoryService;
+            _favoriteService = favoriteService;
         }
 
 
@@ -79,6 +81,7 @@ namespace eTicketWebApp.Controllers
             EventViewModel eventViewModel = _eventService.GetEvent(id);
             ViewBag.MyCategory = _categoryService.GetByEventId(id); 
             ViewBag.MyEvent = eventViewModel;
+            ViewBag.MyFavorite = _favoriteService.GetFavoritesByEventId(id).Count;
             return View();
         }
         [HttpGet]

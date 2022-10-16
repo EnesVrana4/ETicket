@@ -44,6 +44,7 @@ namespace eTicketWebApp.Controllers
         //{
         //    return View();
         //}
+
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -66,24 +67,19 @@ namespace eTicketWebApp.Controllers
         //    }
         //    return View("CreateTicket");
         //}
-        [Authorize(Roles =" Manager")]
+        [Authorize(Roles =" User")]
 
-        public IActionResult CreateTicket(int numberOfTicket,int categoryId)
+        public IActionResult CreateTicket(int numberOfTicket,int categoryId,int eventId)
         {
-
-
             var succses = _ticketService.AddTicket(categoryId, numberOfTicket);
                 if (!succses)
             {
-                return RedirectToAction("Details" ,"Category", new { id = categoryId });
-
+                return RedirectToAction("Details" ,"Event", new { id = eventId });
             }
             else
             {
-                return RedirectToAction("ShowTicket");
-
+                return RedirectToAction("Details", "Event", new { id = eventId });
             }
-                
         }
 
         [Authorize(Roles = " Manager")]

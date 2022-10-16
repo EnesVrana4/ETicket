@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTicketData;
 
@@ -10,9 +11,10 @@ using eTicketData;
 namespace eTicketData.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221015221933_mig up to date")]
+    partial class miguptodate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,22 +334,22 @@ namespace eTicketData.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1aaf6b79-39db-4270-89b1-9c4e5b88fa61",
-                            ConcurrencyStamp = "932a4eef-2538-4ec2-81db-32d62ad318d6",
+                            Id = "4479df0a-914f-4a66-8afe-222d26dafe4f",
+                            ConcurrencyStamp = "fc2c2b6b-318e-46c2-8264-28deb1cb0e5e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c656aad5-9803-4c84-8c52-aa3719b19b11",
-                            ConcurrencyStamp = "54990797-0175-4ad6-913c-101ca613f97a",
+                            Id = "1c8aaea3-03a2-44f4-8d6f-2ad5abd4573c",
+                            ConcurrencyStamp = "4635f141-8599-46d2-9b2e-bbe8c64e7ba1",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "4caa600e-53ba-442a-8fa2-762acaf59120",
-                            ConcurrencyStamp = "0a0e511c-25ab-475f-830b-aff6b80d82bf",
+                            Id = "b1da925b-8976-4a78-b004-7d185d6572c9",
+                            ConcurrencyStamp = "b13a9aeb-3dd5-4355-b870-ba6475d0c0ed",
                             Name = "User",
                             NormalizedName = "USER"
                         });

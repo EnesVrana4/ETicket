@@ -24,10 +24,6 @@ namespace eTicketServices.Services
 
         public void Add(int eventId)
         {
-            //if(_context.CurrentUserId == null)
-            //{
-            //    Redirect("~/Identity/Account/Login");
-            //}
             if(_FavoriteRepo.GetAll().Any(e=>e.EventId == eventId && e.CreatedBy == _context.CurrentUserId))
             {
                 Favorite favorite = _FavoriteRepo.GetAll().FirstOrDefault(e=>e.EventId == eventId && e.CreatedBy == _context.CurrentUserId);
@@ -67,9 +63,18 @@ namespace eTicketServices.Services
         }
 
 
-        public ICollection<FavoriteViewModel> GetFavoritesByEventId(int id)
+        public ICollection<FavoriteViewModel> GetFavoritesByEventId(int eventId)
         {
-            throw new NotImplementedException();
+                List<FavoriteViewModel> favoriteViewModelList = new List<FavoriteViewModel>();
+                List<Favorite> Mylist = (List<Favorite>)_FavoriteRepo.GetFavoritesByEventId(eventId);
+                foreach (var favorite in Mylist)
+                {
+                FavoriteViewModel favoriteViewModel = _mapper.Map<FavoriteViewModel>(favorite);
+                    favoriteViewModelList.Add(favoriteViewModel);
+                }
+
+                return favoriteViewModelList;
+            
         }
 
         public ICollection<FavoriteViewModel> GetAll()

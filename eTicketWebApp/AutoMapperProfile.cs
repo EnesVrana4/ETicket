@@ -15,7 +15,11 @@ namespace eTicketWebApp
 
             CreateMap<Category, CategoryViewModel>();
             CreateMap<CategoryEditViewModel, Category>();
-            CreateMap<Category,CategoryEditViewModel>();
+            CreateMap<Category, CategoryEditViewModel>();
+
+            CreateMap<Favorite, FavoriteViewModel>();
+            CreateMap<FavoriteEditViewModel, Favorite>();
+            CreateMap<Favorite, FavoriteEditViewModel>();
 
 
 

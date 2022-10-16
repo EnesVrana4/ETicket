@@ -6,11 +6,11 @@ namespace eTicketServices.IServices
 {
     public interface IFavoriteService
     {
+        ICollection<FavoriteViewModel> GetMYFavorites();
         ICollection<FavoriteViewModel> GetFavoritesByEventId(int id);
         FavoriteViewModel GetFavorite(int id);
         FavoriteEditViewModel GetEditFavorite(int id);
         void Add(int eventId);
         ICollection<FavoriteViewModel> GetAll();     
-        ICollection<FavoriteViewModel> GetMYFavorites();
     }
 }
